@@ -2,44 +2,18 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
   display: flex;
   min-height: 80px;
-  padding: 0px 120px;
+  padding: 0px 320px;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--whiteColor);
+  width: 100%;
   box-shadow: var(--boxShadowColor);
-}
-
-.dropdown {
-  padding: 0 8px;
-  height: 36px;
-  border: 0px;
-  font-size: 14px;
-  color: var(--textColor);
-}
-
-.nav_menus {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 24px;
-}
-
-.button {
-  width: 120px;
-  padding: 8px 24px;
-  font-size: 14px;
-}
-
-.nav_links {
-  display: flex;
-  align-items: center;
-  list-style-type: none;
   gap: 16px;
-  font-size: 14px;
-  font-weight: 300;
+}
+
+.container_logo_mobile {
+  display: none;
 }
 
 .vl {
@@ -48,61 +22,171 @@
   background-color: var(--borderColor);
 }
 
+.toggler {
+  display: none;
+}
+
+.dropdown {
+  font-weight: 300;
+  height: 32px;
+  padding: 0 16px;
+  background-color: transparent;
+  border: 0;
+}
+
 .container_input {
+  width: 100%;
   display: flex;
   align-items: center;
 }
 
 .input,
 .input_button {
-  height: 36px;
-  border-radius: 0px;
-  border-left: 1px solid;
-  border-top: 1px solid;
-  border-bottom: 1px solid;
-  border-right: 0;
-  border-color: var(--borderColor);
+  height: 32px;
+  border: var(--borderColor) 1px solid;
 }
 
 .input {
-  margin-left: 20px;
-  padding: 0 24px;
-  width: 300px;
-  border-bottom-left-radius: 8px;
-  border-top-left-radius: 8px;
-}
-
-.input::placeholder {
-  color: var(--borderColor);
+  border-right: 0px;
+  border-radius: 8px 0 0 8px;
+  width: 100%;
+  padding: 0 16px;
 }
 
 .input_button {
-  width: 48px;
-  border-radius: 0px;
-  border-right: 1px solid;
-  border-top: 1px solid;
-  border-bottom: 1px solid;
-  border-left: 0;
-  border-bottom-right-radius: 8px;
-  border-top-right-radius: 8px;
-  border-color: var(--borderColor);
+  width: 32px;
+  border-radius: 0 8px 8px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.button {
-  border-radius: 8px;
-  border: 0px;
+.menus {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  list-style: none;
+  width: 100%;
+}
+
+.menu_icon,
+.menu_arrow {
+  display: none;
+}
+
+.nav_link {
   font-size: 14px;
   font-weight: 300;
-  height: 36px;
+  white-space: nowrap;
 }
 
-.button_login {
+.button_dekstop {
+  padding: 0 32px;
+  height: 32px;
   background-color: transparent;
-  border: 1px solid var(--borderColor);
-  color: var(--accentColor);
+  border: 0;
+  border-radius: 8px;
+}
+
+.button_mobile {
+  padding: 0 16px;
+  height: 32px;
+  background-color: transparent;
+  border: 0;
+  border-radius: 8px;
+  display: none;
 }
 
 .button_register {
   background-color: var(--accentColor);
   color: var(--whiteColor);
+}
+
+.button_login {
+  border: 1px solid var(--borderColor);
+  color: var(--accentColor);
+}
+
+@media only screen and (max-width: 1280px) {
+  .container {
+    padding: 0px 120px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .container_logo_mobile {
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--borderColor);
+  }
+
+  .logo_dekstop {
+    display: none;
+  }
+
+  .toggler {
+    display: block;
+  }
+
+  .dropdown_container {
+    display: none;
+  }
+
+  .container_menus {
+    position: absolute;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    height: 100vh;
+    background-color: var(--whiteColor);
+    transition: all ease-in 0.4s;
+  }
+
+  .collapse_active {
+    left: 0;
+    box-shadow: rgb(0, 0, 0, 0.5) 0px 0px 20000px 2000px;
+  }
+
+  .button_mobile {
+    display: block;
+  }
+
+  .button_dekstop {
+    display: none;
+  }
+
+  .menus {
+    padding: 24px;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-start;
+  }
+
+  .menu_icon {
+    display: inline;
+    margin-right: 8px;
+  }
+
+  .menu_arrow {
+    display: inline;
+    margin-left: auto;
+  }
+
+  .nav_link {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  .vl {
+    display: none;
+  }
+
 }
