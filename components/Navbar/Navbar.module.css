@@ -4,7 +4,8 @@
   left: 0;
   width: 100%;
   display: flex;
-  padding: 16px 320px;
+  min-height: 80px;
+  padding: 0px 120px;
   align-items: center;
   justify-content: space-between;
   background-color: var(--whiteColor);
@@ -64,8 +65,9 @@
 }
 
 .input {
+  margin-left: 20px;
   padding: 0 24px;
-  width: 320px;
+  width: 300px;
   border-bottom-left-radius: 8px;
   border-top-left-radius: 8px;
 }
