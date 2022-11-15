@@ -1,0 +1,106 @@
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  padding: 16px 320px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--whiteColor);
+  box-shadow: var(--boxShadowColor);
+}
+
+.dropdown {
+  padding: 0 8px;
+  height: 36px;
+  border: 0px;
+  font-size: 14px;
+  color: var(--textColor);
+}
+
+.nav_menus {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.button {
+  width: 120px;
+  padding: 8px 24px;
+  font-size: 14px;
+}
+
+.nav_links {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  gap: 16px;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.vl {
+  width: 1px;
+  height: 36px;
+  background-color: var(--borderColor);
+}
+
+.container_input {
+  display: flex;
+  align-items: center;
+}
+
+.input,
+.input_button {
+  height: 36px;
+  border-radius: 0px;
+  border-left: 1px solid;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  border-right: 0;
+  border-color: var(--borderColor);
+}
+
+.input {
+  padding: 0 24px;
+  width: 320px;
+  border-bottom-left-radius: 8px;
+  border-top-left-radius: 8px;
+}
+
+.input::placeholder {
+  color: var(--borderColor);
+}
+
+.input_button {
+  width: 48px;
+  border-radius: 0px;
+  border-right: 1px solid;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  border-left: 0;
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
+  border-color: var(--borderColor);
+}
+
+.button {
+  border-radius: 8px;
+  border: 0px;
+  font-size: 14px;
+  font-weight: 300;
+  height: 36px;
+}
+
+.button_login {
+  background-color: transparent;
+  border: 1px solid var(--borderColor);
+  color: var(--accentColor);
+}
+
+.button_register {
+  background-color: var(--accentColor);
+  color: var(--whiteColor);
+}
