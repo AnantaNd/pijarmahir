@@ -1,11 +1,15 @@
 import React from "react";
+import Navbar from "../Navbar/Navbar";
 import Styles from "./Layouts.module.css";
 
 function Layouts({ children }) {
   return (
-    <main className={Styles.main}>
-      {children}
-    </main>
+    <>
+      <Navbar />
+      <main className={Styles.main}>
+        {children}
+      </main>
+    </>
   );
 }
 

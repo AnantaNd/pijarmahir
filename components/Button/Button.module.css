@@ -1,10 +1,11 @@
 .button_primary,
 .button_secondary {
-  width: 32px;
+  height: 40px;
   padding: 0 32px;
   background-color: transparent;
   border: 0;
   border-radius: 8px;
+  width: 100%;
 }
 
 .button_primary {
@@ -13,8 +14,9 @@
 }
 
 .button_secondary {
-  background-color: var(--accentColor);
-  color: var(--whiteColor);
+  background-color: transparent;
+  color: var(--textColor);
+  border: var(--borderColor) solid 1px;
 }
 
 @media only screen and (max-width: 768px) {
