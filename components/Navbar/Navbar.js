@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Styles from './Navbar.module.css';
 import { BiSearch, BiMenu, BiX, BiList } from "react-icons/bi";
 import { FiChevronRight, FiList } from "react-icons/fi";
+import Link from 'next/link';
 
 function Navbar() {
   const [isCollapse, setIsCollapse] = useState(false);
@@ -55,7 +56,7 @@ function Navbar() {
           </li>
         </ul >
       </div >
-      <button className={Styles.button_mobile + " " + Styles.button_login}>Masuk</button>
+      <Link href="/login" style={{ textDecoration: 'none' }}><button className={Styles.button_mobile + " " + Styles.button_login}>Masuk</button></Link>
     </nav >
   )
 }

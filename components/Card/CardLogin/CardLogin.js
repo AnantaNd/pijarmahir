@@ -22,9 +22,11 @@ function CardLogin() {
         </div>
         <p className={Styles.orange_text}>Lupa Password?</p>
       </div>
-      <Button buttonType="primary">
-        Masuk
-      </Button>
+      <div className={Styles.sparator}>
+        <Button buttonType="primary">
+          Masuk
+        </Button>
+      </div>
       <div className={Styles.sparator}>
         <div className={Styles.hl}></div>
         atau

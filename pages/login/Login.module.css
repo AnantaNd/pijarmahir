@@ -1,6 +1,6 @@
 .container_login {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   padding: 0px 320px;
@@ -11,6 +11,8 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  margin-top: 48px;
+
 }
 
 @media only screen and (max-width: 1280px) {
