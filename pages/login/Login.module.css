@@ -1,0 +1,34 @@
+.container_login {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0px 320px;
+}
+
+.login_content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+@media only screen and (max-width: 1280px) {
+  .container_login {
+    padding: 0px 120px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .login_ilustration {
+    display: none;
+  }
+
+  .logo {
+    margin-left: 200px;
+  }
+
+  .container_login {
+    padding: 0 16px;
+  }
+}
