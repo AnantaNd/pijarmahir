@@ -1,0 +1,59 @@
+.container{
+  border: 1px solid var(--borderColor); 
+  border-radius: 10px;
+  margin: 0px;
+  padding: 2rem 0 ;
+  text-align: center;
+  box-shadow: var(--boxShadowColor);
+  width: 500px;
+  color: var(--textColor);
+ }
+ .title{
+   text-transform: capitalize;
+   margin: .8rem 0;
+ }
+ .subtitle{
+   color: var(--greyColor);
+   margin-bottom: 4rem;
+   text-transform: capitalize;
+ }
+ .form{
+   margin: 1rem 0;
+ }
+ .input{
+   padding: .8rem;
+   width: 350px;
+   border-radius: 8px;
+   border: 1px solid var(--borderColor);
+ }
+ .btn_signup{
+   padding: .8rem;
+   width: 350px;
+   border-radius: 8px;
+   border: none;
+   background-color: var(--accentColor);
+   color: white;
+   text-transform: capitalize;
+ }
+ .label_login{
+   margin: 1rem 0;
+ }
+ .btn_login{
+   border: none;
+   background-color: inherit;
+   font-size: 18px;
+   color: orange;
+   text-transform: capitalize;
+ }
+ .policy{
+   padding: .8rem 2rem ;
+   color: var(--greyColor);
+ }
+ .syarat{
+   color: var(--accentColor);
+ }
+ .desc{
+   font-size: 12px;
+   margin: 12px 0;
+   color: var(--greyColor);
+ }
