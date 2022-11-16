@@ -1,0 +1,26 @@
+.button_primary,
+.button_secondary {
+  width: 32px;
+  padding: 0 32px;
+  background-color: transparent;
+  border: 0;
+  border-radius: 8px;
+}
+
+.button_primary {
+  background-color: var(--accentColor);
+  color: var(--whiteColor);
+}
+
+.button_secondary {
+  background-color: var(--accentColor);
+  color: var(--whiteColor);
+}
+
+@media only screen and (max-width: 768px) {
+
+  .button_primary,
+  .button_secondary {
+    padding: 0 16px;
+  }
+}
