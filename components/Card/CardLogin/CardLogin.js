@@ -2,6 +2,8 @@ import React from 'react';
 import Button from '../../Button/Button';
 import Input from '../../Input/Input';
 import Styles from "./CardLogin.module.css";
+import { FcGoogle } from "react-icons/fc"
+import { FaFacebook } from "react-icons/fa"
 
 function CardLogin() {
   return (
@@ -29,10 +31,10 @@ function CardLogin() {
       </div>
       <div className={Styles.third_party}>
         <Button>
-          Masuk
+          <FcGoogle size={24} style={{ marginRight: "8px" }} />Masuk dengan Google
         </Button>
         <Button>
-          Masuk
+          <FaFacebook color="DodgerBlue" size={24} style={{ marginRight: "8px" }} />Masuk dengan Facebook
         </Button>
       </div>
       <div className={Styles.register_link}>
