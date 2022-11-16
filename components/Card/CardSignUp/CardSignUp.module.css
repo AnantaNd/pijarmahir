@@ -1,39 +1,45 @@
-.container{
-  border: 1px solid var(--borderColor); 
+.container {
+  border: 1px solid var(--borderColor);
   border-radius: 10px;
   margin: 0px;
   padding: 2rem;
   max-width: 100%;
   box-shadow: var(--boxShadowColor);
   color: var(--textColor);
- }
-.title{
+}
+
+.title {
   text-align: center;
   text-transform: capitalize;
   margin: .8rem 0;
 }
-.subtitle{
+
+.subtitle {
   text-align: center;
   color: var(--greyColor);
   margin-bottom: 4rem;
   text-transform: capitalize;
 }
- .form{
-   margin: 1rem 0;
- }
- .label_input {
+
+.form {
+  margin: 1rem 0;
+}
+
+.label_input {
   font-weight: 600;
   font-size: 14px;
   text-align: start;
 
 }
-.input{
+
+.input {
   padding: .8rem;
   width: 350px;
   border-radius: 8px;
   border: 1px solid var(--borderColor);
 }
-.btn_signup{
+
+.btn_signup {
   padding: .8rem;
   width: 350px;
   border-radius: 8px;
@@ -42,34 +48,40 @@
   color: white;
   text-transform: capitalize;
 }
-.label_login{
+
+.label_login {
   margin: 1rem 0;
   text-align: center;
 
 }
-.btn_login{
+
+.btn_login {
   border: none;
   background-color: inherit;
   font-size: 18px;
   color: orange;
   text-transform: capitalize;
 }
-.policy{
-  padding: .8rem 2rem ;
+
+.policy {
+  padding: .8rem 2rem;
   color: var(--greyColor);
   text-align: center;
 
 }
-.syarat{
+
+.syarat {
   color: var(--accentColor);
 }
- .desc{
+
+.desc {
   text-align: center;
   font-size: 12px;
   margin: 12px 0;
   color: var(--greyColor);
 }
- @media only screen and (max-width: 768px) {
+
+@media only screen and (max-width: 768px) {
   .container {
     margin-left: 0px;
     width: 100%;

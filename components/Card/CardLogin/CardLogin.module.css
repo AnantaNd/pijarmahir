@@ -1,8 +1,10 @@
 .container_card {
-  margin-left: auto;
+  margin-left: 32px;
   max-width: 100%;
   padding: 40px;
   box-shadow: var(--boxShadowColor);
+  border: 1px solid var(--borderColor);
+  border-radius: 8px;
 }
 
 .text_login,
@@ -95,5 +97,6 @@
     width: 100%;
     box-shadow: rgba(0, 0, 0, 0) 0px 4px 12px;
     padding: 0;
+    border: 0;
   }
 }
