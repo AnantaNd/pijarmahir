@@ -6,6 +6,7 @@ export default function CardSignUp(){
       <p className={styles.subtitle}>bangun karirmu bersama pijar mahir</p>
       <div className={styles.form}>
         {/* <p>Email</p> */}
+        <label className={styles.label_input} htmlFor="email">Email</label>
         <input className={styles.input} type="email" name='email' placeholder='example@mail.com'/>
         <p className={styles.desc}>kami akan mengirim kode verifikasi ke email</p>
       </div>
