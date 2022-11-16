@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '../../Button/Button';
+import Input from '../../Input/Input';
 import Styles from "./CardLogin.module.css";
 
 function CardLogin() {
@@ -7,14 +8,8 @@ function CardLogin() {
     <div className={Styles.container_card}>
       <h2 className={Styles.text_login}>Masuk</h2>
       <p className={Styles.suggestion}>Lanjutkan pembelajaranmu dengan Pijar Mahir</p>
-      <div className={Styles.container_input}>
-        <label className={Styles.label_input} htmlFor="email">Email</label>
-        <input className={Styles.input} name="email" type="email" placeholder="example@gmail.com" />
-      </div>
-      <div className={Styles.container_input}>
-        <label className={Styles.label_input} htmlFor="email">Email</label>
-        <input className={Styles.input} name="email" type="email" placeholder="example@gmail.com" />
-      </div>
+      <Input label="Email" name="email" type="email" placeholder="example@gmail.com" />
+      <Input label="Password" name="password" type="password" placeholder="" />
       <div className={Styles.helper}>
         <div className={Styles.container_checkbox}>
           <input className={Styles.checkbox} name="checkbox" type="checkbox" />
