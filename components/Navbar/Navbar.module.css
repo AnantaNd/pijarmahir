@@ -2,6 +2,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 9999;
   display: flex;
   min-height: 80px;
   padding: 0px 320px;
@@ -9,6 +10,7 @@
   justify-content: space-between;
   width: 100%;
   box-shadow: var(--boxShadowColor);
+  background-color: var(--whiteColor);
   gap: 16px;
 }
 
