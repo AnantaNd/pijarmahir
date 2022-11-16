@@ -1,0 +1,161 @@
+.footer {
+  padding: 0px 320px;
+}
+
+.container_content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.content {
+  padding: 8px;
+  border-right: 1px solid var(--borderColor);
+  margin-top: 16px;
+  min-width: 230;
+}
+
+.powers {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: var(--greyColor);
+}
+
+.powers_text {
+  margin-right: 8px;
+}
+
+.no_border {
+  border: 0;
+}
+
+.contact_container {
+  margin-right: 32px;
+}
+
+.contact {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.contact_icon {
+  border-radius: 100%;
+  background-color: var(--orangeColor);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.contact_info {
+  margin-left: 16px;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.contact_name {
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.contact_number {
+  font-weight: 400;
+}
+
+.li_content {
+  list-style: none;
+}
+
+.content_title {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.content_list {
+  margin-top: 16px;
+  font-weight: 600;
+  color: var(--greyColor);
+  white-space: nowrap;
+}
+
+.social_media {
+  margin-right: 8px;
+  margin-bottom: 16px;
+}
+
+.services {
+  display: flex;
+  justify-content: space-between;
+  gap: 48px;
+  margin-top: 56px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--greyColor);
+  font-size: 14px;
+}
+
+.service_title {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.service_info {
+  display: flex;
+  align-items: center;
+  font-weight: 300;
+  font-size: 14;
+  margin-top: 16px;
+  color: var(--greyColor);
+}
+
+.term {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 32px;
+  font-weight: 300;
+  font-size: 14px;
+}
+
+@media only screen and (max-width: 1280px) {
+  .footer {
+    padding: 0px 120px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+
+  .footer {
+    padding: 0 16px;
+  }
+
+  .container_content {
+    flex-direction: column;
+  }
+
+  .content {
+    padding: 16px;
+    border-right: 0;
+    text-align: center;
+  }
+
+  .services,
+  .term {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .contact_container {
+    margin-right: 0;
+  }
+
+  .powers,
+  .contact,
+  .service_info {
+    justify-content: center;
+  }
+
+}

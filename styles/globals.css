@@ -4,10 +4,11 @@
   --textColor: #2F3509;
   --borderColor: #dedede;
   --greyColor: #cccccc;
+  --footerColor: #f5f5f5;
   --whiteColor: #ffffff;
   --accentColor: rgb(26, 115, 232);
   --boxShadowColor: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-  --orangeColor: rgb(251, 114, 3)
+  --orangeColor: rgb(255, 138, 43);
 }
 
 * {
