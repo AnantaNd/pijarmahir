@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Layouts from "../components/Layouts/Layouts";
+import CardForgotPass from "../components/Card/CardForgotPass/CardForgotPass";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
 
       <Layouts>
         Disini main content
+        <CardForgotPass />
       </Layouts>
 
       <footer></footer>
