@@ -1,5 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
+import Button from "../components/Button/Button";
+import Layouts from "../components/Layouts/Layouts";
 import Navbar from "../components/Navbar/Navbar";
 import styles from "../styles/Home.module.css";
 
@@ -14,8 +16,9 @@ export default function Home() {
 
       <Navbar />
 
-      <main>
-      </main>
+      <Layouts>
+        Disini main content
+      </Layouts>
 
       <footer></footer>
     </div>
