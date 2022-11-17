@@ -1,0 +1,9 @@
+.container {
+  border: 1px solid var(--borderColor);
+  border-radius: 10px;
+  margin: 0px;
+  padding: 2rem;
+  max-width: 100%;
+  box-shadow: var(--boxShadowColor);
+  color: var(--textColor);
+}
