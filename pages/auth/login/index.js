@@ -3,7 +3,7 @@ import Image from 'next/image';
 import React from 'react';
 import CardLogin from '../../../components/Card/CardLogin/CardLogin';
 import FooterSecond from '../../../components/Footer/FooterSecond/FooterSecond';
-import Styles from './Login.module.css'
+import Styles from './Login.module.css';
 
 function Login() {
   return (
@@ -16,7 +16,7 @@ function Login() {
       <main className={Styles.container_login}>
         <Image className={Styles.logo} src="/pijar_logo.svg" height={80} width={80} style={{ marginLeft: "auto", marginRight: "auto" }} />
         <div className={Styles.login_content}>
-          <Image className={Styles.login_ilustration} src="/new-profile.svg" width={525} height={525} />
+          <Image className={Styles.login_ilustration} src="/new-profile.svg" width={480} height={480}/>
           <CardLogin />
         </div>
       </main>
