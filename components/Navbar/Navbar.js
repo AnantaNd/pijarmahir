@@ -4,6 +4,7 @@ import Styles from './Navbar.module.css';
 import { BiSearch, BiMenu, BiX, BiList } from "react-icons/bi";
 import { FiChevronRight, FiList } from "react-icons/fi";
 import Link from 'next/link';
+import Button from '../Button/Button';
 
 function Navbar() {
   const [isCollapse, setIsCollapse] = useState(false);
@@ -43,20 +44,23 @@ function Navbar() {
             <Image className={Styles.menu_icon} src="/pijar_logo.svg" width={24} height={24} /><span>Pijar Camp</span> <FiChevronRight className={Styles.menu_arrow} />
           </li>
           <li className={Styles.nav_link}>
-            <FiList className={Styles.menu_icon} style={{ marginRight: "18px" }} /><span>Kategori</span> <FiChevronRight className={Styles.menu_arrow} />
-          </li>
-          <li className={Styles.nav_link}>
             <div className={Styles.vl}></div>
           </li>
           <li className={Styles.nav_link}>
-            <button className={Styles.button_dekstop + " " + Styles.button_login}>Masuk</button>
+            <Link href="/auth/login" style={{ textDecoration: 'none' }}>
+              <Button buttonNav={true} >Masuk</Button>
+            </Link>
           </li>
           <li className={Styles.nav_link}>
-            <button className={Styles.button_dekstop + " " + Styles.button_register}>Daftar</button>
+            <Link href="/auth/register" style={{ textDecoration: 'none' }}>
+              <Button buttonType={true} buttonNav={true} >Daftar</Button>
+            </Link>
           </li>
         </ul >
       </div >
-      <Link href="/login" style={{ textDecoration: 'none' }}><button className={Styles.button_mobile + " " + Styles.button_login}>Masuk</button></Link>
+      <Link className={Styles.login_mobile} href="/auth/login" style={{ textDecoration: 'none' }}>
+        <Button buttonNav={true} >Masuk</Button>
+      </Link>
     </nav >
   )
 }

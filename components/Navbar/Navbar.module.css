@@ -109,6 +109,10 @@
   color: var(--accentColor);
 }
 
+.login_mobile {
+  display: none !important;
+}
+
 @media only screen and (max-width: 1280px) {
   .container {
     padding: 0px 120px;
@@ -191,4 +195,7 @@
     display: none;
   }
 
+  .login_mobile {
+    display: block !important;
+  }
 }
