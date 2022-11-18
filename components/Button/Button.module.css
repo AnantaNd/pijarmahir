@@ -11,6 +11,10 @@
   justify-content: center;
 }
 
+.nav_button {
+  height: 32px !important;
+}
+
 .button_primary {
   background-color: var(--accentColor);
   color: var(--whiteColor);
@@ -27,5 +31,8 @@
   .button_primary,
   .button_secondary {
     padding: 0 16px;
+    height: 32px !important;
   }
+
+
 }
