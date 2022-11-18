@@ -4,6 +4,7 @@ import Input from '../../Input/Input';
 import Styles from "./CardLogin.module.css";
 import { FcGoogle } from "react-icons/fc"
 import { FaFacebook } from "react-icons/fa"
+import Link from 'next/link';
 
 function CardLogin() {
   return (
@@ -17,7 +18,7 @@ function CardLogin() {
           <input className={Styles.checkbox} name="checkbox" type="checkbox" />
           <label className={Styles.label_checkbox} htmlFor="checkbox">Ingat akun Saya</label>
         </div>
-        <p className={Styles.orange_text}>Lupa Password?</p>
+        <Link href="/auth/reset-password" style={{ textDecoration: "none" }} ><p className={Styles.orange_text}>Lupa Password?</p></Link>
       </div>
       <div className={Styles.sparator}>
         <Button buttonType="primary">
