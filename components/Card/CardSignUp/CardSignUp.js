@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { FaFacebook } from 'react-icons/fa'
+import { FcGoogle } from 'react-icons/fc'
 import validator from 'validator'
 import Button from '../../Button/Button'
 import Input from '../../Input/Input'
@@ -25,6 +27,19 @@ export default function CardSignUp() {
       <Input onChangeInput={(e)=>validate(e)} label="Email" name="email" type="email" placeholder="example@gmail.com" />
       <p className={styles.desc}>{emailError}</p>
       <Button buttonType="primary">Lanjutkan</Button>
+      <div className={styles.sparator}>
+        <div className={styles.hl}></div>
+        atau
+        <div className={styles.hl}></div>
+      </div>
+      <div className={styles.alt}>
+        <Button>
+          <FcGoogle size={24} style={{ marginRight: "8px" }} />Daftar dengan Google
+        </Button>
+        <Button>
+          <FaFacebook color="DodgerBlue" size={24} style={{ marginRight: "8px" }} />Daftar dengan Facebook
+        </Button>
+      </div>
       <p className={styles.label_login}>Sudah memiliki akun? <button className={styles.btn_login}>masuk</button></p>
       <p className={styles.policy}>Dengan mendaftar, Anda menyetujui Ketentuan <span className={styles.syarat}>Penggunaan</span> dan <span className={styles.syarat}>Kebijakan Privasi </span>kami.</p>
     </div >

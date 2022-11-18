@@ -14,9 +14,9 @@ function Login() {
         <link rel="icon" href="/pijar_logo.svg" />
       </Head>
       <main className={Styles.container_login}>
-        <Image className={Styles.logo} src="/pijar_logo.svg" height={80} width={80} style={{ marginLeft: "auto", marginRight: "auto" }} />
+        <Image className={Styles.logo} src="/pijar_logo.svg" height={80} width={80} style={{ marginLeft: "auto", marginRight: "auto" }} alt='logo' />
         <div className={Styles.login_content}>
-          <Image className={Styles.login_ilustration} src="/new-profile.svg" width={480} height={480}/>
+          <Image className={Styles.login_ilustration} src="/new-profile.svg" width={480} height={480} alt='ilustration'/>
           <CardLogin />
         </div>
       </main>
