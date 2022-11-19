@@ -33,13 +33,13 @@ function Navbar() {
   const notifCollapse = () => {
     setIsNotifCollapse(!isNotifCollapse);
     if (isUserCollapse) setIsUserCollapse(!isUserCollapse);
-    if (isCartCollapse) setIsCollapse(!isCartCollapse);
+    if (isCartCollapse) setIsCartCollapse(!isCartCollapse);
   }
 
   const cartCollapse = () => {
     setIsCartCollapse(!isCartCollapse);
     if (isUserCollapse) setIsUserCollapse(!isUserCollapse);
-    if (isCartCollapse) setIsCollapse(!isCartCollapse);
+    if (isNotifCollapse) setIsNotifCollapse(!isNotifCollapse);
   }
 
   return (

@@ -1,8 +1,83 @@
 .modal {
   position: absolute;
-  padding: 16px;
   background-color: var(--whiteColor);
   border-radius: 4px;
   box-shadow: var(--boxShadowColor);
   transform: translate(-80%, 28px);
+  min-width: 360px;
+  overflow: hidden;
+}
+
+.modal_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 18px 16px;
+  box-shadow: var(--boxShadowColor);
+}
+
+.modal_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.read_all {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--accentColor);
+}
+
+.transaction {
+  display: flex;
+  width: 100%;
+  cursor: pointer;
+}
+
+.transaction_status {
+  width: 50%;
+  text-align: center;
+  padding: 18px;
+  font-size: 14px;
+}
+
+.transaction_mark {
+  border-bottom: 2px solid var(--accentColor);
+}
+
+.modal_body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.result_status {
+  font-size: 16px;
+}
+
+.status_text {
+  font-size: 12px;
+  color: var(--greyColor);
+}
+
+.button_buy {
+  width: 120px;
+}
+
+.see_all {
+  padding: 24px 16px;
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 20px;
+  box-shadow: rgb(0, 0, 0, 0.05) 0px -6px 10px;
+}
+
+@media only screen and (max-width: 768px) {
+  .modal {
+    display: none;
+  }
 }
