@@ -1,10 +1,11 @@
+import { signOut } from 'next-auth/react';
 import Image from 'next/image';
-import React, { useState } from 'react';
-import Styles from './Navbar.module.css';
-import { BiSearch, BiMenu, BiX, BiList } from "react-icons/bi";
-import { FiChevronRight, FiList } from "react-icons/fi";
 import Link from 'next/link';
+import React, { useState } from 'react';
+import { BiMenu, BiSearch, BiX } from "react-icons/bi";
+import { FiChevronRight } from "react-icons/fi";
 import Button from '../Button/Button';
+import Styles from './Navbar.module.css';
 
 function Navbar() {
   const [isCollapse, setIsCollapse] = useState(false);
@@ -15,7 +16,7 @@ function Navbar() {
 
   return (
     <nav className={Styles.container}>
-      <Image className={Styles.logo_dekstop} src="/pijar_logo.svg" height={80} width={80} />
+      <Image className={Styles.logo_dekstop} src="/pijar_logo.svg" height={80} width={80} alt='img'/>
       <div className={Styles.dropdown_container}>
         <select className={Styles.dropdown}>
           <option value="">Kategori</option>
@@ -33,15 +34,15 @@ function Navbar() {
 
       <div className={Styles.container_menus + " " + `${isCollapse ? Styles.collapse_active : ''}`}>
         <div className={Styles.container_logo_mobile}>
-          <Image className={Styles.logo_mobile} src="/pijar_logo.svg" height={80} width={80} />
+          <Image className={Styles.logo_mobile} src="/pijar_logo.svg" height={80} width={80} alt='img'/>
           <BiX size={24} onClick={collapseHandler} />
         </div>
         <ul className={Styles.menus}>
           <li className={Styles.nav_link}>
-            <Image className={Styles.menu_icon} src="/prakerja_logo.svg" width={24} height={24} /><span>Prakerja</span><FiChevronRight className={Styles.menu_arrow} />
+            <Image className={Styles.menu_icon} src="/prakerja_logo.svg" width={24} height={24} alt='img'/><span>Prakerja</span><FiChevronRight className={Styles.menu_arrow} />
           </li>
           <li className={Styles.nav_link}>
-            <Image className={Styles.menu_icon} src="/pijar_logo.svg" width={24} height={24} /><span>Pijar Camp</span> <FiChevronRight className={Styles.menu_arrow} />
+            <Image className={Styles.menu_icon} src="/pijar_logo.svg" width={24} height={24} alt='img'/><span>Pijar Camp</span> <FiChevronRight className={Styles.menu_arrow} />
           </li>
           <li className={Styles.nav_link}>
             <div className={Styles.vl}></div>
@@ -55,6 +56,10 @@ function Navbar() {
             <Link href="/auth/register" style={{ textDecoration: 'none' }}>
               <Button buttonType={true} buttonNav={true} >Daftar</Button>
             </Link>
+          </li>
+          <li>
+            <Button btnOnClick={()=>signOut()} buttonType={true} buttonNav={true} >keluar</Button>
+
           </li>
         </ul >
       </div >

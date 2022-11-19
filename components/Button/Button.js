@@ -1,9 +1,9 @@
 import React from 'react';
 import Styles from './Button.module.css';
 
-function Button({ buttonType, buttonNav, children }) {
+function Button({ buttonType, buttonNav, children, btnOnClick }) {
   return (
-    <button className={`${buttonType ? Styles.button_primary : Styles.button_secondary}` + ` ${buttonNav && Styles.nav_button}`}>
+    <button onClick={btnOnClick} className={`${buttonType ? Styles.button_primary : Styles.button_secondary}` + ` ${buttonNav && Styles.nav_button}`}>
       {children}
     </button>
   );

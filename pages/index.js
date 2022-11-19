@@ -1,8 +1,11 @@
+import { useSession } from "next-auth/react";
 import Head from "next/head";
-import Layouts from "../components/Layouts/Layouts";
 import CardForgotPass from "../components/Card/CardForgotPass/CardForgotPass";
+import Layouts from "../components/Layouts/Layouts";
 
 export default function Home() {
+  const {data: session} = useSession()
+
   return (
     <div>
       <Head>
@@ -12,6 +15,8 @@ export default function Home() {
       </Head>
 
       <Layouts>
+      <h2>Hello {session? `${session.user.name}`:'world'}</h2>
+
         Disini main content
         <CardForgotPass />
       </Layouts>
