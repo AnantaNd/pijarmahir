@@ -1,3 +1,4 @@
+import { signIn } from 'next-auth/react'
 import Link from 'next/link'
 import { useState } from 'react'
 import { FaFacebook } from 'react-icons/fa'
@@ -6,6 +7,7 @@ import validator from 'validator'
 import Button from '../../Button/Button'
 import Input from '../../Input/Input'
 import styles from './CardSignUp.module.css'
+
 
 export default function CardSignUp() {
   const [emailError, setEmailError] = useState('')
@@ -34,10 +36,10 @@ export default function CardSignUp() {
         <div className={styles.hl}></div>
       </div>
       <div className={styles.alt}>
-        <Button>
+        <Button btnOnClick={()=>signIn('google')}>
           <FcGoogle size={24} style={{ marginRight: "8px" }} />Daftar dengan Google
         </Button>
-        <Button>
+        <Button btnOnClick={()=>signIn('facebook')}>
           <FaFacebook color="DodgerBlue" size={24} style={{ marginRight: "8px" }} />Daftar dengan Facebook
         </Button>
       </div>

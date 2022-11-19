@@ -34,10 +34,10 @@ function CardLogin() {
         <div className={Styles.hl}></div>
       </div>
       <div className={Styles.third_party}>
-        <Button>
+        <Button btnOnClick={()=>signIn('google')}>
           <FcGoogle size={24} style={{ marginRight: "8px" }} />Masuk dengan Google
         </Button>
-        <Button btnOnClick={()=>signIn()}>
+        <Button btnOnClick={()=>signIn('facebook')}>
           <FaFacebook color="DodgerBlue" size={24} style={{ marginRight: "8px" }} />Masuk dengan Facebook
         </Button>
       </div>
