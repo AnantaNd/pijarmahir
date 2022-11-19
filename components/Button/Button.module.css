@@ -30,8 +30,8 @@
 
   .button_primary,
   .button_secondary {
-    padding: 0 16px;
-    height: 32px !important;
+    padding: 0px 16px;
+    height: 48px;
   }
 
 
