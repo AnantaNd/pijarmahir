@@ -4,7 +4,7 @@ import CardForgotPass from "../components/Card/CardForgotPass/CardForgotPass";
 import Layouts from "../components/Layouts/Layouts";
 
 export default function Home() {
-  const {data: session} = useSession()
+  const { data: session } = useSession();
 
   return (
     <div>
@@ -15,7 +15,7 @@ export default function Home() {
       </Head>
 
       <Layouts>
-      <h2>Hello {session? `${session.user.name}`:'world'}</h2>
+        <h2>Hello {session ? `${session.user.name}` : 'world'}</h2>
 
         Disini main content
         <CardForgotPass />
