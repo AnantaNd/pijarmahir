@@ -1,0 +1,8 @@
+.modal {
+  position: absolute;
+  padding: 16px;
+  background-color: var(--whiteColor);
+  border-radius: 4px;
+  box-shadow: var(--boxShadowColor);
+  transform: translate(-80%, 28px);
+}

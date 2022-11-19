@@ -8,7 +8,21 @@ import Input from '../../Input/Input';
 import Styles from "./CardLogin.module.css";
 
 function CardLogin() {
-  const {data: session} = useSession()
+  const { data: session } = useSession();
+
+  const handleLoginFacebook = (e) => {
+    e.preventDefault();
+    signIn('facebook', {
+      callbackUrl: '/'
+    });
+  }
+
+  const handleLoginGoogle = (e) => {
+    e.preventDefault();
+    signIn('google', {
+      callbackUrl: '/'
+    });
+  }
 
   return (
     <div className={Styles.container_card}>
@@ -34,10 +48,10 @@ function CardLogin() {
         <div className={Styles.hl}></div>
       </div>
       <div className={Styles.third_party}>
-        <Button btnOnClick={()=>signIn('google')}>
+        <Button btnOnClick={() => signIn('google')}>
           <FcGoogle size={24} style={{ marginRight: "8px" }} />Masuk dengan Google
         </Button>
-        <Button btnOnClick={()=>signIn('facebook')}>
+        <Button btnOnClick={handleLoginFacebook}>
           <FaFacebook color="DodgerBlue" size={24} style={{ marginRight: "8px" }} />Masuk dengan Facebook
         </Button>
       </div>

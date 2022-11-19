@@ -2,21 +2,49 @@ import { signOut } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { BiMenu, BiSearch, BiX } from "react-icons/bi";
+import { BiMenu, BiSearch, BiX, BiLogOut, BiCart, BiNotification, BiUser } from "react-icons/bi";
 import { FiChevronRight } from "react-icons/fi";
 import Button from '../Button/Button';
 import Styles from './Navbar.module.css';
+import { useSession } from "next-auth/react";
+import ModalAccount from '../Modal/ModalAccount/ModalAccount';
+import ModalNotification from '../Modal/ModalNotification/ModalNotification';
+import ModalCart from '../Modal/ModalCart/ModalCart';
 
 function Navbar() {
   const [isCollapse, setIsCollapse] = useState(false);
+  const [isUserCollapse, setIsUserCollapse] = useState(false);
+  const [isNotifCollapse, setIsNotifCollapse] = useState(false);
+  const [isCartCollapse, setIsCartCollapse] = useState(false);
+
+  const { data: session, status } = useSession();
+
 
   const collapseHandler = () => {
     setIsCollapse(!isCollapse);
   }
 
+  const accountCollapse = () => {
+    setIsUserCollapse(!isUserCollapse);
+    if (isNotifCollapse) setIsNotifCollapse(!isNotifCollapse);
+    if (isCartCollapse) setIsCollapse(!isCartCollapse);
+  }
+
+  const notifCollapse = () => {
+    setIsNotifCollapse(!isNotifCollapse);
+    if (isUserCollapse) setIsUserCollapse(!isUserCollapse);
+    if (isCartCollapse) setIsCollapse(!isCartCollapse);
+  }
+
+  const cartCollapse = () => {
+    setIsCartCollapse(!isCartCollapse);
+    if (isUserCollapse) setIsUserCollapse(!isUserCollapse);
+    if (isCartCollapse) setIsCollapse(!isCartCollapse);
+  }
+
   return (
     <nav className={Styles.container}>
-      <Image className={Styles.logo_dekstop} src="/pijar_logo.svg" height={80} width={80} alt='img'/>
+      <Image className={Styles.logo_dekstop} src="/pijar_logo.svg" height={80} width={80} alt='img' />
       <div className={Styles.dropdown_container}>
         <select className={Styles.dropdown}>
           <option value="">Kategori</option>
@@ -34,37 +62,55 @@ function Navbar() {
 
       <div className={Styles.container_menus + " " + `${isCollapse ? Styles.collapse_active : ''}`}>
         <div className={Styles.container_logo_mobile}>
-          <Image className={Styles.logo_mobile} src="/pijar_logo.svg" height={80} width={80} alt='img'/>
+          <Image className={Styles.logo_mobile} src="/pijar_logo.svg" height={80} width={80} alt='img' />
           <BiX size={24} onClick={collapseHandler} />
         </div>
         <ul className={Styles.menus}>
           <li className={Styles.nav_link}>
-            <Image className={Styles.menu_icon} src="/prakerja_logo.svg" width={24} height={24} alt='img'/><span>Prakerja</span><FiChevronRight className={Styles.menu_arrow} />
+            <Image className={Styles.menu_icon} src="/prakerja_logo.svg" width={24} height={24} alt='img' /><span>Prakerja</span><FiChevronRight className={Styles.menu_arrow} />
           </li>
           <li className={Styles.nav_link}>
-            <Image className={Styles.menu_icon} src="/pijar_logo.svg" width={24} height={24} alt='img'/><span>Pijar Camp</span> <FiChevronRight className={Styles.menu_arrow} />
+            <Image className={Styles.menu_icon} src="/pijar_logo.svg" width={24} height={24} alt='img' /><span>Pijar Camp</span> <FiChevronRight className={Styles.menu_arrow} />
           </li>
           <li className={Styles.nav_link}>
             <div className={Styles.vl}></div>
           </li>
-          <li className={Styles.nav_link}>
-            <Link href="/auth/login" style={{ textDecoration: 'none' }}>
-              <Button buttonNav={true} >Masuk</Button>
-            </Link>
-          </li>
-          <li className={Styles.nav_link}>
-            <Link href="/auth/register" style={{ textDecoration: 'none' }}>
-              <Button buttonType={true} buttonNav={true} >Daftar</Button>
-            </Link>
-          </li>
-          <li>
-            <Button btnOnClick={()=>signOut()} buttonType={true} buttonNav={true} >keluar</Button>
-
-          </li>
+          {
+            !session &&
+            <>
+              <li className={Styles.nav_link}>
+                <Link href="/auth/login" style={{ textDecoration: 'none' }}>
+                  <Button buttonNav={true} >Masuk</Button>
+                </Link>
+              </li>
+              <li className={Styles.nav_link}>
+                <Link href="/auth/register" style={{ textDecoration: 'none' }}>
+                  <Button buttonType={true} buttonNav={true} >Daftar</Button>
+                </Link>
+              </li>
+            </>
+          }
+          {
+            session &&
+            <>
+              <li className={Styles.nav_link}>
+                <BiCart size={24} onClick={cartCollapse} />
+                {isCartCollapse && <ModalCart />}
+              </li>
+              <li className={Styles.nav_link}>
+                <BiNotification size={24} onClick={notifCollapse} />
+                {isNotifCollapse && <ModalNotification />}
+              </li>
+              <li className={Styles.nav_link}>
+                <BiUser size={24} onClick={accountCollapse} />
+                {isUserCollapse && <ModalAccount />}
+              </li>
+            </>
+          }
         </ul >
       </div >
       <Link className={Styles.login_mobile} href="/auth/login" style={{ textDecoration: 'none' }}>
-        <Button buttonNav={true} >Masuk</Button>
+        {session ? <Button btnOnClick={() => signOut()} buttonType={true} buttonNav={true} >keluar</Button> : <Button buttonNav={true} >Masuk</Button>}
       </Link>
     </nav >
   )
