@@ -1,12 +1,15 @@
+import { signIn, useSession } from 'next-auth/react';
+import Link from 'next/link';
 import React from 'react';
+import { FaFacebook } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 import Button from '../../Button/Button';
 import Input from '../../Input/Input';
 import Styles from "./CardLogin.module.css";
-import { FcGoogle } from "react-icons/fc"
-import { FaFacebook } from "react-icons/fa"
-import Link from 'next/link';
 
 function CardLogin() {
+  const {data: session} = useSession()
+
   return (
     <div className={Styles.container_card}>
       <h2 className={Styles.text_login}>Masuk</h2>
@@ -31,10 +34,10 @@ function CardLogin() {
         <div className={Styles.hl}></div>
       </div>
       <div className={Styles.third_party}>
-        <Button>
+        <Button btnOnClick={()=>signIn('google')}>
           <FcGoogle size={24} style={{ marginRight: "8px" }} />Masuk dengan Google
         </Button>
-        <Button>
+        <Button btnOnClick={()=>signIn('facebook')}>
           <FaFacebook color="DodgerBlue" size={24} style={{ marginRight: "8px" }} />Masuk dengan Facebook
         </Button>
       </div>
