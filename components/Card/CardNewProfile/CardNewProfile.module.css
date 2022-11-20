@@ -12,7 +12,12 @@
   text-transform: capitalize;
   margin: .8rem 0;
 }
-
+.desc{
+  color: var(--greyColor);
+  text-transform: capitalize;
+  font-size: 11px;
+  
+}
 .subtitle {
   text-align: center;
   color: var(--greyColor);

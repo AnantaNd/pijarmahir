@@ -22,6 +22,19 @@ export default function CardSignUp() {
     }
   }
 
+  const handleLoginFacebook = (e) => {
+    e.preventDefault();
+    signIn('facebook', {
+      callbackUrl: '/newprofile'
+    });
+  }
+
+  const handleLoginGoogle = (e) => {
+    e.preventDefault();
+    signIn('google', {
+      callbackUrl: '/newprofile'
+    });
+  }
 
   return (
     <div className={styles.container}>
@@ -36,10 +49,10 @@ export default function CardSignUp() {
         <div className={styles.hl}></div>
       </div>
       <div className={styles.alt}>
-        <Button btnOnClick={()=>signIn('google')}>
+        <Button btnOnClick={handleLoginGoogle}>
           <FcGoogle size={24} style={{ marginRight: "8px" }} />Daftar dengan Google
         </Button>
-        <Button btnOnClick={()=>signIn('facebook')}>
+        <Button btnOnClick={handleLoginFacebook}>
           <FaFacebook color="DodgerBlue" size={24} style={{ marginRight: "8px" }} />Daftar dengan Facebook
         </Button>
       </div>
