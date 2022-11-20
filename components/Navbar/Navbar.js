@@ -2,8 +2,8 @@ import { signOut } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { BiMenu, BiSearch, BiX, BiLogOut, BiCart, BiNotification, BiUser } from "react-icons/bi";
-import { FiChevronRight } from "react-icons/fi";
+import { BiMenu, BiSearch, BiX, BiLogOut, BiCart, BiNotification, BiUser, BiBook, BiHistory, BiHeart, BiCertification, BiGift } from "react-icons/bi";
+import { FiChevronRight, FiSettings } from "react-icons/fi";
 import Button from '../Button/Button';
 import Styles from './Navbar.module.css';
 import { useSession } from "next-auth/react";
@@ -93,15 +93,23 @@ function Navbar() {
           {
             session &&
             <>
-              <li className={Styles.nav_link}>
+              <li className={Styles.nav_link + ' ' + Styles.menu}> <BiBook className={Styles.icon_logged} size={24} /> Kursus</li>
+              <li className={Styles.nav_link + ' ' + Styles.menu}><BiHistory className={Styles.icon_logged} size={24} /> Riwayat Transaksi</li>
+              <li className={Styles.nav_link + ' ' + Styles.menu}><BiHeart className={Styles.icon_logged} size={24} /> Whislist</li>
+              <li className={Styles.nav_link + ' ' + Styles.menu}><BiCertification className={Styles.icon_logged} size={24} /> Sertifikat</li>
+              <li className={Styles.nav_link + ' ' + Styles.menu}><BiGift className={Styles.icon_logged} size={24} /> Reedem</li>
+              <li className={Styles.nav_link + ' ' + Styles.menu}><FiSettings className={Styles.icon_logged} size={24} /> Pengaturan Profile</li>
+              <li className={Styles.nav_link + ' ' + Styles.menu} onClick={() => signOut()} >
+                <BiLogOut className={Styles.icon_logged} size={24} /> Keluar</li>
+              <li className={Styles.nav_link + ' ' + Styles.cart_mobile}>
                 <BiCart size={24} onClick={cartCollapse} />
                 {isCartCollapse && <ModalCart />}
               </li>
-              <li className={Styles.nav_link}>
+              <li className={Styles.nav_link + ' ' + Styles.notif_mobile}>
                 <BiNotification size={24} onClick={notifCollapse} />
                 {isNotifCollapse && <ModalNotification />}
               </li>
-              <li className={Styles.nav_link}>
+              <li className={Styles.nav_link + ' ' + Styles.account_mobile}>
                 <BiUser size={24} onClick={accountCollapse} />
                 {isUserCollapse && <ModalAccount />}
               </li>
