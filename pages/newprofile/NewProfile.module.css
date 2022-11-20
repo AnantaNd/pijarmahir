@@ -1,0 +1,42 @@
+.container {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0px 320px;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 48px;
+
+}
+
+@media only screen and (max-width: 1280px) {
+  .container {
+    padding: 0px 120px;
+  }
+}
+
+@media only screen and (max-width: 834px) {
+  .ilustration {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .ilustration {
+    display: none;
+  }
+
+  .logo {
+    margin-left: 200px;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+}
