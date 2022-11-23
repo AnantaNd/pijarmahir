@@ -64,13 +64,12 @@ function Login({props}) {
 export default Login
 export const getStaticProps = async () =>{
   try{
-    const res = fetch('http://localhost:9000/api/v1/user/')
+    const res = await fetch('http://localhost:9000/api/v1/user/')
     const data = await res.json()
     return{
       props: {props: data}
     }
   }catch(err){
-    console.log(err)
-    throw(err)
+    console.err(err)
   }
 }
