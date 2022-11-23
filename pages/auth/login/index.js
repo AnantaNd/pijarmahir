@@ -1,11 +1,47 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import CardLogin from '../../../components/Card/CardLogin/CardLogin';
 import FooterSecond from '../../../components/Footer/FooterSecond/FooterSecond';
 import Styles from './Login.module.css';
 
-function Login() {
+function Login({props}) {
+  const [email, setEmail] = useState('')
+  const [pass, setPass] = useState('')
+  const [isEmail, setIsEmail] = useState(false)
+  const [isPass, setIsPass] = useState(false)
+
+
+
+  // console.log(props.data)
+
+  const handleInputEmail = (e) => {
+    setEmail(e.target.value)
+    // console.log(e.target.value)
+  }
+  const handleInputPass = (e) => {
+    setPass(e.target.value)
+    // console.log(e.target.value)
+  }
+
+  useEffect(()=>{
+    // const userEmail = props.data.find(user=>user.email === email)
+    // const userPass = props.data.find(user=>user.password === pass)
+    // console.log(isEmail)
+    // console.log(isPass)
+    props.data.map((user)=>{
+      if(email === user.email && pass === user.password){
+        setIsEmail(true)
+        setIsPass(true)
+        console.log(user)
+      }else{
+        setIsEmail(false)
+        
+      }
+    })
+
+  })
+
   return (
     <>
       <Head>
@@ -17,7 +53,7 @@ function Login() {
         <Image className={Styles.logo} src="/pijar_logo.svg" height={80} width={80} style={{ marginLeft: "auto", marginRight: "auto" }} alt='logo' />
         <div className={Styles.login_content}>
           <Image className={Styles.login_ilustration} src="/new-profile.svg" width={480} height={480} alt='ilustration' />
-          <CardLogin />
+          <CardLogin inputUsername={handleInputEmail} inputPassword={handleInputPass} helpers={`${isEmail === true ? '': 'password dan email tidak cocok'}`}/>
         </div>
       </main>
       <FooterSecond />
@@ -26,3 +62,14 @@ function Login() {
 }
 
 export default Login
+export const getStaticProps = async () =>{
+  const res = await fetch('http://localhost:9000/api/v1/user/')
+  const data = await res.json()
+  try{
+    return{
+      props: {props: data}
+    }
+  }catch(err){
+    console.err(err)
+  }
+}
