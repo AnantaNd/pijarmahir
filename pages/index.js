@@ -1,10 +1,16 @@
 import { useSession } from "next-auth/react";
 import Head from "next/head";
-import CardForgotPass from "../components/Card/CardForgotPass/CardForgotPass";
 import Layouts from "../components/Layouts/Layouts";
+import Section from "../components/Section/Section";
+import SwiperSlide from "../components/SwiperSlides/SwiperSlides";
+
+
+
 
 export default function Home() {
   const { data: session } = useSession();
+
+
 
   return (
     <div>
@@ -17,8 +23,9 @@ export default function Home() {
       <Layouts>
         <h2>Hello {session ? `${session.user.name}` : 'world'}</h2>
 
-        Disini main content
-        <CardForgotPass />
+        <Section>
+          <SwiperSlide />
+        </Section>
       </Layouts>
 
       <footer></footer>
