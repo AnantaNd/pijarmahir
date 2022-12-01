@@ -1,0 +1,19 @@
+.navigation {
+  display: flex;
+  justify-content: space-between;
+}
+
+.image {
+  width: 100%;
+}
+
+.swiper-pagination-bullet {
+  background: #37469B;
+}
+
+.swiper-button-prev,
+.swiper-rtl .swiper-button-next {
+  left: 10px;
+  right: auto;
+  background-color: blue;
+}
