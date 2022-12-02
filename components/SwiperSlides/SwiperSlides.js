@@ -1,6 +1,5 @@
-import React from 'react';
-import { useCallback, useRef } from "react";
-import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md';
+import React, { useCallback, useRef } from 'react';
+import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md';
 import Styles from './SwiperSlides.module.css';
 
 // Swiper
@@ -13,7 +12,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 // import required modules
-import { EffectFade, Navigation, Pagination } from "swiper";
+import { Navigation, Pagination } from "swiper";
 
 function SwiperSlides({ section }) {
   const sliderRef = useRef(null);

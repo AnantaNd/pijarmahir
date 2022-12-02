@@ -1,7 +1,10 @@
 .container {
   padding: 0 2rem;
 }
-
+.containerCourse{
+  display: flex;
+  gap: 1rem;
+}
 .main {
   min-height: 100vh;
   padding: 4rem 0;
