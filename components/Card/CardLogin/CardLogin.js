@@ -6,7 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import Button from '../../Button/Button';
 import Styles from "./CardLogin.module.css";
 
-function CardLogin({inputUsername, inputPassword, helpers, btnLogin}) {
+function CardLogin({ inputUsername, inputPassword, helpers, btnLogin, handleLogin }) {
   // const { data: session } = useSession();
 
 
@@ -23,7 +23,7 @@ function CardLogin({inputUsername, inputPassword, helpers, btnLogin}) {
       callbackUrl: '/'
     });
   }
-  
+
 
   return (
     <div className={Styles.container_card}>
@@ -31,22 +31,22 @@ function CardLogin({inputUsername, inputPassword, helpers, btnLogin}) {
       <p className={Styles.suggestion}>Lanjutkan pembelajaranmu dengan Pijar Mahir</p>
       <div className={Styles.container_input}>
         <label className={Styles.label_input} htmlFor='email'>Email</label>
-        <input className={Styles.input} name='email' type='email' placeholder='example@mail.com' onChange={inputUsername}/>
+        <input className={Styles.input} name='email' type='email' placeholder='example@mail.com' onChange={inputUsername} />
         <label className={Styles.label_input} htmlFor='pass'>Password</label>
-        <input className={Styles.input} name='pass' type='password' placeholder='' onChange={inputPassword}/>
+        <input className={Styles.input} name='pass' type='password' placeholder='' onChange={inputPassword} />
         <small className={Styles.helper_account}>{helpers}</small>
       </div>
       {/* <Input label="Password" name="password" type="password" placeholder="" onChangeInput={handleInputPass}/> */}
-      
+
       <div className={Styles.helper}>
         <div className={Styles.container_checkbox}>
-          <input className={Styles.checkbox} name="checkbox" type="checkbox"/>
+          <input className={Styles.checkbox} name="checkbox" type="checkbox" />
           <label className={Styles.label_checkbox} htmlFor="checkbox">Ingat akun Saya</label>
         </div>
         <Link href="/auth/reset-password" style={{ textDecoration: "none" }} ><p className={Styles.orange_text}>Lupa Password?</p></Link>
       </div>
       <div className={Styles.sparator}>
-        <Button buttonType="primary" buttonNav={btnLogin}>
+        <Button btnOnClick={handleLogin} buttonType="primary" buttonNav={btnLogin}>
           Masuk
         </Button>
       </div>

@@ -6,7 +6,7 @@ function FooterSecond() {
   return (
     <footer className={Styles.footer}>
       <div className={Styles.left}>
-        <Image src="/pijar_logo.svg" width={64} height={44} />
+        <Image src="/pijar_logo.svg" width={64} height={44} alt="Logo" />
         <p>©2020-2022 Pijar Mahir. All Right Reserved</p>
       </div>
       <ul className={Styles.right}>
