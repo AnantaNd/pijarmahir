@@ -1,3 +1,4 @@
+import axios from 'axios';
 import Head from 'next/head';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
@@ -5,13 +6,28 @@ import CardLogin from '../../../components/Card/CardLogin/CardLogin';
 import FooterSecond from '../../../components/Footer/FooterSecond/FooterSecond';
 import Styles from './Login.module.css';
 
-function Login({props}) {
+
+export const getStaticProps = async () => {
+  try {
+    const res = await axios('http://localhost:9000/api/v1/user/');
+    const data = await res.json();
+    return {
+      props: { props: data }
+    }
+  } catch (err) {
+    console.error(err)
+  }
+
+  return {
+    props: { props: [] }
+  }
+}
+
+function Login({ props }) {
   const [email, setEmail] = useState('')
   const [pass, setPass] = useState('')
   const [isEmail, setIsEmail] = useState(false)
   const [isPass, setIsPass] = useState(false)
-
-
 
   // console.log(props.data)
 
@@ -24,23 +40,12 @@ function Login({props}) {
     // console.log(e.target.value)
   }
 
-  useEffect(()=>{
-    // const userEmail = props.data.find(user=>user.email === email)
-    // const userPass = props.data.find(user=>user.password === pass)
-    // console.log(isEmail)
-    // console.log(isPass)
-    props.data.map((user)=>{
-      if(email === user.email && pass === user.password){
-        setIsEmail(true)
-        setIsPass(true)
-        console.log(user)
-      }else{
-        setIsEmail(false)
-        
-      }
-    })
-
-  })
+  const handleLogin = () => {
+    // props?.data?.filter(user =>{
+    //   return user.email === email && user
+    // })
+    console.log(email + pass);
+  }
 
   return (
     <>
@@ -50,10 +55,10 @@ function Login({props}) {
         <link rel="icon" href="/pijar_logo.svg" />
       </Head>
       <main className={Styles.container_login}>
-        <Image className={Styles.logo} src="/pijar_logo.svg" height={80} width={80} style={{ marginLeft: "auto", marginRight: "auto" }} alt='logo' />
+        <Image alt="logo" className={Styles.logo} src="/pijar_logo.svg" height={80} width={80} style={{ marginLeft: "auto", marginRight: "auto" }} />
         <div className={Styles.login_content}>
-          <Image className={Styles.login_ilustration} src="/new-profile.svg" width={480} height={480} alt='ilustration' />
-          <CardLogin inputUsername={handleInputEmail} inputPassword={handleInputPass} helpers={`${isEmail === true ? '': 'password dan email tidak cocok'}`}/>
+          <Image alt="ilustration" className={Styles.login_ilustration} src="/new-profile.svg" priority={true} width={480} height={480} />
+          <CardLogin handleLogin={handleLogin} inputUsername={handleInputEmail} inputPassword={handleInputPass} helpers={`${isEmail === true ? '' : 'password dan email tidak cocok'}`} />
         </div>
       </main>
       <FooterSecond />
@@ -62,14 +67,3 @@ function Login({props}) {
 }
 
 export default Login
-export const getStaticProps = async () =>{
-  try{
-    const res = await fetch('http://localhost:9000/api/v1/user/')
-    const data = await res.json()
-    return{
-      props: {props: data}
-    }
-  }catch(err){
-    console.err(err)
-  }
-}
