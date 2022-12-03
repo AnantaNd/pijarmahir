@@ -2,7 +2,9 @@ import { useSession } from "next-auth/react";
 import Head from "next/head";
 import SwiperBtn from "../components/Button/SwipperBtn/SwipperBtn";
 import CardCourse from "../components/Card/CardCourse/CardCourse";
+import CardProduct from "../components/Card/CardProduct/CardProduct";
 import Category from "../components/Category/Category";
+import CategoryContainer from "../components/CategoryContainer/CategoryContainer";
 import Layouts from "../components/Layouts/Layouts";
 import Section from "../components/Section/Section";
 import SwiperSlide from "../components/SwiperSlides/SwiperSlides";
@@ -36,6 +38,10 @@ export default function Home() {
           <div className={styles.hl}></div>
         </Section>
         {/* End Category */}
+
+        {/* Kartu Prakerja */}
+        <CategoryContainer />
+        {/* End Kartu Prakerja */}
 
         {/* Mahir prakerja 2022 */}
         <Section>
