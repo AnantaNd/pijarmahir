@@ -67,7 +67,7 @@ function Navbar() {
         </div>
         <ul className={Styles.menus}>
           <li className={Styles.nav_link}>
-            <Image className={Styles.menu_icon} src="/prakerja_logo.svg" width={24} height={24} alt='img' /><span>Prakerja</span><FiChevronRight className={Styles.menu_arrow} />
+            <Image className={Styles.menu_icon} src="/prakerja_logo.svg" width={24} height={24} alt='img' /><Link className={Styles.link} style={{ textDecoration: 'none' }} href="https://pijarmahir.id/kartuprakerja"><span>Prakerja</span></Link><FiChevronRight className={Styles.menu_arrow} />
           </li>
           <li className={Styles.nav_link}>
             <Image className={Styles.menu_icon} src="/pijar_logo.svg" width={24} height={24} alt='img' /><span>Pijar Camp</span> <FiChevronRight className={Styles.menu_arrow} />
