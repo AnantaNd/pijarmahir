@@ -28,9 +28,9 @@ export default function Home() {
         <Section>
           <SwiperSlide />
         </Section>
-
+        {/* Mahir prakerja 2022 */}
         <Section>
-          <h1 className={styles.courseCategory}>Mahir Prakerja</h1>
+          <h1 className={styles.courseCategory}>Mahir Prakerja 2022</h1>
           <SwiperBtn>
             <div className={styles.containerCourse}>
               <CardCourse img={'/mahirprakerja.jpg'} course={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} subtitle={'cariilmu'} rating={3.3}/>
@@ -40,6 +40,19 @@ export default function Home() {
             </div>
           </SwiperBtn>
         </Section>
+        {/* Mahir prakerja 2022 */}
+        <Section>
+          <h1 className={styles.courseCategory}>Mahir Prakerja 2022</h1>
+          <SwiperBtn>
+            <div className={styles.containerCourse}>
+              <CardCourse img={'/mahirprakerja.jpg'} course={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} subtitle={'cariilmu'} rating={3.3}/>
+              <CardCourse img={'/mahirprakerja.jpg'} course={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} subtitle={'cariilmu'} rating={3.3}/>
+              <CardCourse img={'/mahirprakerja.jpg'} course={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} subtitle={'cariilmu'} rating={3.3}/>
+              <CardCourse img={'/mahirprakerja.jpg'} course={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} subtitle={'cariilmu'} rating={3.3}/>
+            </div>
+          </SwiperBtn>
+        </Section>
+        
       </Layouts>
 
       <footer></footer>

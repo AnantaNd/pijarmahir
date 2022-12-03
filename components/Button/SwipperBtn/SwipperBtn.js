@@ -15,7 +15,7 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper";
 
 
-export default function SwiperBtn({section, children}){
+export default function SwiperBtn({children}){
   const slideRef = useRef(null)
   
     const btnPrev = useCallback(() =>{
@@ -34,17 +34,14 @@ export default function SwiperBtn({section, children}){
   
   return (
     <div>
-      {
-        section &&
-        <div className={styles.containerSwiper}>
-          <MdNavigateBefore className={styles.btnSwiper} onClick={btnPrev}>prev</MdNavigateBefore>
-          <MdNavigateNext className={styles.btnSwiper} onClick={btnNext}>next</MdNavigateNext>
-        </div>
-      }
+      <div className={styles.containerSwiper}>
+        <MdNavigateBefore className={styles.btnSwiper} onClick={btnPrev} size={30}>prev</MdNavigateBefore>
+        <MdNavigateNext className={styles.btnSwiper} onClick={btnNext} size={30}>next</MdNavigateNext>
+      </div>
       <Swiper
        effect={'flip'}
        grabCursor={true}
-       navigation={true}
+       navigation={false}
        modules={[Pagination,Navigation]}
        Pagination={{clickable:true}}
        loop={true}

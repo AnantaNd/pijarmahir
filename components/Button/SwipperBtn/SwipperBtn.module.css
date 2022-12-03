@@ -1,0 +1,7 @@
+.btnSwiper{
+  border: 1px solid var(--borderColor);
+  color: var(--greyColor);
+  border-radius: 100%;
+  margin: 8px;
+  
+}
