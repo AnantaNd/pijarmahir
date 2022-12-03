@@ -3,6 +3,7 @@
   width: 100%;
   /* height: 100VH; */
   margin: 90px auto;
+  overflow: hidden;
 }
 
 @media only screen and (max-width: 1280px) {
