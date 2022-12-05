@@ -1,5 +1,5 @@
 import React, { useCallback, useRef } from 'react';
-import Styles from './CategoryContainer.module.css';
+import Styles from './KartuPrakerja.module.css';
 import CardProduct from '../Card/CardProduct/CardProduct';
 import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md';
 
@@ -15,7 +15,7 @@ import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-function CategoryContainer({ dataCard }) {
+function KartuPrakerja({ dataCard }) {
   const swiperRef = useRef();
 
   const handlePrev = useCallback(() => {
@@ -95,4 +95,4 @@ function CategoryContainer({ dataCard }) {
   )
 }
 
-export default CategoryContainer
+export default KartuPrakerja
