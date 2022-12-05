@@ -3,7 +3,7 @@ import Head from "next/head";
 import SwiperBtn from "../components/Button/SwipperBtn/SwipperBtn";
 import CardCourse from "../components/Card/CardCourse/CardCourse";
 import Category from "../components/Category/Category";
-import CategoryContainer from "../components/CategoryContainer/CategoryContainer";
+import KartuPrakerja from "../components/KartuPrakerja/KartuPrakerja";
 import Layouts from "../components/Layouts/Layouts";
 import Section from "../components/Section/Section";
 import SwiperSlide from "../components/SwiperSlides/SwiperSlides";
@@ -38,7 +38,7 @@ export default function Home() {
         {/* End Category */}
 
         {/* Kartu Prakerja */}
-        <CategoryContainer dataCard={dataCategory.prakerja} />
+        <KartuPrakerja dataCard={dataCategory.prakerja} />
         {/* End Kartu Prakerja */}
 
         {/* Mahir prakerja 2022 */}
