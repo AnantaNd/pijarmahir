@@ -13,7 +13,12 @@
   border-radius: 8px;
 }
 .rating{
-  font-size: 14px;
+  align-items: center;
+}
+.rating_review{
+  font-size: 12px;
+  position: relative;
+  top: -2px;
 }
 .img{
   width: 100%;
@@ -31,6 +36,9 @@
   font-size: 16px;
   font-weight: 500;
   /* text-align: justify; */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .price{
   font-weight: 600;
@@ -39,4 +47,7 @@
 .subtitle{
   font-size: 14px;
   color: gray;
+}
+.course,.rating, .subtitle, .price{
+  padding-top: 10px;
 }

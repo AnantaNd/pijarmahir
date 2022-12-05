@@ -1,15 +1,13 @@
 import { useSession } from "next-auth/react";
 import Head from "next/head";
-import SwiperBtn from "../components/Button/SwipperBtn/SwipperBtn";
-import CardCourse from "../components/Card/CardCourse/CardCourse";
 import Category from "../components/Category/Category";
+import CourseCountainer from '../components/CourseContainer/CourseContainer';
 import KartuPrakerja from "../components/KartuPrakerja/KartuPrakerja";
 import Layouts from "../components/Layouts/Layouts";
 import Section from "../components/Section/Section";
 import SwiperSlide from "../components/SwiperSlides/SwiperSlides";
 import { dataCategory } from '../data';
 import styles from '../styles/Home.module.css';
-
 
 
 export default function Home() {
@@ -43,31 +41,9 @@ export default function Home() {
 
         {/* Mahir prakerja 2022 */}
         <Section>
-          <h1 className={styles.courseCategory}>Mahir Prakerja 2022</h1>
-          <SwiperBtn>
-            <div className={styles.containerCourse}>
-              <CardCourse img={'/mahirprakerja.jpg'} course={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} subtitle={'cariilmu'} rating={3.3} />
-              <CardCourse img={'/mahirprakerja.jpg'} course={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} subtitle={'cariilmu'} rating={3.3} />
-              <CardCourse img={'/mahirprakerja.jpg'} course={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} subtitle={'cariilmu'} rating={3.3} />
-              <CardCourse img={'/mahirprakerja.jpg'} course={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} subtitle={'cariilmu'} rating={3.3} />
-            </div>
-          </SwiperBtn>
+          <CourseCountainer title={"Mahir Prakerja 2022"}/>
         </Section>
         {/* Mahir prakerja 2022 */}
-
-        <Section>
-          <h1 className={styles.courseCategory}>Mahir Prakerja 2022</h1>
-          <SwiperBtn>
-            <div className={styles.containerCourse}>
-              <CardCourse img={'/mahirprakerja.jpg'} course={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} subtitle={'cariilmu'} rating={3.3} />
-              <CardCourse img={'/mahirprakerja.jpg'} course={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} subtitle={'cariilmu'} rating={3.3} />
-              <CardCourse img={'/mahirprakerja.jpg'} course={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} subtitle={'cariilmu'} rating={3.3} />
-              <CardCourse img={'/mahirprakerja.jpg'} course={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} subtitle={'cariilmu'} rating={3.3} />
-              <CardCourse img={'/mahirprakerja.jpg'} course={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} subtitle={'cariilmu'} rating={3.3} />
-              <CardCourse img={'/mahirprakerja1.jpg'} course={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} subtitle={'cariilmu'} rating={3.3} />
-            </div>
-          </SwiperBtn>
-        </Section>
 
       </Layouts>
 
