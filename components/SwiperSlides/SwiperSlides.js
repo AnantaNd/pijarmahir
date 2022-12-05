@@ -1,5 +1,6 @@
-import React, { useCallback, useRef } from 'react';
-import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md';
+import React from 'react';
+import { useCallback, useRef } from "react";
+import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md';
 import Styles from './SwiperSlides.module.css';
 
 // Swiper
@@ -11,41 +12,22 @@ import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-// import required modules
-import { Navigation, Pagination } from "swiper";
-
 function SwiperSlides({ section }) {
-  const sliderRef = useRef(null);
 
-  const handlePrev = useCallback(() => {
-    if (!sliderRef.current) return;
-    sliderRef.current.swiper.slidePrev();
-  }, []);
-
-  const handleNext = useCallback(() => {
-    if (!sliderRef.current) return;
-    sliderRef.current.swiper.slideNext();
-  }, []);
+  const swiperRef = useRef();
 
   return (
     <div>
-      {
-        section
-        &&
-        <div className={Styles.navigation}>
-          <MdNavigateBefore size={48} className={Styles.prev_arrow} onClick={handlePrev}>pre</MdNavigateBefore>
-          <MdNavigateNext size={48} className={Styles.next_arrow} onClick={handleNext}>next</MdNavigateNext>
-        </div>
-      }
+      <div className={Styles.navigation}>
+        <MdNavigateBefore size={48} className={Styles.prev_arrow} onClick={() => swiperRef.current?.slidePrev()}>Prev</MdNavigateBefore>
+        <MdNavigateNext size={48} className={Styles.next_arrow} onClick={() => swiperRef.current?.slideNext()}>Next</MdNavigateNext>
+      </div>
+
       <Swiper
-        effect={"flip"}
-        grabCursor={true}
-        navigation={true}
-        modules={[Pagination, Navigation]}
-        pagination={{
-          clickable: true,
+        slidesPerView={1}
+        onBeforeInit={(swiper) => {
+          swiperRef.current = swiper;
         }}
-        loop={true}
       >
         <SwiperSlide>
           <img className={Styles.image} src="/banner.jpeg" />
@@ -59,7 +41,11 @@ function SwiperSlides({ section }) {
         <SwiperSlide>
           <img className={Styles.image} src="/banner2.jpeg" />
         </SwiperSlide>
+
       </Swiper>
+
+
+
     </div>
   )
 }
