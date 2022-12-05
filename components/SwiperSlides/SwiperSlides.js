@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useCallback, useRef } from "react";
 import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md';
 import Styles from './SwiperSlides.module.css';
@@ -13,17 +13,12 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 function SwiperSlides({ section }) {
-
   const swiperRef = useRef();
 
   return (
-    <div>
-      <div className={Styles.navigation}>
-        <MdNavigateBefore size={48} className={Styles.prev_arrow} onClick={() => swiperRef.current?.slidePrev()}>Prev</MdNavigateBefore>
-        <MdNavigateNext size={48} className={Styles.next_arrow} onClick={() => swiperRef.current?.slideNext()}>Next</MdNavigateNext>
-      </div>
-
+    <div className={Styles.banner}>
       <Swiper
+        className={Styles.swiper}
         slidesPerView={1}
         onBeforeInit={(swiper) => {
           swiperRef.current = swiper;
@@ -43,10 +38,15 @@ function SwiperSlides({ section }) {
         </SwiperSlide>
 
       </Swiper>
-
-
-
-    </div>
+      <div className={Styles.navigation}>
+        <div className={Styles.container_arrow} onClick={() => swiperRef.current?.slidePrev()}>
+          <MdNavigateBefore className={Styles.prev_arrow}>Prev</MdNavigateBefore>
+        </div>
+        <div className={Styles.container_arrow} onClick={() => swiperRef.current?.slideNext()}>
+          <MdNavigateNext className={Styles.next_arrow}>Next</MdNavigateNext>
+        </div>
+      </div>
+    </div >
   )
 }
 

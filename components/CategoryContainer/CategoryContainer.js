@@ -33,8 +33,12 @@ function CategoryContainer({ dataCard }) {
       <div className={Styles.header}>
         <h3 className={Styles.title}>Kartu Prakerja</h3>
         <div className={Styles.navigation}>
-          <MdNavigateBefore size={48} className={Styles.prev_arrow} onClick={() => swiperRef.current?.slidePrev()}>Prev</MdNavigateBefore>
-          <MdNavigateNext size={48} className={Styles.next_arrow} onClick={() => swiperRef.current?.slideNext()}>Next</MdNavigateNext>
+          <div className={Styles.container_arrow} onClick={() => swiperRef.current?.slidePrev()}>
+            <MdNavigateBefore size={24} className={Styles.prev_arrow} >Prev</MdNavigateBefore>
+          </div>
+          <div className={Styles.container_arrow} onClick={() => swiperRef.current?.slideNext()}>
+            <MdNavigateNext size={24} className={Styles.next_arrow} >Next</MdNavigateNext>
+          </div>
         </div>
       </div>
       <div className={Styles.container_collection}>
@@ -56,14 +60,21 @@ function CategoryContainer({ dataCard }) {
                 width: 834
               },
               768: {
-                slidesPerView: 1,
-                width: 768
+                slidesPerView: 2,
+                width: 700
               },
               414: {
                 slidesPerView: 1,
-                width: 414,
-                spaceBetween: 100
-              }
+                width: 400,
+              },
+              390: {
+                slidesPerView: 1,
+                width: 350,
+              },
+              320: {
+                slidesPerView: 1,
+                width: 330,
+              },
             }
           }
           slidesPerView={4}

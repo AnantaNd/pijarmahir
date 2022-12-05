@@ -9,6 +9,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 16px;
 }
 
 .title {
@@ -44,6 +45,7 @@
   padding: 32px;
   background-color: var(--footerColor) !important;
   width: 100%;
+  border-radius: 0 16px 16px 0;
 }
 
 .btnMore_collection {
@@ -56,6 +58,7 @@
 
 .navigation {
   display: flex;
+  gap: 4px;
 }
 
 .image {
@@ -63,15 +66,22 @@
   border-radius: 8px;
 }
 
-.swiper-pagination-bullet {
-  background: #37469B;
+.container_arrow {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 100%;
+  border: 2px solid var(--greyColor);
+  background-color: var(--whiteColor);
+  cursor: pointer;
 }
 
-.swiper-button-prev,
-.swiper-rtl .swiper-button-next {
-  left: 10px;
-  right: auto;
-  background-color: blue;
+.prev_arrow,
+.next_arrow {
+  font-size: 24px;
 }
 
 @media only screen and (max-width: 834px) {
