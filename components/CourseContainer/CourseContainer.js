@@ -14,18 +14,8 @@ import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-function CourseContainer({title}) {
+function CourseContainer({ title }) {
   const swiperRef = useRef();
-
-  const handlePrev = useCallback(() => {
-    if (!sliderRef.current) return;
-    sliderRef.current.swiper.slidePrev();
-  }, []);
-
-  const handleNext = useCallback(() => {
-    if (!sliderRef.current) return;
-    sliderRef.current.swiper.slideNext();
-  }, []);
 
   return (
     <div className={Styles.container}>
@@ -92,7 +82,7 @@ function CourseContainer({title}) {
             <CardCourse img={'/mahirprakerja.jpg'} course={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} subtitle={'cariilmu'} rating={3.3} ulasan={12} />
           </SwiperSlide>
           <SwiperSlide className={Styles.content}>
-            <CardCourse img={'/mahirprakerja.jpg'} course={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} subtitle={'cariilmu'} rating={3.3} ulasan={12}/>
+            <CardCourse img={'/mahirprakerja.jpg'} course={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} subtitle={'cariilmu'} rating={3.3} ulasan={12} />
           </SwiperSlide>
         </Swiper>
       </div>
