@@ -1,12 +1,14 @@
 import styles from './Filter.module.css'
 
 
-export default function Filter(){
+export default function Filter({onRating, onCategory, onPrice, onMitra}){
+
+
   return (
     <>
       <div className={styles.container}>
         <h1 className={styles.Title}>Kategori Kursus</h1>
-        <form>
+        <form onChange={onCategory}>
           <div className={styles.radio}>
             <label>
               <input type="radio" value="option1" />
@@ -29,7 +31,7 @@ export default function Filter(){
         <hr className={styles.gapContainer}></hr>
         <h1 className={styles.Title}>Rentang Harga</h1>
         <div className={styles.harga}>
-          <form>
+          <form onChange={onPrice}>
             <div className={styles.radio}>
               <label>
                 <input type="radio" value="option1" />
@@ -59,12 +61,12 @@ export default function Filter(){
         <hr className={styles.gapContainer}></hr>
         <h1 className={styles.Title}>Rating</h1>
         <div className={styles.rating}>
-          <input type="checkbox" value="lebihDari4" name="lebihDari4" />4 keatas
+          <input onChange={onRating} type="checkbox" value="lebihDari4" name="lebihDari4" />4 keatas
         </div> 
         <hr className={styles.gapContainer}></hr>
         <h1 className={styles.Title}>Mitra Pelatihan</h1>
         <div className={styles.mitra}>
-          <form>  
+          <form onChange={onMitra}>  
             <div className={styles.checkbox}>
               <input type="checkbox" value="bakingworld" name="bakingworld" />baking world
             </div>
