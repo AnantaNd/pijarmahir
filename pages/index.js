@@ -8,7 +8,7 @@ import Layouts from "../components/Layouts/Layouts";
 import ListCourse from "../components/ListCourse/ListCourse";
 import Section from "../components/Section/Section";
 import SwiperSlide from "../components/SwiperSlides/SwiperSlides";
-import { dataCategory } from '../data';
+import { dataSets } from '../data';
 import styles from '../styles/Home.module.css';
 
 
@@ -32,27 +32,35 @@ export default function Home() {
 
         {/* Category */}
         <Section>
-          <Category />
+          <Category data={dataSets.category_course} />
           <div className={styles.hl}></div>
         </Section>
         {/* End Category */}
 
         {/* Kartu Prakerja */}
-        <KartuPrakerja dataCard={dataCategory.prakerja} />
+        <Section>
+          <KartuPrakerja dataCard={dataSets.prakerja} />
+        </Section>
         {/* End Kartu Prakerja */}
 
         {/* Mahir prakerja 2022 */}
         <Section>
-          <CourseCountainer title={"Mahir Prakerja 2022"}/>
+          <CourseCountainer title={"Mahir Prakerja 2022"} />
         </Section>
         {/* Mahir prakerja 2022 */}
 
+        {/* Category */}
         <Section>
-          <ListCourse img={'/mahirprakerja.jpg'} title={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} mitra={'cariilmu'} rating={3.3} ulasan={12}/>
+          <Category data={dataSets.mitra} title="Mitra Pelatihan" />
+        </Section>
+        {/* End Category */}
+
+        <Section>
+          <ListCourse img={'/mahirprakerja.jpg'} title={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} mitra={'cariilmu'} rating={3.3} ulasan={12} />
         </Section>
 
         <Section>
-          <Filter/>
+          <Filter />
         </Section>
       </Layouts>
 
