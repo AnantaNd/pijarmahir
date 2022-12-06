@@ -2,10 +2,12 @@
   border: 1px solid var(--borderColor);
   /* padding: 10px; */
   border-radius: 8px;
-  width: 25%;
+  width: 250px;
 }
 .radio, .checkbox, .rating{
   padding: 10px;
+  font-size: 12px;
+  color: var(--textColor);
 }
 .gapContainer{
   border:1px solid var(--borderColor);
