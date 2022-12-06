@@ -1,7 +1,6 @@
 .container{
   padding: 10px ;
   max-width: 600px;
-  /* background-color: aqua; */
   display: flex;
   gap: 24px;
   justify-content: center;
@@ -19,9 +18,7 @@
 .title{
   font-size: 16px;
   font-weight: 500;
-  /* white-space: nowrap; */
-  overflow: hidden;
-  text-overflow: ellipsis;
+  
 }
 .mitra{
   font-size: 14px;
@@ -35,6 +32,22 @@
   display: flex;
   /* margin: 10px; */
 }
+.rating_review{
+  font-size: 12px;
+}
 .title, .rating, .mitra, .price{
   padding-top: 8px;
+}
+@media only screen and (max-width: 768px) {
+  .card_img {
+    width: 160px;
+    height: 100px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+  .title, .rating, .mitra, .price{
+    font-size: 12px;   
+    padding-top: 1px;
+  }
 }

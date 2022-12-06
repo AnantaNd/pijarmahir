@@ -3,6 +3,7 @@
   /* padding: 10px; */
   border-radius: 8px;
   width: 250px;
+  /* position: fixed; */
 }
 .radio, .checkbox, .rating{
   padding: 10px;
