@@ -2,6 +2,7 @@ import { useSession } from "next-auth/react";
 import Head from "next/head";
 import Category from "../components/Category/Category";
 import CourseCountainer from '../components/CourseContainer/CourseContainer';
+import Filter from "../components/Filter/Filter";
 import KartuPrakerja from "../components/KartuPrakerja/KartuPrakerja";
 import Layouts from "../components/Layouts/Layouts";
 import ListCourse from "../components/ListCourse/ListCourse";
@@ -48,6 +49,10 @@ export default function Home() {
 
         <Section>
           <ListCourse img={'/mahirprakerja.jpg'} title={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} mitra={'cariilmu'} rating={3.3} ulasan={12}/>
+        </Section>
+
+        <Section>
+          <Filter/>
         </Section>
       </Layouts>
 

@@ -1,0 +1,18 @@
+.container{
+  border: 1px solid var(--borderColor);
+  /* padding: 10px; */
+  border-radius: 8px;
+  width: 25%;
+}
+.radio, .checkbox, .rating{
+  padding: 10px;
+}
+.gapContainer{
+  border:1px solid var(--borderColor);
+  padding: 0;
+}
+.Title{
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px;
+}
