@@ -1,0 +1,11 @@
+.container{
+  /* width: 100px; */
+  /* height: 100px; */
+  display: flex;
+  /* background-color: red; */
+  margin: 10px auto;
+  /* padding: 10px; */
+}
+.content{
+  padding-left: 20px;
+}
