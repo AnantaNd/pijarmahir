@@ -1,0 +1,42 @@
+.testimoni_container {
+  padding: 48px;
+}
+
+.navigation {
+  display: flex;
+  gap: 4px;
+}
+
+.testimoni {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.container_arrow {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  border: 2px solid var(--greyColor);
+  background-color: var(--whiteColor);
+  cursor: pointer;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.swiper_testimoni {
+  margin-top: 24px;
+}
+
+@media only screen and (max-width: 768px) {
+
+  .testimoni_container {
+    padding: 48px 0;
+  }
+}
