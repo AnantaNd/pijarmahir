@@ -8,6 +8,7 @@ import Layouts from "../components/Layouts/Layouts";
 import ListCourse from "../components/ListCourse/ListCourse";
 import Section from "../components/Section/Section";
 import SwiperSlide from "../components/SwiperSlides/SwiperSlides";
+import Testimoni from "../components/Testimoni/Testimoni";
 import { dataSets } from '../data';
 import styles from '../styles/Home.module.css';
 
@@ -49,11 +50,17 @@ export default function Home() {
         </Section>
         {/* Mahir prakerja 2022 */}
 
-        {/* Category */}
+        {/* Mitra */}
         <Section>
           <Category data={dataSets.mitra} title="Mitra Pelatihan" />
         </Section>
-        {/* End Category */}
+        {/* End Mitra */}
+
+        {/* Testimoni */}
+        <Section>
+          <Testimoni />
+        </Section>
+        {/* End Testimoni */}
 
         <Section>
           <ListCourse img={'/mahirprakerja.jpg'} title={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} mitra={'cariilmu'} rating={3.3} ulasan={12} />
