@@ -6,6 +6,7 @@ import KartuPrakerja from "../components/KartuPrakerja/KartuPrakerja";
 import Layouts from "../components/Layouts/Layouts";
 import Section from "../components/Section/Section";
 import SwiperSlide from "../components/SwiperSlides/SwiperSlides";
+import Testimoni from "../components/Testimoni/Testimoni";
 import { dataSets } from '../data';
 import styles from '../styles/Home.module.css';
 
@@ -47,11 +48,17 @@ export default function Home() {
         </Section>
         {/* Mahir prakerja 2022 */}
 
-        {/* Category */}
+        {/* Mitra */}
         <Section>
           <Category data={dataSets.mitra} title="Mitra Pelatihan" />
         </Section>
-        {/* End Category */}
+        {/* End Mitra */}
+
+        {/* Testimoni */}
+        <Section>
+          <Testimoni />
+        </Section>
+        {/* End Testimoni */}
 
       </Layouts>
 
