@@ -6,7 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import Button from '../../Button/Button';
 import Styles from "./CardLogin.module.css";
 
-function CardLogin({ inputUsername, inputPassword, helpers, btnLogin, handleLogin }) {
+function CardLogin({ inputUsername, inputPassword, helpersE, helpersP, btnLogin, handleLogin, registerE, registerP}) {
   // const { data: session } = useSession();
 
 
@@ -23,19 +23,23 @@ function CardLogin({ inputUsername, inputPassword, helpers, btnLogin, handleLogi
       callbackUrl: '/'
     });
   }
+  const formSubmit =(data)=>{
+    console.log(data)
+  }
 
 
   return (
     <div className={Styles.container_card}>
       <h2 className={Styles.text_login}>Masuk</h2>
       <p className={Styles.suggestion}>Lanjutkan pembelajaranmu dengan Pijar Mahir</p>
-      <div className={Styles.container_input}>
-        <label className={Styles.label_input} htmlFor='email'>Email</label>
-        <input className={Styles.input} name='email' type='email' placeholder='example@mail.com' onChange={inputUsername} />
-        <label className={Styles.label_input} htmlFor='pass'>Password</label>
-        <input className={Styles.input} name='pass' type='password' placeholder='' onChange={inputPassword} />
-        <small className={Styles.helper_account}>{helpers}</small>
-      </div>
+          <div className={Styles.container_input}>
+            <label className={Styles.label_input} htmlFor='email'>Email</label>
+            <input className={Styles.input} name='email' type='email' placeholder='example@mail.com' onChange={inputUsername} {...registerE}/>
+            <small className={Styles.helper_account}>{helpersE}</small>
+            <label className={Styles.label_input} htmlFor='pass'>Password</label>
+            <input className={Styles.input} name='pass' type='password' placeholder='password' onChange={inputPassword} {...registerP}/>
+            <small className={Styles.helper_account}>{helpersP}</small>
+          </div>
       {/* <Input label="Password" name="password" type="password" placeholder="" onChangeInput={handleInputPass}/> */}
 
       <div className={Styles.helper}>
