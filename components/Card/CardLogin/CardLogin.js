@@ -6,7 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import Button from '../../Button/Button';
 import Styles from "./CardLogin.module.css";
 
-function CardLogin({ inputUsername, inputPassword, helpersE, helpersP, btnLogin, handleLogin, registerE, registerP}) {
+function CardLogin({ inputEmail, inputPassword, helpersE, helpersP, btnLogin, handleLogin, registerE, registerP}) {
   // const { data: session } = useSession();
 
 
@@ -34,7 +34,7 @@ function CardLogin({ inputUsername, inputPassword, helpersE, helpersP, btnLogin,
       <p className={Styles.suggestion}>Lanjutkan pembelajaranmu dengan Pijar Mahir</p>
           <div className={Styles.container_input}>
             <label className={Styles.label_input} htmlFor='email'>Email</label>
-            <input className={Styles.input} name='email' type='email' placeholder='example@mail.com' onChange={inputUsername} {...registerE}/>
+            <input className={Styles.input} name='email' type='email' placeholder='example@mail.com' onChange={inputEmail} {...registerE}/>
             <small className={Styles.helper_account}>{helpersE}</small>
             <label className={Styles.label_input} htmlFor='pass'>Password</label>
             <input className={Styles.input} name='pass' type='password' placeholder='password' onChange={inputPassword} {...registerP}/>

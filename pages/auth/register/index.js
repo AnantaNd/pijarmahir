@@ -1,10 +1,52 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+import { yupResolver } from "@hookform/resolvers/yup";
 import Head from "next/head";
 import Image from "next/image";
+import { useState } from "react";
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
 import CardSignUp from "../../../components/Card/CardSignUp/CardSignUp";
 import FooterSecond from '../../../components/Footer/FooterSecond/FooterSecond';
 import styles from "./Register.module.css";
 
+
+const schema = yup.object({
+  email: yup
+    .string()
+    .required("mausukan email terlebih dahulu")
+    .email("email harus memiliki '@'"),
+  password: yup
+    .string()
+    .required("masukan password terlebih dahulu")
+    .min(4).required('password minimal 4 karakter'),
+  confirm_password: yup
+    .string()
+    .required('masukan kembali password')
+    .oneOf([yup.ref('password')],'password harus sama').required('password harus sama')
+})
+
 export default function index() {
+  const [email, setEmail] = useState()
+  const [pass, setPass] = useState()
+  const [confirmPass, setConfirmPass] = useState()
+  const {register, handleSubmit, formState:{errors}} 
+  = useForm({
+    resolver: yupResolver(schema)
+  })
+  
+  const handleInputEmail =(e)=>{
+    setEmail(e.target.value)
+    // console.log(e.target.value)
+  }
+  const handleInputPass =(e)=>{
+    setPass(e.target.value)
+  }
+  const handleInputConfirm =(e)=>{
+    setConfirmPass(e.target.value)
+  }
+  const onSubmit=(data)=>{
+    console.log(data);
+  }
   return (
     <>
       <Head>
@@ -16,7 +58,19 @@ export default function index() {
         <Image className={styles.logo} src="/pijar_logo.svg" height={80} width={80} style={{ marginLeft: "auto", marginRight: "auto" }} alt='logo' />
         <div className={styles.content}>
           <Image className={styles.ilustration} src="/new-profile.svg" height={480} width={480} style={{ marginLeft: "auto", marginRight: "90px" }} alt='ilustration' />
-          <CardSignUp />
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <CardSignUp 
+              inputEmail={handleInputEmail}
+              inputPass={handleInputPass} 
+              inputConfirm={handleInputConfirm} 
+              registerE={{...register('email')}}
+              registerP={{...register('pass')}}
+              registerC={{...register('confrimPass')}}
+              helperE={errors.email?.message}
+              helperP={errors.password?.message}
+              helperC={errors.confirm_password?.message}
+            />
+          </form>
         </div>
       </main>
       <FooterSecond />

@@ -1,26 +1,22 @@
 import { signIn } from 'next-auth/react'
 import Link from 'next/link'
-import { useState } from 'react'
 import { FaFacebook } from 'react-icons/fa'
 import { FcGoogle } from 'react-icons/fc'
-import validator from 'validator'
 import Button from '../../Button/Button'
-import Input from '../../Input/Input'
 import styles from './CardSignUp.module.css'
 
 
-export default function CardSignUp() {
-  const [emailError, setEmailError] = useState('')
+export default function CardSignUp({inputEmail, inputPass, inputConfirm, helperE, helperP, helperC, handleSignUp, registerE, registerP, registerC}) {
 
-  const validate = (e) => {
-    var email = e.target.value
-    console.log(email)
-    if (validator.isEmail(email)) {
-      setEmailError(`Kami akan mengirim kode verifikasi ke ${email}`)
-    } else {
-      setEmailError('Format email yang dimasukkan tidak memiliki “@”')
-    }
-  }
+  // const validate = (e) => {
+  //   var email = e.target.value
+  //   console.log(email)
+  //   if (validator.isEmail(email)) {
+  //     setEmailError(`Kami akan mengirim kode verifikasi ke ${email}`)
+  //   } else {
+  //     setEmailError('Format email yang dimasukkan tidak memiliki “@”')
+  //   }
+  // }
 
   const handleLoginFacebook = (e) => {
     e.preventDefault();
@@ -40,8 +36,19 @@ export default function CardSignUp() {
     <div className={styles.container}>
       <h1 className={styles.title}>daftar</h1>
       <p className={styles.subtitle}>bangun karirmu bersama pijar mahir</p>
-      <Input onChangeInput={(e) => validate(e)} label="Email" name="email" type="email" placeholder="example@gmail.com" />
-      <p className={styles.desc}>{emailError}</p>
+        <div className={styles.container_input}>
+          <label className={styles.label_input} htmlFor='email'>Email</label>
+          <input className={styles.input} name='email' type='email' placeholder='example@mail.com' onChange={inputEmail} {...registerE}/>
+          <small className={styles.helper_account}>{helperE}</small>
+          <label className={styles.label_input} htmlFor='pass'>Password</label>
+          <input className={styles.input} name='pass' type='password' placeholder='password' onChange={inputPass} {...registerP}/>
+          <small className={styles.helper_account}>{helperP}</small>
+          <label className={styles.label_input} htmlFor='pass'>Confirm Password</label>
+          <input className={styles.input} name='pass' type='password' placeholder='password' onChange={inputConfirm} {...registerC}/>
+          <small className={styles.helper_account}>{helperC}</small>
+        </div>
+      {/* <Input onChangeInput={(e) => validate(e)} label="Email" name="email" type="email" placeholder="example@gmail.com" /> */}
+      {/* <p className={styles.desc}>{emailError}</p> */}
       <Button buttonType="primary">Lanjutkan</Button>
       <div className={styles.sparator}>
         <div className={styles.hl}></div>

@@ -27,8 +27,14 @@ export const getStaticProps = async () => {
 }
 
 const schema = yup.object({
-  email: yup.string().required(),
-  password: yup.string().required()
+  email: yup
+    .string()
+    .required("mausukan email terlebih dahulu")
+    .email("email harus memiliki '@'"),
+  password: yup
+    .string()
+    .required("masukan password terlebih dahulu")
+    .min(4).required('password minimal 4 karakter'),
 })
 
 function Login({ props }) {
@@ -38,8 +44,7 @@ function Login({ props }) {
   const [isPass, setIsPass] = useState(false)
 
   const { register, handleSubmit, formState: { errors } } 
-  = useForm
-  ({
+  = useForm({
     resolver: yupResolver(schema)
   });
   console.log(errors)
@@ -58,7 +63,7 @@ function Login({ props }) {
     // props?.data?.filter(user =>{
     //   return user.email === email && user
     // })
-    // console.log(email + pass);
+    console.log(email + pass);
   }
   const onSubmit=(data)=>{
     console.log(data);
@@ -75,7 +80,15 @@ function Login({ props }) {
         <div className={Styles.login_content}>
           <Image alt="ilustration" className={Styles.login_ilustration} src="/new-profile.svg" priority={true} width={480} height={480} />
           <form onSubmit={handleSubmit(onSubmit)}>
-            <CardLogin handleLogin={handleLogin} inputUsername={handleInputEmail} inputPassword={handleInputPass} registerE={{...register("email")}} registerP={{...register('pass')}} helpersE={errors.email?.message} helpersP={errors.password?.message}/>
+            <CardLogin 
+              handleLogin={handleLogin}
+              inputEmail={handleInputEmail}
+              inputPassword={handleInputPass}
+              registerE={{...register("email")}}
+              registerP={{...register('pass')}}
+              helpersE={errors.email?.message}
+              helpersP={errors.password?.message}
+            />
           </form>
         </div>
       </main>
