@@ -2,6 +2,7 @@ import { useSession } from "next-auth/react";
 import Head from "next/head";
 import Category from "../components/Category/Category";
 import CourseCountainer from '../components/CourseContainer/CourseContainer';
+import FlashSale from "../components/FlashSale/FlashSale";
 import KartuPrakerja from "../components/KartuPrakerja/KartuPrakerja";
 import Layouts from "../components/Layouts/Layouts";
 import Section from "../components/Section/Section";
@@ -41,6 +42,11 @@ export default function Home() {
           <KartuPrakerja dataCard={dataSets.prakerja} />
         </Section>
         {/* End Kartu Prakerja */}
+
+        {/* flashsahle */}
+        <Section>
+          <FlashSale dataCard={dataSets.prakerja}/>
+        </Section>
 
         {/* Mahir prakerja 2022 */}
         <Section>

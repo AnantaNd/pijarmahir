@@ -1,9 +1,9 @@
 import React, { useCallback, useRef } from 'react';
 import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md';
 import CardProduct from '../Card/CardProduct/CardProduct';
-import Styles from './KartuPrakerja.module.css';
+import Clock from '../Clock/Clock';
+import Styles from './FlashSale.module.css';
 
-import Image from 'next/image';
 
 
 // Swiper
@@ -15,7 +15,7 @@ import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-function KartuPrakerja({ dataCard }) {
+export default function FlashSale({ dataCard }) {
   const swiperRef = useRef();
 
   const handlePrev = useCallback(() => {
@@ -42,9 +42,10 @@ function KartuPrakerja({ dataCard }) {
         </div>
       </div>
       <div className={Styles.container_collection}>
-        <div className={Styles.background_collection} style={{ backgroundImage: `url('/background-collection-prakerja.jpg')` }} >
-          <Image src="/PRAKERJA_WHITE.svg" width={150} height={50} alt='img'/>
-          <p className={Styles.text}>Tingkatkan keahlian mu dan siap kerja dengan Kartu Prakerja!</p>
+        <div className={Styles.background_collection} style={{ backgroundImage: `url('/bg-flash-sale.jpg')` }} >
+          <h1 className={Styles.FlashSale}>Flash Sale</h1>
+          <Clock/>
+          <p className={Styles.text}>Berakhir dalam</p>
           <button className={Styles.btnMore_collection}>Lihat Semua</button>
         </div>
         <Swiper
@@ -94,5 +95,3 @@ function KartuPrakerja({ dataCard }) {
     </div>
   )
 }
-
-export default KartuPrakerja

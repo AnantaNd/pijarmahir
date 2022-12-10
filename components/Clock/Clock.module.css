@@ -1,0 +1,10 @@
+.container{
+  padding: 8px;
+  background-color: rgb(255, 116, 116);
+  border-radius: 8px;
+}
+.clock{
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+}

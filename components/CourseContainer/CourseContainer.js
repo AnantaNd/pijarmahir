@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useRef } from 'react';
 import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md';
 import CardCourse from '../Card/CardCourse/CardCourse';
 import Styles from './CourseContainer.module.css';
