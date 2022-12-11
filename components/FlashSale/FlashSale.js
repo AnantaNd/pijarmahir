@@ -1,7 +1,7 @@
 import React, { useCallback, useRef } from 'react';
 import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md';
 import CardProduct from '../Card/CardProduct/CardProduct';
-import Clock from '../Clock/Clock';
+import Countdown from '../Countdown/Countdown';
 import Styles from './FlashSale.module.css';
 
 
@@ -31,7 +31,7 @@ export default function FlashSale({ dataCard }) {
   return (
     <div className={Styles.container}>
       <div className={Styles.header}>
-        <h3 className={Styles.title}>Kartu Prakerja</h3>
+        <br/>
         <div className={Styles.navigation}>
           <div className={Styles.container_arrow} onClick={() => swiperRef.current?.slidePrev()}>
             <MdNavigateBefore size={24} className={Styles.prev_arrow} >Prev</MdNavigateBefore>
@@ -42,11 +42,10 @@ export default function FlashSale({ dataCard }) {
         </div>
       </div>
       <div className={Styles.container_collection}>
-        <div className={Styles.background_collection} style={{ backgroundImage: `url('/bg-flash-sale.jpg')` }} >
+        <div className={Styles.background_collection} >
           <h1 className={Styles.FlashSale}>Flash Sale</h1>
-          <Clock/>
           <p className={Styles.text}>Berakhir dalam</p>
-          <button className={Styles.btnMore_collection}>Lihat Semua</button>
+          <Countdown/>
         </div>
         <Swiper
           className={Styles.collections}

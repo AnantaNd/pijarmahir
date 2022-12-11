@@ -10,11 +10,16 @@ import styles from "./category.module.css";
 
 export default function index(){
 
-  const [isChecked, setIsChecked] = useState('')
+  const [isChecked, setIsChecked] = useState(false)
+  const [select, setSelect] = useState('')
 
   const handleChecked =(e)=>{
     setIsChecked(e.target.value)
     console.log(e.target.value)
+  }
+  const hanldeSelect=(e)=>{
+    setSelect(e.target.value)
+    console.log(e.target.value);
   }
 
   return(
@@ -26,7 +31,7 @@ export default function index(){
     </Head>
     <div className={styles.pattern}></div>
     <Layouts>
-      <Sort/>
+      <Sort onSorting={hanldeSelect}/>
       <div className={styles.container}>
         <div className={styles.filter}>
           {/* <Section> */}

@@ -1,7 +1,9 @@
 .container {
+  background-image: url('../../public/bg-flash-sale.jpg');
   display: flex;
   flex-direction: column;
   margin: 32px 0;
+  /* padding: 12px auto; */
 
 }
 
@@ -47,22 +49,15 @@
 
 .collections {
   padding: 32px;
-  background-color: var(--footerColor) !important;
   width: 100%;
   border-radius: 0 16px 16px 0;
-}
-
-.btnMore_collection {
-  padding: 8px 16px;
-  background-color: white;
-  border: 0;
-  color: var(--accentColor);
-  border-radius: 8px;
 }
 
 .navigation {
   display: flex;
   gap: 4px;
+  justify-items: flex-end;
+
 }
 
 .image {
