@@ -1,13 +1,21 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from 'axios';
+import { signIn } from 'next-auth/react';
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { FaFacebook } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 import * as yup from "yup";
-import CardLogin from '../../../components/Card/CardLogin/CardLogin';
+import YupPassword from "yup-password";
+import Button from "../../../components/Button/Button";
 import FooterSecond from '../../../components/Footer/FooterSecond/FooterSecond';
+import Input from "../../../components/Input/Input";
 import Styles from './Login.module.css';
+YupPassword(yup)
+
 
 
 export const getStaticProps = async () => {
@@ -26,15 +34,16 @@ export const getStaticProps = async () => {
   }
 }
 
-const schema = yup.object({
+const schema = yup.object().shape({
   email: yup
-    .string()
-    .required("mausukan email terlebih dahulu")
-    .email("email harus memiliki '@'"),
-  password: yup
-    .string()
-    .required("masukan password terlebih dahulu")
-    .min(4).required('password minimal 4 karakter'),
+  .string()
+  .required("mausukan email terlebih dahulu")
+  .email("email harus memiliki '@'"),
+password: yup
+  .string()
+  .required("masukan password terlebih dahulu")
+  .min(4, 'password minimal 4 karakter'),
+
 })
 
 function Login({ props }) {
@@ -52,7 +61,7 @@ function Login({ props }) {
 
   const handleInputEmail = (e) => {
     setEmail(e.target.value)
-    // console.log(e.target.value)
+    console.log(e.target.value)
   }
   const handleInputPass = (e) => {
     setPass(e.target.value)
@@ -68,6 +77,20 @@ function Login({ props }) {
   const onSubmit=(data)=>{
     console.log(data);
   }
+
+  const handleLoginFacebook = (e) => {
+    e.preventDefault();
+    signIn('facebook', {
+      callbackUrl: '/'
+    });
+  }
+
+  const handleLoginGoogle = (e) => {
+    e.preventDefault();
+    signIn('google', {
+      callbackUrl: '/'
+    });
+  }
   return (
     <>
       <Head>
@@ -80,15 +103,58 @@ function Login({ props }) {
         <div className={Styles.login_content}>
           <Image alt="ilustration" className={Styles.login_ilustration} src="/new-profile.svg" priority={true} width={480} height={480} />
           <form onSubmit={handleSubmit(onSubmit)}>
-            <CardLogin 
-              handleLogin={handleLogin}
-              inputEmail={handleInputEmail}
-              inputPassword={handleInputPass}
-              registerE={{...register("email")}}
-              registerP={{...register('pass')}}
-              helpersE={errors.email?.message}
-              helpersP={errors.password?.message}
-            />
+           <div className={Styles.container_card}>
+              <h2 className={Styles.text_login}>Masuk</h2>
+              <p className={Styles.suggestion}>Lanjutkan pembelajaranmu dengan Pijar Mahir</p>
+              {/* input */}
+              <Input 
+                label={'Email'} 
+                name={'email'} 
+                type={"text"} 
+                placeholder={'example@gmail.com'} 
+                onChangeInput={handleInputEmail} 
+                helper={errors.email?.message} 
+                register={{...register('email')}}/>
+              <Input 
+                label={'Password'}
+                name={'password'} 
+                type={"password"}
+                placeholder={'password'} 
+                onChangeInput={handleInputPass} 
+                helper={errors.password?.message} 
+                register={{...register('password')}}/>
+              {/* input */}
+              <div className={Styles.helper}>
+                <div className={Styles.container_checkbox}>
+                  <input className={Styles.checkbox} name="checkbox" type="checkbox" />
+                  <label className={Styles.label_checkbox} htmlFor="checkbox">Ingat akun Saya</label>
+                </div>
+                <Link href="/auth/reset-password" style={{ textDecoration: "none" }} >
+                  <p className={Styles.orange_text}>Lupa Password?</p>
+                </Link>
+              </div>
+              <div className={Styles.sparator}>
+                <Button buttonType="primary" >
+                  Masuk
+                </Button>
+              </div>
+              <div className={Styles.sparator}>
+                <div className={Styles.hl}></div>
+                atau
+                <div className={Styles.hl}></div>
+              </div>
+              <div className={Styles.third_party}>
+                <Button btnOnClick={handleLoginGoogle}>
+                  <FcGoogle size={24} style={{ marginRight: "8px" }} />Masuk dengan Google
+                </Button>
+                <Button btnOnClick={handleLoginFacebook}>
+                  <FaFacebook color="DodgerBlue" size={24} style={{ marginRight: "8px" }} />Masuk dengan Facebook
+                </Button>
+              </div>
+              <div className={Styles.register_link}>
+                Belum punya akun? <span className={Styles.orange_text}>Daftar</span>
+            </div>
+           </div>
           </form>
         </div>
       </main>

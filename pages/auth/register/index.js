@@ -1,14 +1,17 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { yupResolver } from "@hookform/resolvers/yup";
+import { signIn } from 'next-auth/react';
 import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
 import { useForm } from 'react-hook-form';
+import { FaFacebook } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 import * as yup from 'yup';
-import CardSignUp from "../../../components/Card/CardSignUp/CardSignUp";
+import Button from "../../../components/Button/Button";
 import FooterSecond from '../../../components/Footer/FooterSecond/FooterSecond';
+import Input from "../../../components/Input/Input";
 import styles from "./Register.module.css";
-
 
 const schema = yup.object({
   email: yup
@@ -18,13 +21,25 @@ const schema = yup.object({
   password: yup
     .string()
     .required("masukan password terlebih dahulu")
-    .min(4).required('password minimal 4 karakter'),
+    .min(4, 'password minimal 4 karakter'),
   confirm_password: yup
     .string()
     .required('masukan kembali password')
-    .oneOf([yup.ref('password')],'password harus sama').required('password harus sama')
+    .oneOf([yup.ref('password')],'password harus sama')
 })
+const handleLoginFacebook = (e) => {
+  e.preventDefault();
+  signIn('facebook', {
+    callbackUrl: '/newprofile'
+  });
+}
 
+const handleLoginGoogle = (e) => {
+  e.preventDefault();
+  signIn('google', {
+    callbackUrl: '/newprofile'
+  });
+}
 export default function index() {
   const [email, setEmail] = useState()
   const [pass, setPass] = useState()
@@ -59,17 +74,57 @@ export default function index() {
         <div className={styles.content}>
           <Image className={styles.ilustration} src="/new-profile.svg" height={480} width={480} style={{ marginLeft: "auto", marginRight: "90px" }} alt='ilustration' />
           <form onSubmit={handleSubmit(onSubmit)}>
-            <CardSignUp 
-              inputEmail={handleInputEmail}
-              inputPass={handleInputPass} 
-              inputConfirm={handleInputConfirm} 
-              registerE={{...register('email')}}
-              registerP={{...register('pass')}}
-              registerC={{...register('confrimPass')}}
-              helperE={errors.email?.message}
-              helperP={errors.password?.message}
-              helperC={errors.confirm_password?.message}
-            />
+          <div className={styles.container_card}>
+              <h2 className={styles.text_login}>Masuk</h2>
+              <p className={styles.suggestion}>Lanjutkan pembelajaranmu dengan Pijar Mahir</p>
+              {/* input */}
+              <Input 
+                label={'Email'} 
+                name={'email'} 
+                type={"text"} 
+                placeholder={'example@gmail.com'} 
+                onChangeInput={handleInputEmail} 
+                helper={errors.email?.message} 
+                register={{...register('email')}}/>
+              <Input 
+                label={'Password'}
+                name={'password'} 
+                type={"password"}
+                placeholder={'password'} 
+                onChangeInput={handleInputPass} 
+                helper={errors.password?.message} 
+                register={{...register('password')}}/>
+              <Input 
+                label={'Konfirmasi Password'}
+                name={'password'} 
+                type={"password"}
+                placeholder={'password'} 
+                onChangeInput={handleInputConfirm} 
+                helper={errors.confirm_password?.message} 
+                register={{...register('confirm_password')}}/>
+              {/* input */}
+              <div className={styles.sparator}>
+                <Button buttonType="primary" >
+                  Daftar
+                </Button>
+              </div>
+              <div className={styles.sparator}>
+                <div className={styles.hl}></div>
+                atau
+                <div className={styles.hl}></div>
+              </div>
+              <div className={styles.third_party}>
+                <Button btnOnClick={handleLoginGoogle}>
+                  <FcGoogle size={24} style={{ marginRight: "8px" }} />Masuk dengan Google
+                </Button>
+                <Button btnOnClick={handleLoginFacebook}>
+                  <FaFacebook color="DodgerBlue" size={24} style={{ marginRight: "8px" }} />Masuk dengan Facebook
+                </Button>
+              </div>
+              <div className={styles.register_link}>
+                sudah memiliki akun? <span className={styles.orange_text}>Masuk</span>
+            </div>
+           </div>
           </form>
         </div>
       </main>
