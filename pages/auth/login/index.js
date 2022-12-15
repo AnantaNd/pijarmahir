@@ -89,7 +89,9 @@ function Login({ users }) {
         {
           // console.log(users.data)
         }
-        <Image alt="logo" className={Styles.logo} src="/pijar_logo.svg" height={80} width={80} style={{ marginLeft: "auto", marginRight: "auto" }} />
+        <Link href="/">
+          <Image alt="logo" className={Styles.logo} src="/pijar_logo.svg" height={80} width={80} style={{ marginLeft: "auto", marginRight: "auto" }} />
+        </Link>
         <div className={Styles.login_content}>
           <Image alt="ilustration" className={Styles.login_ilustration} src="/new-profile.svg" priority={true} width={480} height={480} />
           <form onSubmit={handleSubmit(onSubmit)}>

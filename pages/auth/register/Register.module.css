@@ -4,19 +4,20 @@
   display: flex;
   flex-direction: column;
   padding: 0px 320px;
+  align-items: center;
 }
 
 .content {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
-  margin-top: 48px;
-
+  /* width: 100%; */
+  gap: 120px;
 }
+
 .container_card {
   /* margin-left: 32px; */
-  width: 100%;
+  width: 480px;
   padding: 40px;
   box-shadow: var(--boxShadowColor);
   border: 1px solid var(--borderColor);
@@ -139,6 +140,13 @@
 @media only screen and (max-width: 834px) {
   .ilustration {
     display: none;
+  }
+  .container_card {
+    width: 100%;
+    box-shadow: none;
+    border: 0;
+  padding: 16px;
+
   }
 }
 

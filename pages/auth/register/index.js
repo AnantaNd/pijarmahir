@@ -78,12 +78,14 @@ export default function index() {
         <link rel="icon" href="/pijar_logo.svg" />
       </Head>
       <main className={styles.container}>
-        <Image className={styles.logo} src="/pijar_logo.svg" height={80} width={80} style={{ marginLeft: "auto", marginRight: "auto" }} alt='logo' />
+        <Link href="/">
+          <Image className={styles.logo} src="/pijar_logo.svg" height={80} width={80} style={{ marginLeft: "auto", marginRight: "auto" }} alt='logo' />
+        </Link>
         <div className={styles.content}>
-          <Image className={styles.ilustration} src="/new-profile.svg" height={480} width={480} style={{ marginLeft: "auto", marginRight: "90px" }} alt='ilustration' />
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <Image className={styles.ilustration} src="/new-profile.svg" height={480} width={480} style={{ marginRight: "90px" }} alt='ilustration' />
+          <form className={styles.content} onSubmit={handleSubmit(onSubmit)}>
             <div className={styles.container_card}>
-              <h2 className={styles.text_login}>Masuk</h2>
+              <h2 className={styles.text_login}>Daftar</h2>
               <p className={styles.suggestion}>Lanjutkan pembelajaranmu dengan Pijar Mahir</p>
               {/* input */}
               <Input

@@ -4,22 +4,21 @@
   display: flex;
   flex-direction: column;
   padding: 0px 320px;
+  align-items: center;
 }
 
 .login_content {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
-  margin-top: 48px;
-
-  gap: 100px;
+  gap: 120px;
+  /* width: 100%; */
 
 }
 
 .container_card {
   /* margin-left: 32px; */
-  width: 440px;
+  width: 480px;
   padding: 40px;
   box-shadow: var(--boxShadowColor);
   border: 1px solid var(--borderColor);
