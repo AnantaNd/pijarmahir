@@ -63,7 +63,7 @@ function Login({ users }) {
         }))
         router.push('/')
       } else if (user.email === data.email && user.password !== data.password) {
-        setErrorPass("Pass yang dimasukkan tidak terdaftar")
+        setErrorPass("Password yang dimasukkan salah")
         setErrorEmail("")
       } else if (user.email !== data.email && user.password === data.password) {
         setErrorEmail("Email yang dimasukkan tidak terdaftar")
