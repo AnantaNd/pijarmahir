@@ -28,6 +28,11 @@ export default function FlashSale({ dataCard }) {
     sliderRef.current.swiper.slideNext();
   }, []);
 
+  const discount =(price, percent)=>{
+    const temp = price * (0.01*percent)
+    return price - temp
+  }
+
   return (
     <div className={Styles.container}>
       <div className={Styles.header}>
@@ -85,7 +90,14 @@ export default function FlashSale({ dataCard }) {
           {dataCard.map((data, idx) => {
             return (
               <SwiperSlide key={idx}>
-                <CardProduct category={data.category} harga={data.harga} img={data.img} rating={data.rating} title={data.title} ulasan={data.ulasan} />
+                <CardProduct 
+                  category={data.teacher}
+                  harga={data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
+                  img={'mahirprakerja.jpg'} rating={data.rating}
+                  title={data.fullname}
+                  ulasan={data.totalRater}
+                  totalDiskon={discount(data.price, data.percentage).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
+                  diskon={data.percentage} />
               </SwiperSlide>
             )
           })}

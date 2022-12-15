@@ -85,7 +85,7 @@ function KartuPrakerja({ dataCard }) {
           {dataCard.map((data, idx) => {
             return (
               <SwiperSlide key={idx}>
-                <CardProduct category={data.category} harga={data.harga} img={data.img} rating={data.rating} title={data.title} ulasan={data.ulasan} />
+                <CardProduct category={data.teacher} harga={data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')} img={'mahirprakerja.jpg'} rating={data.rating} title={data.fullname} ulasan={data.totalRater} />
               </SwiperSlide>
             )
           })}

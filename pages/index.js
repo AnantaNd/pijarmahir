@@ -12,9 +12,12 @@ import { dataSets } from '../data';
 import styles from '../styles/Home.module.css';
 
 
-export default function Home() {
+export default function Home({kartu_prakerja, flash_sale, mahir_prakerja, best_seller, talent_digital, pilihan_terbaik, testimoni, kategori}) {
   const { data: session } = useSession();
 
+  console.log(testimoni.data)
+  // console.log('flashSale',flash_sale)
+  // console.log('mahirPrakerja',mahir_prakerja)
   return (
     <>
       <Head>
@@ -32,27 +35,45 @@ export default function Home() {
 
         {/* Category */}
         <Section>
-          <Category data={dataSets.category_course} />
+          <Category data={kategori.data} />
           <div className={styles.hl}></div>
         </Section>
         {/* End Category */}
 
         {/* Kartu Prakerja */}
         <Section>
-          <KartuPrakerja dataCard={dataSets.prakerja} />
+          <KartuPrakerja dataCard={kartu_prakerja.data} />
         </Section>
         {/* End Kartu Prakerja */}
 
         {/* flashsahle */}
         <Section>
-          <FlashSale dataCard={dataSets.prakerja}/>
+          <FlashSale dataCard={flash_sale.data}/>
         </Section>
 
         {/* Mahir prakerja 2022 */}
         <Section>
-          <CourseCountainer title={"Mahir Prakerja 2022"} />
+          <CourseCountainer title={"Mahir Prakerja 2022"} dataCard={mahir_prakerja.data}/>
         </Section>
         {/* Mahir prakerja 2022 */}
+
+        {/* best seller */}
+        <Section>
+          <CourseCountainer title={"Best Seller"} dataCard={best_seller.data}/>
+        </Section>
+        {/* best seller */}
+
+        {/* talenta digital */}
+        <Section>
+          <CourseCountainer title={"Siap Jadi Talenta Digital Terbaik"} dataCard={talent_digital.data}/>
+        </Section>
+        {/* talenta digital */}
+
+        {/* pilihan terbaik */}
+        <Section>
+          <CourseCountainer title={"Pilihan terbaik untuk kamu"} dataCard={pilihan_terbaik.data}/>
+        </Section>
+        {/* best seller */}
 
         {/* Mitra */}
         <Section>
@@ -62,7 +83,7 @@ export default function Home() {
 
         {/* Testimoni */}
         <Section>
-          <Testimoni />
+          <Testimoni dataCard={testimoni.data}/>
         </Section>
         {/* End Testimoni */}
 
@@ -71,4 +92,54 @@ export default function Home() {
       <footer></footer>
     </>
   );
+}
+
+export async function getStaticProps(){
+  try{
+    const res1 = await fetch('http://localhost:9000/api/v1/collection/kartu_prakerja/')
+    const res2 = await fetch('http://localhost:9000/api/v1/collection/flash_sale/')
+    const res3 = await fetch('http://localhost:9000/api/v1/collection/mahir_prakerja/')
+    const res4 = await fetch('http://localhost:9000/api/v1/collection/best_seller/')
+    const res5 = await fetch('http://localhost:9000/api/v1/collection/talenta_digital/')
+    const res6 = await fetch('http://localhost:9000/api/v1/collection/pilihan_terbaik/')
+    const res7 = await fetch('http://localhost:9000/api/v1/course/rating/')
+    const res8 = await fetch('http://localhost:9000/api/v1/category/')
+
+    // response
+    const kartu_prakerja = await res1.json()
+    const flash_sale = await res2.json()
+    const mahir_prakerja = await res3.json()
+    const best_seller = await res4.json()
+    const talent_digital = await res5.json()
+    const pilihan_terbaik = await res6.json()
+    const testimoni = await res7.json()
+    const kategori = await res8.json()
+    return {
+      props:{
+        kartu_prakerja,
+        flash_sale, 
+        mahir_prakerja,
+        best_seller,
+        talent_digital,
+        pilihan_terbaik,
+        testimoni,
+        kategori
+      }
+    }
+  }catch(err){
+    console.error(err)
+  }
+  return{
+    props: {
+      kartu_prakerja,
+      flash_sale,
+      mahir_prakerja,
+      best_seller,
+      talent_digital,
+      pilihan_terbaik,
+      testimoni,
+      kategori
+
+    }
+  }
 }
