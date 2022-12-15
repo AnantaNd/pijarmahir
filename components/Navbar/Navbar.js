@@ -97,7 +97,7 @@ function Navbar() {
             </>
           }
           {
-            session || hasLoginInfo &&
+            session &&
             <>
               <li className={Styles.nav_link + ' ' + Styles.menu}> <BiBook className={Styles.icon_logged} size={24} /> Kursus</li>
               <li className={Styles.nav_link + ' ' + Styles.menu}><BiHistory className={Styles.icon_logged} size={24} /> Riwayat Transaksi</li>
@@ -120,6 +120,32 @@ function Navbar() {
                 {isUserCollapse && <ModalAccount />}
               </li>
             </>
+          }
+          {
+            hasLoginInfo &&
+            <>
+              <li className={Styles.nav_link + ' ' + Styles.menu}> <BiBook className={Styles.icon_logged} size={24} /> Kursus</li>
+              <li className={Styles.nav_link + ' ' + Styles.menu}><BiHistory className={Styles.icon_logged} size={24} /> Riwayat Transaksi</li>
+              <li className={Styles.nav_link + ' ' + Styles.menu}><BiHeart className={Styles.icon_logged} size={24} /> Whislist</li>
+              <li className={Styles.nav_link + ' ' + Styles.menu}><BiCertification className={Styles.icon_logged} size={24} /> Sertifikat</li>
+              <li className={Styles.nav_link + ' ' + Styles.menu}><BiGift className={Styles.icon_logged} size={24} /> Reedem</li>
+              <li className={Styles.nav_link + ' ' + Styles.menu}><FiSettings className={Styles.icon_logged} size={24} /> Pengaturan Profile</li>
+              <li className={Styles.nav_link + ' ' + Styles.menu} onClick={() => signOut()} >
+                <BiLogOut className={Styles.icon_logged} size={24} /> Keluar</li>
+              <li className={Styles.nav_link + ' ' + Styles.cart_mobile}>
+                <BiCart size={24} onClick={cartCollapse} />
+                {isCartCollapse && <ModalCart />}
+              </li>
+              <li className={Styles.nav_link + ' ' + Styles.notif_mobile}>
+                <BiNotification size={24} onClick={notifCollapse} />
+                {isNotifCollapse && <ModalNotification />}
+              </li>
+              <li className={Styles.nav_link + ' ' + Styles.account_mobile}>
+                <BiUser size={24} onClick={accountCollapse} />
+                {isUserCollapse && <ModalAccount />}
+              </li>
+            </>
+
           }
         </ul >
       </div >

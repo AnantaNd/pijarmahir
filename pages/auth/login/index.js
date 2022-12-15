@@ -53,10 +53,11 @@ function Login({ users }) {
   }
 
   const onSubmit = (data) => {
-    users.data.map(user => {
+    users.data.map((user, id) => {
       if (user.email === data.email && user.password === data.password) {
         // console.log(`${user.email + "===" + data.email} ${user.password + "===" + data.password}`);
         localStorage.setItem('login', JSON.stringify({
+          id,
           username: user.username,
           email: user.email,
         }))
@@ -169,5 +170,8 @@ export async function getStaticProps() {
     }
   } catch (err) {
     console.error(err)
+  }
+  return {
+    props: { users: [] }
   }
 }
