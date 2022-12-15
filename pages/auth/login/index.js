@@ -5,6 +5,7 @@ import { signIn } from 'next-auth/react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from "next/router";
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaFacebook } from "react-icons/fa";
@@ -34,35 +35,41 @@ function Login({ users }) {
   const [pass, setPass] = useState('')
   const [isEmail, setIsEmail] = useState(false)
   const [isPass, setIsPass] = useState(false)
+  const [errorPass, setErrorPass] = useState("")
+  const [errorLogin, setErrorLogin] = useState("")
+  const [errorEmail, setErrorEmail] = useState("")
+  const router = useRouter()
 
   const { register, handleSubmit, formState: { errors } }
     = useForm({
       resolver: yupResolver(schema)
     });
-  console.log(errors)
-  // console.log(props.data)
 
   const handleInputEmail = (e) => {
     setEmail(e.target.value)
-    console.log(e.target.value)
   }
   const handleInputPass = (e) => {
     setPass(e.target.value)
-    // console.log(e.target.value)
   }
 
-  const handleLogin = () => {
-    // props?.data?.filter(user =>{
-    //   return user.email === email && user
-    // })
-    console.log(email + pass);
-  }
   const onSubmit = (data) => {
-    // users.data.map(user => {
-    //   var bytes = CryptoJS.AES.decrypt(user.password, 'Dom@in2018');
-    //   var originalText = bytes.toString(CryptoJS.enc.Utf8);
-    //   console.log(originalText);
-    // })
+    users.data.map((user, id) => {
+      if (user.email === data.email && user.password === data.password) {
+        // console.log(`${user.email + "===" + data.email} ${user.password + "===" + data.password}`);
+        localStorage.setItem('login', JSON.stringify({
+          id,
+          username: user.username,
+          email: user.email,
+        }))
+        router.push('/')
+      } else if (user.email === data.email && user.password !== data.password) {
+        setErrorPass("Password yang dimasukkan salah")
+        setErrorEmail("")
+      } else if (user.email !== data.email && user.password === data.password) {
+        setErrorEmail("Email yang dimasukkan tidak terdaftar")
+        setErrorPass("")
+      }
+    })
   }
 
   const handleLoginFacebook = (e) => {
@@ -86,9 +93,6 @@ function Login({ users }) {
         <link rel="icon" href="/pijar_logo.svg" />
       </Head>
       <main className={Styles.container_login}>
-        {
-          // console.log(users.data)
-        }
         <Link href="/">
           <Image alt="logo" className={Styles.logo} src="/pijar_logo.svg" height={80} width={80} style={{ marginLeft: "auto", marginRight: "auto" }} />
         </Link>
@@ -105,7 +109,7 @@ function Login({ users }) {
                 type={"text"}
                 placeholder={'example@gmail.com'}
                 onChangeInput={handleInputEmail}
-                helper={errors.email?.message}
+                helper={errors.email?.message ? errors.email?.message : errorEmail}
                 register={{ ...register('email') }} />
               <Input
                 label={'Password'}
@@ -113,7 +117,7 @@ function Login({ users }) {
                 type={"password"}
                 placeholder={'password'}
                 onChangeInput={handleInputPass}
-                helper={errors.password?.message}
+                helper={errors.password?.message ? errors.password?.message : errorPass}
                 register={{ ...register('password') }} />
               {/* input */}
               <div className={Styles.helper}>

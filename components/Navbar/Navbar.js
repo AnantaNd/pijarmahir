@@ -1,7 +1,7 @@
 import { signOut } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BiMenu, BiSearch, BiX, BiLogOut, BiCart, BiNotification, BiUser, BiBook, BiHistory, BiHeart, BiCertification, BiGift } from "react-icons/bi";
 import { FiChevronRight, FiSettings } from "react-icons/fi";
 import Button from '../Button/Button';
@@ -16,9 +16,10 @@ function Navbar() {
   const [isUserCollapse, setIsUserCollapse] = useState(false);
   const [isNotifCollapse, setIsNotifCollapse] = useState(false);
   const [isCartCollapse, setIsCartCollapse] = useState(false);
+  const [loginInfo, setLoginInfo] = useState(null);
+  const [hasLoginInfo, setHasLoginInfo] = useState(null);
 
   const { data: session, status } = useSession();
-
 
   const collapseHandler = () => {
     setIsCollapse(!isCollapse);
@@ -41,6 +42,11 @@ function Navbar() {
     if (isUserCollapse) setIsUserCollapse(!isUserCollapse);
     if (isNotifCollapse) setIsNotifCollapse(!isNotifCollapse);
   }
+
+  useEffect(() => {
+    setLoginInfo(localStorage.getItem('login'))
+    setHasLoginInfo(localStorage.hasOwnProperty('login'))
+  }, [])
 
   return (
     <nav className={Styles.container}>
@@ -76,7 +82,7 @@ function Navbar() {
             <div className={Styles.vl}></div>
           </li>
           {
-            !session &&
+            !session && !hasLoginInfo &&
             <>
               <li className={Styles.nav_link}>
                 <Link href="/auth/login" style={{ textDecoration: 'none' }}>
@@ -115,11 +121,40 @@ function Navbar() {
               </li>
             </>
           }
+          {
+            hasLoginInfo &&
+            <>
+              <li className={Styles.nav_link + ' ' + Styles.menu}> <BiBook className={Styles.icon_logged} size={24} /> Kursus</li>
+              <li className={Styles.nav_link + ' ' + Styles.menu}><BiHistory className={Styles.icon_logged} size={24} /> Riwayat Transaksi</li>
+              <li className={Styles.nav_link + ' ' + Styles.menu}><BiHeart className={Styles.icon_logged} size={24} /> Whislist</li>
+              <li className={Styles.nav_link + ' ' + Styles.menu}><BiCertification className={Styles.icon_logged} size={24} /> Sertifikat</li>
+              <li className={Styles.nav_link + ' ' + Styles.menu}><BiGift className={Styles.icon_logged} size={24} /> Reedem</li>
+              <li className={Styles.nav_link + ' ' + Styles.menu}><FiSettings className={Styles.icon_logged} size={24} /> Pengaturan Profile</li>
+              <li className={Styles.nav_link + ' ' + Styles.menu} onClick={() => signOut()} >
+                <BiLogOut className={Styles.icon_logged} size={24} /> Keluar</li>
+              <li className={Styles.nav_link + ' ' + Styles.cart_mobile}>
+                <BiCart size={24} onClick={cartCollapse} />
+                {isCartCollapse && <ModalCart />}
+              </li>
+              <li className={Styles.nav_link + ' ' + Styles.notif_mobile}>
+                <BiNotification size={24} onClick={notifCollapse} />
+                {isNotifCollapse && <ModalNotification />}
+              </li>
+              <li className={Styles.nav_link + ' ' + Styles.account_mobile}>
+                <BiUser size={24} onClick={accountCollapse} />
+                {isUserCollapse && <ModalAccount />}
+              </li>
+            </>
+
+          }
         </ul >
       </div >
       <Link className={Styles.login_mobile} href="/auth/login" style={{ textDecoration: 'none' }}>
         {session ? <Button btnOnClick={() => signOut()} buttonType={true} buttonNav={true} >keluar</Button> : <Button buttonNav={true} >Masuk</Button>}
       </Link>
+      {
+        console.log(loginInfo)
+      }
     </nav >
   )
 }
