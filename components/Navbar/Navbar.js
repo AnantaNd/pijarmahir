@@ -116,7 +116,7 @@ function Navbar() {
                 {isNotifCollapse && <ModalNotification />}
               </li>
               <li className={Styles.nav_link + ' ' + Styles.account_mobile}>
-                <BiUser size={24} onClick={accountCollapse} />
+                <BiUser className={Styles.account_icon} size={24} onClick={accountCollapse} />
                 {isUserCollapse && <ModalAccount />}
               </li>
             </>
@@ -141,7 +141,7 @@ function Navbar() {
                 {isNotifCollapse && <ModalNotification />}
               </li>
               <li className={Styles.nav_link + ' ' + Styles.account_mobile}>
-                <BiUser size={24} onClick={accountCollapse} />
+                <BiUser className={Styles.account_icon} size={24} onClick={accountCollapse} />
                 {isUserCollapse && <ModalAccount />}
               </li>
             </>
