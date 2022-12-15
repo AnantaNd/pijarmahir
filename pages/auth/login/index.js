@@ -1,5 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from 'axios';
+import CryptoJS from 'crypto-js';
 import { signIn } from 'next-auth/react';
 import Head from 'next/head';
 import Image from 'next/image';
@@ -16,46 +17,28 @@ import Input from "../../../components/Input/Input";
 import Styles from './Login.module.css';
 YupPassword(yup)
 
-
-
-export const getStaticProps = async () => {
-  try {
-    const res = await axios('http://localhost:9000/api/v1/user/');
-    const data = await res.json();
-    return {
-      props: { props: data }
-    }
-  } catch (err) {
-    console.error(err)
-  }
-
-  return {
-    props: { props: [] }
-  }
-}
-
 const schema = yup.object().shape({
   email: yup
-  .string()
-  .required("mausukan email terlebih dahulu")
-  .email("email harus memiliki '@'"),
-password: yup
-  .string()
-  .required("masukan password terlebih dahulu")
-  .min(4, 'password minimal 4 karakter'),
-
+    .string()
+    .required("Masukan data terlebih dahulu")
+    .matches("@", "Format email yang dimasukkan tidak memiliki “@”")
+    .email("Format email tidak valid"),
+  password: yup
+    .string()
+    .required("Masukkan data terlebih dahulu")
+    .min(4, 'Password minimal 4 karakter'),
 })
 
-function Login({ props }) {
+function Login({ users }) {
   const [email, setEmail] = useState('')
   const [pass, setPass] = useState('')
   const [isEmail, setIsEmail] = useState(false)
   const [isPass, setIsPass] = useState(false)
 
-  const { register, handleSubmit, formState: { errors } } 
-  = useForm({
-    resolver: yupResolver(schema)
-  });
+  const { register, handleSubmit, formState: { errors } }
+    = useForm({
+      resolver: yupResolver(schema)
+    });
   console.log(errors)
   // console.log(props.data)
 
@@ -74,8 +57,12 @@ function Login({ props }) {
     // })
     console.log(email + pass);
   }
-  const onSubmit=(data)=>{
-    console.log(data);
+  const onSubmit = (data) => {
+    // users.data.map(user => {
+    //   var bytes = CryptoJS.AES.decrypt(user.password, 'Dom@in2018');
+    //   var originalText = bytes.toString(CryptoJS.enc.Utf8);
+    //   console.log(originalText);
+    // })
   }
 
   const handleLoginFacebook = (e) => {
@@ -99,35 +86,38 @@ function Login({ props }) {
         <link rel="icon" href="/pijar_logo.svg" />
       </Head>
       <main className={Styles.container_login}>
+        {
+          // console.log(users.data)
+        }
         <Image alt="logo" className={Styles.logo} src="/pijar_logo.svg" height={80} width={80} style={{ marginLeft: "auto", marginRight: "auto" }} />
         <div className={Styles.login_content}>
           <Image alt="ilustration" className={Styles.login_ilustration} src="/new-profile.svg" priority={true} width={480} height={480} />
           <form onSubmit={handleSubmit(onSubmit)}>
-           <div className={Styles.container_card}>
+            <div className={Styles.container_card}>
               <h2 className={Styles.text_login}>Masuk</h2>
               <p className={Styles.suggestion}>Lanjutkan pembelajaranmu dengan Pijar Mahir</p>
               {/* input */}
-              <Input 
-                label={'Email'} 
-                name={'email'} 
-                type={"text"} 
-                placeholder={'example@gmail.com'} 
-                onChangeInput={handleInputEmail} 
-                helper={errors.email?.message} 
-                register={{...register('email')}}/>
-              <Input 
+              <Input
+                label={'Email'}
+                name={'email'}
+                type={"text"}
+                placeholder={'example@gmail.com'}
+                onChangeInput={handleInputEmail}
+                helper={errors.email?.message}
+                register={{ ...register('email') }} />
+              <Input
                 label={'Password'}
-                name={'password'} 
+                name={'password'}
                 type={"password"}
-                placeholder={'password'} 
-                onChangeInput={handleInputPass} 
-                helper={errors.password?.message} 
-                register={{...register('password')}}/>
+                placeholder={'password'}
+                onChangeInput={handleInputPass}
+                helper={errors.password?.message}
+                register={{ ...register('password') }} />
               {/* input */}
               <div className={Styles.helper}>
                 <div className={Styles.container_checkbox}>
-                  <input className={Styles.checkbox} name="checkbox" type="checkbox" />
-                  <label className={Styles.label_checkbox} htmlFor="checkbox">Ingat akun Saya</label>
+                  {/* <input className={Styles.checkbox} name="checkbox" type="checkbox" /> */}
+                  {/* <label className={Styles.label_checkbox} htmlFor="checkbox">Ingat akun Saya</label> */}
                 </div>
                 <Link href="/auth/reset-password" style={{ textDecoration: "none" }} >
                   <p className={Styles.orange_text}>Lupa Password?</p>
@@ -152,9 +142,9 @@ function Login({ props }) {
                 </Button>
               </div>
               <div className={Styles.register_link}>
-                Belum punya akun? <span className={Styles.orange_text}>Daftar</span>
+                Belum punya akun? <Link href="/auth/register" style={{ textDecoration: "none" }}><span className={Styles.orange_text}>Daftar</span></Link>
+              </div>
             </div>
-           </div>
           </form>
         </div>
       </main>
@@ -164,3 +154,18 @@ function Login({ props }) {
 }
 
 export default Login
+
+export async function getStaticProps() {
+  try {
+    const res = await fetch('http://localhost:9000/api/v1/user/');
+    const users = await res.json();
+    return {
+      props: { users }
+    }
+  } catch (err) {
+    console.error(err)
+  }
+  return {
+    props: { users: [] }
+  }
+}

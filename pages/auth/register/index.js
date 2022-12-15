@@ -3,6 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { signIn } from 'next-auth/react';
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { useForm } from 'react-hook-form';
 import { FaFacebook } from "react-icons/fa";
@@ -16,17 +17,19 @@ import styles from "./Register.module.css";
 const schema = yup.object({
   email: yup
     .string()
-    .required("mausukan email terlebih dahulu")
-    .email("email harus memiliki '@'"),
+    .required("Masukan data terlebih dahulu")
+    .matches("@", "Format email yang dimasukkan tidak memiliki “@”")
+    .email("Format email tidak valid"),
   password: yup
     .string()
-    .required("masukan password terlebih dahulu")
-    .min(4, 'password minimal 4 karakter'),
+    .required("Masukan password terlebih dahulu")
+    .min(4, 'Password minimal 4 karakter'),
   confirm_password: yup
     .string()
-    .required('masukan kembali password')
-    .oneOf([yup.ref('password')],'password harus sama')
+    .required('Masukan kembali password')
+    .oneOf([yup.ref('password')], 'Password harus sama')
 })
+
 const handleLoginFacebook = (e) => {
   e.preventDefault();
   signIn('facebook', {
@@ -40,28 +43,33 @@ const handleLoginGoogle = (e) => {
     callbackUrl: '/newprofile'
   });
 }
+
 export default function index() {
   const [email, setEmail] = useState()
   const [pass, setPass] = useState()
   const [confirmPass, setConfirmPass] = useState()
-  const {register, handleSubmit, formState:{errors}} 
-  = useForm({
-    resolver: yupResolver(schema)
-  })
-  
-  const handleInputEmail =(e)=>{
+  const { register, handleSubmit, formState: { errors } }
+    = useForm({
+      resolver: yupResolver(schema)
+    })
+
+  const handleInputEmail = (e) => {
     setEmail(e.target.value)
     // console.log(e.target.value)
   }
-  const handleInputPass =(e)=>{
+
+  const handleInputPass = (e) => {
     setPass(e.target.value)
   }
-  const handleInputConfirm =(e)=>{
+
+  const handleInputConfirm = (e) => {
     setConfirmPass(e.target.value)
   }
-  const onSubmit=(data)=>{
+
+  const onSubmit = (data) => {
     console.log(data);
   }
+
   return (
     <>
       <Head>
@@ -74,34 +82,34 @@ export default function index() {
         <div className={styles.content}>
           <Image className={styles.ilustration} src="/new-profile.svg" height={480} width={480} style={{ marginLeft: "auto", marginRight: "90px" }} alt='ilustration' />
           <form onSubmit={handleSubmit(onSubmit)}>
-          <div className={styles.container_card}>
+            <div className={styles.container_card}>
               <h2 className={styles.text_login}>Masuk</h2>
               <p className={styles.suggestion}>Lanjutkan pembelajaranmu dengan Pijar Mahir</p>
               {/* input */}
-              <Input 
-                label={'Email'} 
-                name={'email'} 
-                type={"text"} 
-                placeholder={'example@gmail.com'} 
-                onChangeInput={handleInputEmail} 
-                helper={errors.email?.message} 
-                register={{...register('email')}}/>
-              <Input 
+              <Input
+                label={'Email'}
+                name={'email'}
+                type={"text"}
+                placeholder={'example@gmail.com'}
+                onChangeInput={handleInputEmail}
+                helper={errors.email?.message}
+                register={{ ...register('email') }} />
+              <Input
                 label={'Password'}
-                name={'password'} 
+                name={'password'}
                 type={"password"}
-                placeholder={'password'} 
-                onChangeInput={handleInputPass} 
-                helper={errors.password?.message} 
-                register={{...register('password')}}/>
-              <Input 
+                placeholder={'password'}
+                onChangeInput={handleInputPass}
+                helper={errors.password?.message}
+                register={{ ...register('password') }} />
+              <Input
                 label={'Konfirmasi Password'}
-                name={'password'} 
+                name={'password'}
                 type={"password"}
-                placeholder={'password'} 
-                onChangeInput={handleInputConfirm} 
-                helper={errors.confirm_password?.message} 
-                register={{...register('confirm_password')}}/>
+                placeholder={'password'}
+                onChangeInput={handleInputConfirm}
+                helper={errors.confirm_password?.message}
+                register={{ ...register('confirm_password') }} />
               {/* input */}
               <div className={styles.sparator}>
                 <Button buttonType="primary" >
@@ -122,9 +130,9 @@ export default function index() {
                 </Button>
               </div>
               <div className={styles.register_link}>
-                sudah memiliki akun? <span className={styles.orange_text}>Masuk</span>
+                sudah memiliki akun? <Link href="/auth/login" style={{ textDecoration: "none" }}><span className={styles.orange_text}>Masuk</span></Link>
+              </div>
             </div>
-           </div>
           </form>
         </div>
       </main>
