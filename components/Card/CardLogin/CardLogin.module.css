@@ -1,6 +1,6 @@
 .container_card {
   /* margin-left: 32px; */
-  width: 100%;
+  width: 480px;
   padding: 40px;
   box-shadow: var(--boxShadowColor);
   border: 1px solid var(--borderColor);
