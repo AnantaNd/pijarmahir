@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import CardTestimoni from '../Card/CardTestimoni/CardTestimoni';
 import Styles from './Testimoni.module.css';
 
-function Testimoni() {
+function Testimoni({dataCard}) {
   const swiperRef = useRef();
 
 
@@ -53,21 +53,17 @@ function Testimoni() {
             swiperRef.current = swiper;
           }}
         >
-          <SwiperSlide>
-            <CardTestimoni />
-          </SwiperSlide>
-          <SwiperSlide>
-            <CardTestimoni />
-          </SwiperSlide>
-          <SwiperSlide>
-            <CardTestimoni />
-          </SwiperSlide>
-          <SwiperSlide>
-            <CardTestimoni />
-          </SwiperSlide>
-          <SwiperSlide>
-            <CardTestimoni />
-          </SwiperSlide>
+          {dataCard.map((data, idx)=>{
+            return(
+              <SwiperSlide key={idx}>
+              <CardTestimoni
+                title={data.comment}
+                comment={data.comment}
+                username={data.fullname}
+              />
+            </SwiperSlide>
+            )
+          })}
         </Swiper>
       </div>
     </div >

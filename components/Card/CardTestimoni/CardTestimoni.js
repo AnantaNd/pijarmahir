@@ -1,22 +1,22 @@
 import Image from 'next/image';
 import React from 'react';
-import Styles from './CardTestimoni.module.css'
+import Styles from './CardTestimoni.module.css';
 
-function CardTestimoni() {
+function CardTestimoni({username, comment, title}) {
   return (
     <div className={Styles.container_card}>
       <div className={Styles.testimoni}>
-        Lorem ipsum dolor sit amet
+        {title}
       </div>
       <div className={Styles.class_review}>
         <p className={Styles.comment}>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis maxime in unde excepturi, temporibus quaerat cupiditate similique vel commodi, provident modi, voluptates libero cumque possimus repellendus ratione cum at optio magnam dolorem beatae. Recusandae fugit voluptates quia illo asperiores harum.
+          {comment}
         </p>
       </div>
       <div className={Styles.profile}>
-        <Image width={48} height={48} src="/mahirBahasa_category.png" style={{ borderRadius: "100px" }} />
+        <Image alt='img' width={48} height={48} src="/mahirBahasa_category.png" style={{ borderRadius: "100px" }} />
         <p className={Styles.username}>
-          Maulana Akbar Ramadhan
+          {username}
         </p>
       </div>
     </div>

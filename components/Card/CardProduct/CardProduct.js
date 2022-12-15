@@ -1,9 +1,9 @@
 import React from 'react';
-import Styles from './CardProduct.module.css';
+import { AiFillStar } from 'react-icons/ai';
 import { FaRegHeart } from 'react-icons/fa';
-import { AiFillStar } from 'react-icons/ai'
+import Styles from './CardProduct.module.css';
 
-function CardProduct({ img, title, rating, harga, category, ulasan, diskon }) {
+function CardProduct({ img, title, rating, harga, category, ulasan, diskon, totalDiskon }) {
   return (
     <div className={Styles.card}>
       <div className={Styles.card_image} style={{ backgroundImage: "url(" + img + ")" }} >
@@ -20,8 +20,8 @@ function CardProduct({ img, title, rating, harga, category, ulasan, diskon }) {
           <AiFillStar color='rgb(255, 138, 43)' />
           &nbsp; <span className={Styles.rating_review}>{rating} &nbsp; ({ulasan} ulasan)</span>
         </p>
-        <p>{diskon}</p>
-        <h3 className={Styles.harga}>{harga}</h3>
+        <div className={Styles.diskon}> Rp.{totalDiskon}<p className={diskon?Styles.percentage:''}>{diskon}%</p></div>
+        <h3 className={Styles.harga}>Rp.{harga}</h3>
       </div>
     </div>
   )

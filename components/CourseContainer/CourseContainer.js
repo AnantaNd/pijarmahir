@@ -14,7 +14,7 @@ import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-function CourseContainer({ title }) {
+function CourseContainer({ title, dataCard }) {
   const swiperRef = useRef();
 
   return (
@@ -66,24 +66,20 @@ function CourseContainer({ title }) {
             swiperRef.current = swiper;
           }}
         >
-          <SwiperSlide className={Styles.content}>
-            <CardCourse img={'/mahirprakerja.jpg'} course={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} subtitle={'cariilmu'} rating={3.3} ulasan={12} />
-          </SwiperSlide>
-          <SwiperSlide className={Styles.content}>
-            <CardCourse img={'/mahirprakerja.jpg'} course={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} subtitle={'cariilmu'} rating={3.3} ulasan={12} />
-          </SwiperSlide>
-          <SwiperSlide className={Styles.content}>
-            <CardCourse img={'/mahirprakerja.jpg'} course={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} subtitle={'cariilmu'} rating={3.3} ulasan={12} />
-          </SwiperSlide>
-          <SwiperSlide className={Styles.content}>
-            <CardCourse img={'/mahirprakerja.jpg'} course={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} subtitle={'cariilmu'} rating={3.3} ulasan={12} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <CardCourse img={'/mahirprakerja.jpg'} course={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} subtitle={'cariilmu'} rating={3.3} ulasan={12} />
-          </SwiperSlide>
-          <SwiperSlide className={Styles.content}>
-            <CardCourse img={'/mahirprakerja.jpg'} course={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} subtitle={'cariilmu'} rating={3.3} ulasan={12} />
-          </SwiperSlide>
+          {dataCard?.map((data, idx)=>{
+            return (
+              <SwiperSlide key={idx}>
+                <CardCourse
+                  course={data.fullname}
+                  subtitle={data.teacher}
+                  rating={data.rating}
+                  ulasan={data.totalRater}
+                  price={data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
+                  img={'mahirprakerja.jpg'}
+                />
+              </SwiperSlide>
+            )
+          })}
         </Swiper>
       </div>
     </div>
