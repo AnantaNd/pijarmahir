@@ -11,6 +11,7 @@ function ModalAccount() {
   const handleLogOut = (e) => {
     e.preventDefault();
     signOut('facebook');
+    localStorage.removeItem('login')
   }
 
   return (
@@ -19,8 +20,8 @@ function ModalAccount() {
         <li className={Styles.nav_link}>
           {/* <Image src={"./" + session && session?.user?.image[0]} width={40} height={40} /> */}
           <div className={Styles.account}>
-            <span className={Styles.user_name}>{session.user.name}</span>
-            <span className={Styles.user_email}>{session.user.email}</span>
+            <span className={Styles.user_name}>{session ? session.user.name : localStorage.hasOwnProperty('login') ? JSON.parse(localStorage.getItem('login')).username : ""}</span>
+            <span className={Styles.user_email}>{session ? session.user.email : localStorage.hasOwnProperty('login') ? JSON.parse(localStorage.getItem('login')).email : ""}</span>
           </div>
         </li>
         <li className={Styles.nav_link}><div className={Styles.hl}></div></li>
