@@ -20,8 +20,17 @@ function CardProduct({ img, title, rating, harga, category, ulasan, diskon, tota
           <AiFillStar color='rgb(255, 138, 43)' />
           &nbsp; <span className={Styles.rating_review}>{rating} &nbsp; ({ulasan} ulasan)</span>
         </p>
-        <div className={Styles.diskon}> Rp.{totalDiskon}<p className={diskon?Styles.percentage:''}>{diskon}%</p></div>
-        <h3 className={Styles.harga}>Rp.{harga}</h3>
+        {diskon? 
+          <>
+            <div className={Styles.containerDiskon}>
+              <p className={Styles.diskon}>Rp. {harga}</p>
+              <p className={Styles.percentage}>{diskon}%</p>
+            </div>
+            <h3 className={Styles.totalDiskon}>Rp. {totalDiskon}</h3>
+          </>
+          :
+          <h3 className={Styles.harga}>{harga}</h3>
+        }
       </div>
     </div>
   )
