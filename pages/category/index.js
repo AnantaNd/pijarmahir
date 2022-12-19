@@ -1,26 +1,49 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
 import Head from "next/head";
-import React, { useState } from "react";
-import Filter from "../../components/Filter/Filter";
+import React, { useEffect, useState } from "react";
 import Layouts from "../../components/Layouts/Layouts";
 import ListCourse from "../../components/ListCourse/ListCourse";
 import Sort from "../../components/Sort/Sort";
 import styles from "./category.module.css";
 
 
-export default function index(){
+export default function index({course}){
 
+  const [itemData, setItemData] = useState(course.data)
   const [isChecked, setIsChecked] = useState(false)
   const [select, setSelect] = useState('')
 
+  console.log(itemData)
   const handleChecked =(e)=>{
     setIsChecked(e.target.value)
     console.log(e.target.value)
   }
   const hanldeSelect=(e)=>{
     setSelect(e.target.value)
-    console.log(e.target.value);
+    // console.log(e.target.value);
+    
   }
+
+  useEffect(()=>{
+    if(select === 'maxPrice'){
+      // console.log('max price selected')
+      const max = [...itemData].sort((a, b)=> b.price - a.price);
+      setItemData(max)
+    }else if(select === 'lowPrice'){
+      // console.log('min price selected')
+      const min = [...itemData].sort((a, b)=> a.price - b.price);
+      setItemData(min)
+    }else if(select === 'maxRating'){
+      const maxRating = [...itemData].sort((a, b)=> b.rating - a.rating || b.totalrater - a.totalrater);
+      setItemData(maxRating)
+    }else if(select === 'lowRating'){
+      const minRating = [...itemData].sort((a, b)=> a.rating - b.rating || a.totalrater - b.totalrater);
+      setItemData(minRating)
+    }else{
+      setItemData(course.data)
+    }
+  }, [select])
 
   return(
     <>
@@ -35,19 +58,52 @@ export default function index(){
       <div className={styles.container}>
         <div className={styles.filter}>
           {/* <Section> */}
-            <Filter onRating={handleChecked}/>
+            {/* <Filter onRating={handleChecked}/> */}
           {/* </Section> */}
         </div>
         <div className={styles.content}>
           {/* <Section> */}
-            <ListCourse img={'/mahirprakerja.jpg'} title={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} mitra={'cariilmu'} rating={3.3} ulasan={12}/>
-            <ListCourse img={'/mahirprakerja.jpg'} title={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} mitra={'cariilmu'} rating={3.3} ulasan={12}/>
-            <ListCourse img={'/mahirprakerja.jpg'} title={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} mitra={'cariilmu'} rating={3.3} ulasan={12}/>
-            <ListCourse img={'/mahirprakerja.jpg'} title={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} mitra={'cariilmu'} rating={3.3} ulasan={12}/>
+          <p>Menampilkan {itemData.length} dari seluruh kurus</p>
+          {itemData.map((data, idx)=>{
+            return(
+              <ListCourse key={idx}
+                img={'/mahirprakerja.jpg'}
+                title={data.fullname}
+                price={data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
+                rating={data.rating}
+                ulasan={data.totalrater}
+                mitra={data.teacher}
+                />
+            )
+          })}
+            {/* <ListCourse img={'/mahirprakerja.jpg'} title={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} mitra={'cariilmu'} rating={3.3} ulasan={12}/> */}
           {/* </Section> */}
         </div>
       </div>
     </Layouts>
     </>
   )
+}
+
+export async function getStaticProps(){
+  try{
+    const res1 = await fetch('http://localhost:9000/api/v1/course/')
+
+    // response
+    const course = await res1.json()
+ 
+    return {
+      props:{
+        course
+      }
+    }
+  }catch(err){
+    console.error(err)
+  }
+  return{
+    props: {
+     course
+
+    }
+  }
 }

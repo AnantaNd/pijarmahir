@@ -54,6 +54,7 @@
   border: 0;
   color: var(--accentColor);
   border-radius: 8px;
+  cursor: pointer;
 }
 
 .navigation {

@@ -27,25 +27,17 @@ const schema = yup.object({
   confirm_password: yup
     .string()
     .required('Masukan kembali password')
-    .oneOf([yup.ref('password')], 'Password harus sama')
+    .oneOf([yup.ref('password')], 'Password harus sama'),
+  username: yup
+    .string()
+    .required('Masukan username')
 })
 
-const handleLoginFacebook = (e) => {
-  e.preventDefault();
-  signIn('facebook', {
-    callbackUrl: '/newprofile'
-  });
-}
 
-const handleLoginGoogle = (e) => {
-  e.preventDefault();
-  signIn('google', {
-    callbackUrl: '/newprofile'
-  });
-}
 
 export default function index() {
   const [email, setEmail] = useState()
+  const [username, setUsername] = useState()
   const [pass, setPass] = useState()
   const [confirmPass, setConfirmPass] = useState()
   const { register, handleSubmit, formState: { errors } }
@@ -53,8 +45,14 @@ export default function index() {
       resolver: yupResolver(schema)
     })
 
-  const handleInputEmail = (e) => {
-    setEmail(e.target.value)
+
+  // console.log(users)
+  function handleInputEmail(e) {
+    setEmail(e.target.value);
+    // console.log(e.target.value)
+  }
+  function handleInputUsername(e) {
+    setUsername(e.target.value);
     // console.log(e.target.value)
   }
 
@@ -66,8 +64,39 @@ export default function index() {
     setConfirmPass(e.target.value)
   }
 
+  const handleLoginFacebook = (e) => {
+    e.preventDefault();
+    signIn('facebook', {
+      callbackUrl: '/'
+    });
+  }
+  
+  const handleLoginGoogle = (e) => {
+    e.preventDefault();
+    signIn('google', {
+      callbackUrl: '/'
+    });
+  }
+
   const onSubmit = (data) => {
-    console.log(data);
+    console.log(data)
+    console.log("pass",data.password)
+    // metode post
+    fetch('http://localhost:9000/api/v1/user/', {
+      method: 'POST',
+      mode:'cors',
+      headers:{'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        username: data.username,
+        email: data.email,
+        password: data.password,
+      })
+    })
+    // axios.post('http://localhost:9000/api/v1/user/',{
+    //   username: data.username,
+    //   email : data.email,
+    //   password : data.password
+    // })
   }
 
   return (
@@ -83,11 +112,19 @@ export default function index() {
         </Link>
         <div className={styles.content}>
           <Image className={styles.ilustration} src="/new-profile.svg" height={480} width={480} style={{ marginRight: "90px" }} alt='ilustration' />
-          <form className={styles.content} onSubmit={handleSubmit(onSubmit)}>
+          <form method="post" className={styles.content} onSubmit={handleSubmit(onSubmit)}>
             <div className={styles.container_card}>
               <h2 className={styles.text_login}>Daftar</h2>
               <p className={styles.suggestion}>Lanjutkan pembelajaranmu dengan Pijar Mahir</p>
               {/* input */}
+              <Input
+                label={'Username'}
+                name={'username'}
+                type={"text"}
+                placeholder={'username'}
+                onChangeInput={handleInputUsername}
+                helper={errors.username?.message}
+                register={{ ...register('username') }} />
               <Input
                 label={'Email'}
                 name={'email'}
@@ -142,3 +179,17 @@ export default function index() {
     </>
   )
 }
+// export async function getStaticProps() {
+//   try {
+//     const res = await fetch('http://localhost:9000/api/v1/user/');
+//     const users = await res.json();
+//     return {
+//       props: { users }
+//     }
+//   } catch (err) {
+//     console.error(err)
+//   }
+//   return {
+//     props: { users: [] }
+//   }
+// }
