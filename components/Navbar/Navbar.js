@@ -1,17 +1,16 @@
-import { signOut } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import { BiMenu, BiSearch, BiX, BiLogOut, BiCart, BiNotification, BiUser, BiBook, BiHistory, BiHeart, BiCertification, BiGift } from "react-icons/bi";
+import { BiBook, BiCart, BiCertification, BiGift, BiHeart, BiHistory, BiLogOut, BiMenu, BiNotification, BiSearch, BiUser, BiX } from "react-icons/bi";
 import { FiChevronRight, FiSettings } from "react-icons/fi";
 import Button from '../Button/Button';
-import Styles from './Navbar.module.css';
-import { useSession } from "next-auth/react";
 import ModalAccount from '../Modal/ModalAccount/ModalAccount';
-import ModalNotification from '../Modal/ModalNotification/ModalNotification';
 import ModalCart from '../Modal/ModalCart/ModalCart';
+import ModalNotification from '../Modal/ModalNotification/ModalNotification';
+import Styles from './Navbar.module.css';
 
-function Navbar() {
+function Navbar({onSearch}) {
   const [isCollapse, setIsCollapse] = useState(false);
   const [isUserCollapse, setIsUserCollapse] = useState(false);
   const [isNotifCollapse, setIsNotifCollapse] = useState(false);
@@ -50,7 +49,9 @@ function Navbar() {
 
   return (
     <nav className={Styles.container}>
-      <Image className={Styles.logo_dekstop} src="/pijar_logo.svg" height={80} width={80} alt='img' />
+      <Link href={'/'}>
+        <Image className={Styles.logo_dekstop} src="/pijar_logo.svg" height={80} width={80} alt='img' />
+      </Link>
       <div className={Styles.dropdown_container}>
         <select className={Styles.dropdown}>
           <option value="">Kategori</option>
@@ -60,7 +61,7 @@ function Navbar() {
         <BiMenu size={20} onClick={collapseHandler} />
       </div>
       <div className={Styles.container_input}>
-        <input className={Styles.input} placeholder="Cari kursus yang kamu inginkan" />
+        <input className={Styles.input} placeholder="Cari kursus yang kamu inginkan" onChange={onSearch}/>
         <button className={Styles.input_button}>
           <BiSearch size={16} />
         </button>

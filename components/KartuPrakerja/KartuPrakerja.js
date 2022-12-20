@@ -10,6 +10,7 @@ import Image from 'next/image';
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
+import Link from 'next/link';
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/navigation";
@@ -45,7 +46,7 @@ function KartuPrakerja({ dataCard }) {
         <div className={Styles.background_collection} style={{ backgroundImage: `url('/background-collection-prakerja.jpg')` }} >
           <Image src="/PRAKERJA_WHITE.svg" width={150} height={50} alt='img'/>
           <p className={Styles.text}>Tingkatkan keahlian mu dan siap kerja dengan Kartu Prakerja!</p>
-          <button className={Styles.btnMore_collection}>Lihat Semua</button>
+          <Link href={'/kursus'}><button className={Styles.btnMore_collection}>Lihat Semua</button></Link>
         </div>
         <Swiper
           className={Styles.collections}
@@ -85,7 +86,7 @@ function KartuPrakerja({ dataCard }) {
           {dataCard.map((data, idx) => {
             return (
               <SwiperSlide key={idx}>
-                <CardProduct category={data.teacher} harga={data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')} img={'mahirprakerja.jpg'} rating={data.rating} title={data.fullname} ulasan={data.totalRater} />
+                <CardProduct category={data.teacher} harga={data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')} img={data.thumbnail} rating={data.rating} title={data.fullname} ulasan={data.totalRater} />
               </SwiperSlide>
             )
           })}

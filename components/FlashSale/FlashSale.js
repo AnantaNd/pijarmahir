@@ -93,7 +93,7 @@ export default function FlashSale({ dataCard }) {
                 <CardProduct 
                   category={data.teacher}
                   harga={data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
-                  img={'mahirprakerja.jpg'} rating={data.rating}
+                  img={data.thumbnail} rating={data.rating}
                   title={data.fullname}
                   ulasan={data.totalRater}
                   totalDiskon={discount(data.price, data.percentage).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}

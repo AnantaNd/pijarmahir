@@ -35,7 +35,7 @@ export default function Home({kartu_prakerja, flash_sale, mahir_prakerja, best_s
 
         {/* Category */}
         <Section>
-          <Category data={kategori.data} />
+          <Category data={dataSets.category_course} />
           <div className={styles.hl}></div>
         </Section>
         {/* End Category */}

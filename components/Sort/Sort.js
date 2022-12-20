@@ -10,11 +10,10 @@ export default function Sort({onSorting}){
       </div>
       <select onChange={onSorting} className={styles.sort}>
         <option value="">Pilih Sorting</option>
-        <option value="1">Harga Tertinggi</option>
-        <option value="2">Harga Terendah</option>
-        <option value="3">Terbaru</option>
-        <option value="4">Rating Tertinggi</option>
-        <option value="5">Rating Terendah</option>
+        <option value="maxPrice">Harga Tertinggi</option>
+        <option value="lowPrice">Harga Terendah</option>
+        <option value="maxRating">Rating Tertinggi</option>
+        <option value="lowRating">Rating Terendah</option>
       </select>
     </div>
   )

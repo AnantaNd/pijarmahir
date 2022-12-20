@@ -4,6 +4,7 @@ import { signIn } from 'next-auth/react';
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from 'react-hook-form';
 import { FaFacebook } from "react-icons/fa";
@@ -27,34 +28,34 @@ const schema = yup.object({
   confirm_password: yup
     .string()
     .required('Masukan kembali password')
-    .oneOf([yup.ref('password')], 'Password harus sama')
+    .oneOf([yup.ref('password')], 'Password harus sama'),
+  username: yup
+    .string()
+    .required('Masukan username')
 })
 
-const handleLoginFacebook = (e) => {
-  e.preventDefault();
-  signIn('facebook', {
-    callbackUrl: '/newprofile'
-  });
-}
 
-const handleLoginGoogle = (e) => {
-  e.preventDefault();
-  signIn('google', {
-    callbackUrl: '/newprofile'
-  });
-}
 
-export default function index() {
+export default function index({users}) {
   const [email, setEmail] = useState()
+  const [username, setUsername] = useState()
   const [pass, setPass] = useState()
   const [confirmPass, setConfirmPass] = useState()
+  const router = useRouter()
+
   const { register, handleSubmit, formState: { errors } }
     = useForm({
       resolver: yupResolver(schema)
     })
 
-  const handleInputEmail = (e) => {
-    setEmail(e.target.value)
+
+  // console.log(users)
+  function handleInputEmail(e) {
+    setEmail(e.target.value);
+    // console.log(e.target.value)
+  }
+  function handleInputUsername(e) {
+    setUsername(e.target.value);
     // console.log(e.target.value)
   }
 
@@ -66,8 +67,76 @@ export default function index() {
     setConfirmPass(e.target.value)
   }
 
-  const onSubmit = (data) => {
+  const handleLoginFacebook = (e) => {
+    e.preventDefault();
+    signIn('facebook', {
+      callbackUrl: '/'
+    });
+  }
+  
+  const handleLoginGoogle = (e) => {
+    e.preventDefault();
+    signIn('google', {
+      callbackUrl: '/'
+    });
+  }
+
+
+  // console.log(users.data)
+  const onSubmit = async(data)=>{
     console.log(data);
+    // metode post
+    await fetch('http://localhost:9000/api/v1/user/', {
+      method: 'POST',
+      mode: 'no-cors',
+      credentials: "include",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        "username": data.username,
+        "password": data.password,
+        "email": data.email,
+        "no_tlp": "0912131",
+        "birthdate": "2000-11-02",
+        "gender": "male"
+      })
+    })
+    // .then(res => console.log(res));
+    // const opt = {
+    //   method: 'POST',
+    //   mode: 'no-cors',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({
+    //     'username': data.username,
+    //     'password': data.password,
+    //     'email': data.email,
+    //     'no_tlp': '0912131',
+    //     'birthdate': '2000-11-02',
+    //     'gender': 'male'
+    //   })
+    // }
+    // const res = await fetch('http://localhost:9000/api/v1/user/', opt)
+    // const result = await res.json()
+    // console.log('result: ', result)
+    localStorage.setItem('register', JSON.stringify({
+      username: data.username,
+      email: data.email,
+    }));
+    // router.push('/')
+    // users.data?.map((user, id)=>{
+    //   if(user.email !== data.email){
+    //     fetch('http://localhost:9000/api/v1/user/',{
+    //       method: 'POST',
+    //       mode:'no-cors',
+    //       headers: {'Content-Type': 'application/json'},
+    //       body: JSON.stringify({
+    //         id,
+    //         username: data.username,
+    //         email: data.email,
+    //         password: data.password,
+    //       })
+    //     })
+    //   }
+    // })
   }
 
   return (
@@ -83,11 +152,19 @@ export default function index() {
         </Link>
         <div className={styles.content}>
           <Image className={styles.ilustration} src="/new-profile.svg" height={480} width={480} style={{ marginRight: "90px" }} alt='ilustration' />
-          <form className={styles.content} onSubmit={handleSubmit(onSubmit)}>
+          <form method="post" className={styles.content} onSubmit={handleSubmit(onSubmit)}>
             <div className={styles.container_card}>
               <h2 className={styles.text_login}>Daftar</h2>
               <p className={styles.suggestion}>Lanjutkan pembelajaranmu dengan Pijar Mahir</p>
               {/* input */}
+              <Input
+                label={'Username'}
+                name={'username'}
+                type={"text"}
+                placeholder={'username'}
+                onChangeInput={handleInputUsername}
+                helper={errors.username?.message}
+                register={{ ...register('username') }} />
               <Input
                 label={'Email'}
                 name={'email'}
@@ -141,4 +218,18 @@ export default function index() {
       <FooterSecond />
     </>
   )
+}
+export async function getStaticProps() {
+  try {
+    const res = await fetch('http://localhost:9000/api/v1/user/');
+    const users = await res.json();
+    return {
+      props: { users }
+    }
+  } catch (err) {
+    console.error(err)
+  }
+  return {
+    props: { users: [] }
+  }
 }
