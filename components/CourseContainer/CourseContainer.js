@@ -37,7 +37,7 @@ function CourseContainer({ title, dataCard }) {
             {
               1280: {
                 slidesPerView: 4,
-                width: 1280,
+                width: 1120,
               },
               834: {
                 slidesPerView: 3,
@@ -75,7 +75,7 @@ function CourseContainer({ title, dataCard }) {
                   rating={data.rating}
                   ulasan={data.totalRater}
                   price={data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
-                  img={'mahirprakerja.jpg'}
+                  img={data.thumbnail}
                 />
               </SwiperSlide>
             )

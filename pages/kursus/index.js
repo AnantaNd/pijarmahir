@@ -6,7 +6,7 @@ import Filter from "../../components/Filter/Filter";
 import Layouts from "../../components/Layouts/Layouts";
 import ListCourse from "../../components/ListCourse/ListCourse";
 import Sort from "../../components/Sort/Sort";
-import styles from "./category.module.css";
+import styles from "./Kursus.module.css";
 
 
 export default function index({course}){
@@ -25,22 +25,19 @@ export default function index({course}){
     // console.log(e.target.value);
     
   }
-  const handleReset =()=>{
-    setItemData(course.data)
-  }
   useEffect(()=>{
     
     if(isChecked === 'Kartu Prakerja'){
-      const filter = itemData.filter((data)=> data.category_name == 'Kartu Prakerja')
-      console.log(filter)
+      const filter = [...itemData].filter((data)=> data.category_name == 'Kartu Prakerja')
+      // console.log(filter)
       setItemData(filter)
     }else if(isChecked === 'Mahir Digital'){
-      const filter = itemData.filter((data)=> data.category_name == 'Mahir Digital')
-      console.log(filter)
+      const filter = [...itemData].filter((data)=> data.category_name == 'Mahir Digital')
+      // console.log(filter)
       setItemData(filter)
     }else if(isChecked === 'Mahir Teknologi'){
-      const filter = itemData.filter((data)=> data.category_name == 'Mahir Teknologi')
-      console.log(filter)
+      const filter = [...itemData].filter((data)=> data.category_name == 'Mahir Teknologi')
+      // console.log(filter)
       setItemData(filter)
     }
   }, [isChecked])
@@ -78,12 +75,12 @@ export default function index({course}){
       <div className={styles.container}>
         <div className={styles.filter}>
           {/* <Section> */}
-            <Filter onCategory={handleChecked} btnOnclick={handleReset}/>
+            <Filter onCategory={handleChecked} />
           {/* </Section> */}
         </div>
         <div className={styles.content}>
           {/* <Section> */}
-          <p>Menampilkan {itemData.length} dari seluruh kurus</p>
+          <p>Menampilkan {itemData.length} dari seluruh kursus</p>
           {itemData.map((data, idx)=>{
             return(
               <ListCourse key={idx}

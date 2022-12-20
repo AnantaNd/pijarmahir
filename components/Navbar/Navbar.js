@@ -49,7 +49,9 @@ function Navbar({onSearch}) {
 
   return (
     <nav className={Styles.container}>
-      <Image className={Styles.logo_dekstop} src="/pijar_logo.svg" height={80} width={80} alt='img' />
+      <Link href={'/'}>
+        <Image className={Styles.logo_dekstop} src="/pijar_logo.svg" height={80} width={80} alt='img' />
+      </Link>
       <div className={Styles.dropdown_container}>
         <select className={Styles.dropdown}>
           <option value="">Kategori</option>

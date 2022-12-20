@@ -4,6 +4,7 @@ import { signIn } from 'next-auth/react';
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from 'react-hook-form';
 import { FaFacebook } from "react-icons/fa";
@@ -40,6 +41,8 @@ export default function index({users}) {
   const [username, setUsername] = useState()
   const [pass, setPass] = useState()
   const [confirmPass, setConfirmPass] = useState()
+  const router = useRouter()
+
   const { register, handleSubmit, formState: { errors } }
     = useForm({
       resolver: yupResolver(schema)
@@ -78,25 +81,47 @@ export default function index({users}) {
     });
   }
 
-  console.log(users.data)
-  const onSubmit = (data) => {
-    console.log(data)
+
+  // console.log(users.data)
+  const onSubmit = async(data)=>{
+    console.log(data);
     // metode post
-    fetch('http://localhost:9000/api/v1/user/', {
+    await fetch('http://localhost:9000/api/v1/user/', {
       method: 'POST',
-      mode:'no-cors',
-      headers:{'Content-Type': 'application/json'},
+      mode: 'no-cors',
+      credentials: "include",
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        username: data.username,
-        email: data.email,
-        password: data.password,
+        "username": data.username,
+        "password": data.password,
+        "email": data.email,
+        "no_tlp": "0912131",
+        "birthdate": "2000-11-02",
+        "gender": "male"
       })
     })
-    // axios.post('http://localhost:9000/api/v1/user/',{
-    //   username: data.username,
-    //   email : data.email,
-    //   password : data.password
-    // })
+    // .then(res => console.log(res));
+    // const opt = {
+    //   method: 'POST',
+    //   mode: 'no-cors',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({
+    //     'username': data.username,
+    //     'password': data.password,
+    //     'email': data.email,
+    //     'no_tlp': '0912131',
+    //     'birthdate': '2000-11-02',
+    //     'gender': 'male'
+    //   })
+    // }
+    // const res = await fetch('http://localhost:9000/api/v1/user/', opt)
+    // const result = await res.json()
+    // console.log('result: ', result)
+    localStorage.setItem('register', JSON.stringify({
+      username: data.username,
+      email: data.email,
+    }));
+    // router.push('/')
     // users.data?.map((user, id)=>{
     //   if(user.email !== data.email){
     //     fetch('http://localhost:9000/api/v1/user/',{
