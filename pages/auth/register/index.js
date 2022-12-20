@@ -35,7 +35,7 @@ const schema = yup.object({
 
 
 
-export default function index() {
+export default function index({users}) {
   const [email, setEmail] = useState()
   const [username, setUsername] = useState()
   const [pass, setPass] = useState()
@@ -78,13 +78,13 @@ export default function index() {
     });
   }
 
+  console.log(users.data)
   const onSubmit = (data) => {
     console.log(data)
-    console.log("pass",data.password)
     // metode post
     fetch('http://localhost:9000/api/v1/user/', {
       method: 'POST',
-      mode:'cors',
+      mode:'no-cors',
       headers:{'Content-Type': 'application/json'},
       body: JSON.stringify({
         username: data.username,
@@ -96,6 +96,21 @@ export default function index() {
     //   username: data.username,
     //   email : data.email,
     //   password : data.password
+    // })
+    // users.data?.map((user, id)=>{
+    //   if(user.email !== data.email){
+    //     fetch('http://localhost:9000/api/v1/user/',{
+    //       method: 'POST',
+    //       mode:'no-cors',
+    //       headers: {'Content-Type': 'application/json'},
+    //       body: JSON.stringify({
+    //         id,
+    //         username: data.username,
+    //         email: data.email,
+    //         password: data.password,
+    //       })
+    //     })
+    //   }
     // })
   }
 
@@ -179,17 +194,17 @@ export default function index() {
     </>
   )
 }
-// export async function getStaticProps() {
-//   try {
-//     const res = await fetch('http://localhost:9000/api/v1/user/');
-//     const users = await res.json();
-//     return {
-//       props: { users }
-//     }
-//   } catch (err) {
-//     console.error(err)
-//   }
-//   return {
-//     props: { users: [] }
-//   }
-// }
+export async function getStaticProps() {
+  try {
+    const res = await fetch('http://localhost:9000/api/v1/user/');
+    const users = await res.json();
+    return {
+      props: { users }
+    }
+  } catch (err) {
+    console.error(err)
+  }
+  return {
+    props: { users: [] }
+  }
+}

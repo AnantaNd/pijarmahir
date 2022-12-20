@@ -12,7 +12,6 @@ export default function Sort({onSorting}){
         <option value="">Pilih Sorting</option>
         <option value="maxPrice">Harga Tertinggi</option>
         <option value="lowPrice">Harga Terendah</option>
-        {/* <option value="new">Terbaru</option> */}
         <option value="maxRating">Rating Tertinggi</option>
         <option value="lowRating">Rating Terendah</option>
       </select>

@@ -2,6 +2,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
+import Filter from "../../components/Filter/Filter";
 import Layouts from "../../components/Layouts/Layouts";
 import ListCourse from "../../components/ListCourse/ListCourse";
 import Sort from "../../components/Sort/Sort";
@@ -11,10 +12,10 @@ import styles from "./category.module.css";
 export default function index({course}){
 
   const [itemData, setItemData] = useState(course.data)
-  const [isChecked, setIsChecked] = useState(false)
+  const [isChecked, setIsChecked] = useState('')
   const [select, setSelect] = useState('')
 
-  console.log(itemData)
+  console.log([...itemData])
   const handleChecked =(e)=>{
     setIsChecked(e.target.value)
     console.log(e.target.value)
@@ -24,6 +25,25 @@ export default function index({course}){
     // console.log(e.target.value);
     
   }
+  const handleReset =()=>{
+    setItemData(course.data)
+  }
+  useEffect(()=>{
+    
+    if(isChecked === 'Kartu Prakerja'){
+      const filter = itemData.filter((data)=> data.category_name == 'Kartu Prakerja')
+      console.log(filter)
+      setItemData(filter)
+    }else if(isChecked === 'Mahir Digital'){
+      const filter = itemData.filter((data)=> data.category_name == 'Mahir Digital')
+      console.log(filter)
+      setItemData(filter)
+    }else if(isChecked === 'Mahir Teknologi'){
+      const filter = itemData.filter((data)=> data.category_name == 'Mahir Teknologi')
+      console.log(filter)
+      setItemData(filter)
+    }
+  }, [isChecked])
 
   useEffect(()=>{
     if(select === 'maxPrice'){
@@ -58,7 +78,7 @@ export default function index({course}){
       <div className={styles.container}>
         <div className={styles.filter}>
           {/* <Section> */}
-            {/* <Filter onRating={handleChecked}/> */}
+            <Filter onCategory={handleChecked} btnOnclick={handleReset}/>
           {/* </Section> */}
         </div>
         <div className={styles.content}>

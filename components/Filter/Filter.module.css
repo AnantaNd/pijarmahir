@@ -4,11 +4,17 @@
   border-radius: 8px;
   width: 250px;
   /* position: fixed; */
+  /* display: block; */
 }
-.radio, .checkbox, .rating{
+.inpRadio{
+  /* display: flex; */
+  margin: 8px 0;
+}
+.filter{
   padding: 10px;
   font-size: 12px;
-  color: var(--textColor);
+  color: var(--textColor); 
+  margin: 10px;
 }
 .gapContainer{
   border:1px solid var(--borderColor);
