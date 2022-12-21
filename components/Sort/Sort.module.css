@@ -10,6 +10,35 @@
   border: 1px solid var(--borderColor);
   border-radius: 8px;
 }
+.container_input {
+  width: 400px;
+  display: flex;
+  /* flex-direction: flex-end; */
+  align-items: center;
+  margin: 0 10px;
+}
+
+.input,
+.input_button {
+  height: 32px;
+  border: var(--borderColor) 1px solid;
+}
+
+.input {
+  border-right: 0px;
+  border-radius: 8px 0 0 8px;
+  width: 100%;
+  padding: 0 16px;
+}
+
+.input_button {
+  width: 32px;
+  border-radius: 0 8px 8px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .filter{
   display: flex;
 }

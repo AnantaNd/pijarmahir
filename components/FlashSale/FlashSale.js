@@ -58,7 +58,7 @@ export default function FlashSale({ dataCard }) {
             {
               1280: {
                 slidesPerView: 4,
-                width: 1280,
+                width: 1120,
               },
               834: {
                 slidesPerView: 3,

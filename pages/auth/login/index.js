@@ -1,13 +1,9 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import axios from 'axios';
-import CryptoJS from 'crypto-js';
 import { signIn } from 'next-auth/react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from "next/router";
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
 import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import * as yup from "yup";
@@ -18,59 +14,96 @@ import Input from "../../../components/Input/Input";
 import Styles from './Login.module.css';
 YupPassword(yup)
 
-const schema = yup.object().shape({
-  email: yup
-    .string()
-    .required("Masukan data terlebih dahulu")
-    .matches("@", "Format email yang dimasukkan tidak memiliki “@”")
-    .email("Format email tidak valid"),
-  password: yup
-    .string()
-    .required("Masukkan data terlebih dahulu")
-    .min(4, 'Password minimal 4 karakter'),
-})
+// const schema = yup.object().shape({
+//   email: yup
+//     .string()
+//     .required("Masukan data terlebih dahulu")
+//     .matches("@", "Format email yang dimasukkan tidak memiliki “@”")
+//     .email("Format email tidak valid"),
+//   password: yup
+//     .string()
+//     .required("Masukkan data terlebih dahulu")
+//     .min(4, 'Password minimal 4 karakter'),
+// })
 
 function Login({ users }) {
   const [email, setEmail] = useState('')
   const [pass, setPass] = useState('')
-  const [isEmail, setIsEmail] = useState(false)
-  const [isPass, setIsPass] = useState(false)
   const [errorPass, setErrorPass] = useState("")
-  const [errorLogin, setErrorLogin] = useState("")
   const [errorEmail, setErrorEmail] = useState("")
   const router = useRouter()
 
-  const { register, handleSubmit, formState: { errors } }
-    = useForm({
-      resolver: yupResolver(schema)
-    });
+  // const { register, handleSubmit, formState: { errors } }
+  //   = useForm({
+  //     resolver: yupResolver(schema)
+  //   });
 
   const handleInputEmail = (e) => {
     setEmail(e.target.value)
   }
   const handleInputPass = (e) => {
     setPass(e.target.value)
+    console.log(pass.length)
   }
 
-  const onSubmit = (data) => {
-    users.data.map((user, id) => {
-      if (user.email === data.email && user.password === data.password) {
-        // console.log(`${user.email + "===" + data.email} ${user.password + "===" + data.password}`);
-        localStorage.setItem('login', JSON.stringify({
-          id,
-          username: user.username,
-          email: user.email,
-        }))
-        router.push('/')
-      } else if (user.email === data.email && user.password !== data.password) {
-        setErrorPass("Password yang dimasukkan salah")
-        setErrorEmail("")
-      } else if (user.email !== data.email && user.password === data.password) {
-        setErrorEmail("Email yang dimasukkan tidak terdaftar")
-        setErrorPass("")
-      }
-    })
+  const handleLogin =(e)=>{
+    e.preventDefault();
+    if(email === ''){
+      setErrorEmail('isi terlebih dahulu email')
+    }else if(!email.includes('@')){
+      setErrorEmail('email harus memilik karakter @')
+    }else if(!email.includes('@gmail.com')){
+      setErrorEmail('email tidak valid')
+    }
+    if(pass === ''){
+      setErrorPass('isi password terlebih dahulu')
+      console.log('pass empty')
+    }else if(pass.length > 4){
+      console.log('pass length')
+      setErrorPass('password harus memiliki 4 karakter')
+    }
+
+    // mapping email 
   }
+  
+  const btnLogin =()=>{
+    // users.data?.map((user, id)=>{
+    //   if(user.email === email && user.password === pass){
+    //     localStorage.setItem('login', JSON.stringify({
+    //       id,
+    //       username: user.username,
+    //       email: email,
+    //     }))
+    //     // router.push('/')
+    //   }else if(user.email === email && user.password !== pass){
+    //     setErrorPass("Password yang dimasukkan salah")
+    //     setErrorEmail("")
+    //   }else if(user.email !== email && user.password === pass){
+    //     setErrorEmail("Email yang dimasukkan tidak terdaftar")
+    //     setErrorPass("")
+    //   }
+    // })
+  }
+  // const onSubmit = (data) => {
+  //   console.log(data)
+    // users.data.map((user, id) => {
+    //   if (user.email === data.email && user.password === data.password) {
+        // console.log(`${user.email + "===" + data.email} ${user.password + "===" + data.password}`);
+    //     localStorage.setItem('login', JSON.stringify({
+    //       id,
+    //       username: user.username,
+    //       email: user.email,
+    //     }))
+    //     router.push('/')
+    //   } else if (user.email === data.email && user.password !== data.password) {
+    //     setErrorPass("Password yang dimasukkan salah")
+    //     setErrorEmail("")
+    //   } else if (user.email !== data.email && user.password === data.password) {
+    //     setErrorEmail("Email yang dimasukkan tidak terdaftar")
+    //     setErrorPass("")
+    //   }
+    // })
+  // }
 
   const handleLoginFacebook = (e) => {
     e.preventDefault();
@@ -98,7 +131,7 @@ function Login({ users }) {
         </Link>
         <div className={Styles.login_content}>
           <Image alt="ilustration" className={Styles.login_ilustration} src="/new-profile.svg" priority={true} width={480} height={480} />
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleLogin}>
             <div className={Styles.container_card}>
               <h2 className={Styles.text_login}>Masuk</h2>
               <p className={Styles.suggestion}>Lanjutkan pembelajaranmu dengan Pijar Mahir</p>
@@ -109,16 +142,16 @@ function Login({ users }) {
                 type={"text"}
                 placeholder={'example@gmail.com'}
                 onChangeInput={handleInputEmail}
-                helper={errors.email?.message ? errors.email?.message : errorEmail}
-                register={{ ...register('email') }} />
+                helper={errorEmail}
+                />
               <Input
                 label={'Password'}
                 name={'password'}
                 type={"password"}
                 placeholder={'password'}
                 onChangeInput={handleInputPass}
-                helper={errors.password?.message ? errors.password?.message : errorPass}
-                register={{ ...register('password') }} />
+                helper={errorPass}
+                />
               {/* input */}
               <div className={Styles.helper}>
                 <div className={Styles.container_checkbox}>
@@ -130,7 +163,7 @@ function Login({ users }) {
                 </Link>
               </div>
               <div className={Styles.sparator}>
-                <Button buttonType="primary" >
+                <Button buttonType="primary" type={"submit"} >
                   Masuk
                 </Button>
               </div>
