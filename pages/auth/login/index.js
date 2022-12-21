@@ -61,7 +61,7 @@ function Login({ users }) {
     if (pass === '') {
       setErrorPass('isi password terlebih dahulu')
       console.log('pass empty')
-    } else if (pass.length > 4) {
+    } else if (pass.length < 4) {
       console.log('pass length')
       setErrorPass('password harus memiliki 4 karakter')
     } else {
@@ -69,7 +69,28 @@ function Login({ users }) {
     }
 
     // mapping email 
-
+    users.data?.map((user, id) => {
+      if (user.email !== email && user.password !== pass) {
+        setErrorEmail("Email yang dimasukkan tidak terdaftar")
+        setErrorPass("")
+        // router.push('/')
+      } else if (user.email === email && user.password !== pass) {
+        setErrorPass("Password yang dimasukkan salah")
+        setErrorEmail("")
+      } else if (user.email !== email && user.password === pass) {
+        setErrorEmail("Email yang dimasukkan tidak terdaftar")
+        setErrorPass("")
+      } else {
+        localStorage.setItem('login', JSON.stringify({
+          id,
+          username: user.username,
+          email: email,
+        }))
+        console.log("Berhasil");
+        setErrorPass("")
+        setErrorEmail("")
+      }
+    })
   }
 
   const btnLogin = () => {
