@@ -46,27 +46,33 @@ function Login({ users }) {
     console.log(pass.length)
   }
 
-  const handleLogin =(e)=>{
+  const handleLogin = (e) => {
     e.preventDefault();
-    if(email === ''){
+    if (email === '') {
       setErrorEmail('isi terlebih dahulu email')
-    }else if(!email.includes('@')){
+    } else if (!email.includes('@')) {
       setErrorEmail('email harus memilik karakter @')
-    }else if(!email.includes('@gmail.com')){
+    } else if (!email.includes('@gmail.com')) {
       setErrorEmail('email tidak valid')
+    } else {
+      setErrorEmail('')
     }
-    if(pass === ''){
+
+    if (pass === '') {
       setErrorPass('isi password terlebih dahulu')
       console.log('pass empty')
-    }else if(pass.length > 4){
+    } else if (pass.length > 4) {
       console.log('pass length')
       setErrorPass('password harus memiliki 4 karakter')
+    } else {
+      setErrorPass('')
     }
 
     // mapping email 
+
   }
-  
-  const btnLogin =()=>{
+
+  const btnLogin = () => {
     // users.data?.map((user, id)=>{
     //   if(user.email === email && user.password === pass){
     //     localStorage.setItem('login', JSON.stringify({
@@ -86,23 +92,23 @@ function Login({ users }) {
   }
   // const onSubmit = (data) => {
   //   console.log(data)
-    // users.data.map((user, id) => {
-    //   if (user.email === data.email && user.password === data.password) {
-        // console.log(`${user.email + "===" + data.email} ${user.password + "===" + data.password}`);
-    //     localStorage.setItem('login', JSON.stringify({
-    //       id,
-    //       username: user.username,
-    //       email: user.email,
-    //     }))
-    //     router.push('/')
-    //   } else if (user.email === data.email && user.password !== data.password) {
-    //     setErrorPass("Password yang dimasukkan salah")
-    //     setErrorEmail("")
-    //   } else if (user.email !== data.email && user.password === data.password) {
-    //     setErrorEmail("Email yang dimasukkan tidak terdaftar")
-    //     setErrorPass("")
-    //   }
-    // })
+  // users.data.map((user, id) => {
+  //   if (user.email === data.email && user.password === data.password) {
+  // console.log(`${user.email + "===" + data.email} ${user.password + "===" + data.password}`);
+  //     localStorage.setItem('login', JSON.stringify({
+  //       id,
+  //       username: user.username,
+  //       email: user.email,
+  //     }))
+  //     router.push('/')
+  //   } else if (user.email === data.email && user.password !== data.password) {
+  //     setErrorPass("Password yang dimasukkan salah")
+  //     setErrorEmail("")
+  //   } else if (user.email !== data.email && user.password === data.password) {
+  //     setErrorEmail("Email yang dimasukkan tidak terdaftar")
+  //     setErrorPass("")
+  //   }
+  // })
   // }
 
   const handleLoginFacebook = (e) => {
@@ -143,7 +149,7 @@ function Login({ users }) {
                 placeholder={'example@gmail.com'}
                 onChangeInput={handleInputEmail}
                 helper={errorEmail}
-                />
+              />
               <Input
                 label={'Password'}
                 name={'password'}
@@ -151,7 +157,7 @@ function Login({ users }) {
                 placeholder={'password'}
                 onChangeInput={handleInputPass}
                 helper={errorPass}
-                />
+              />
               {/* input */}
               <div className={Styles.helper}>
                 <div className={Styles.container_checkbox}>
