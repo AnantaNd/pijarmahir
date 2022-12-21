@@ -73,6 +73,20 @@ function Login({ users }) {
       if (user.email !== email && user.password !== pass) {
         setErrorEmail("Email yang dimasukkan tidak terdaftar")
         setErrorPass("")
+        if (email === "") {
+          setErrorEmail('isi terlebih dahulu email')
+          setErrorPass('')
+        }
+
+        if (pass === "") {
+          setErrorPass('isi password terlebih dahulu')
+          setErrorEmail('')
+        }
+
+        if (email === "" && pass == "") {
+          setErrorPass('isi password terlebih dahulu')
+          setErrorEmail('isi terlebih dahulu email')
+        }
         // router.push('/')
       } else if (user.email === email && user.password !== pass) {
         setErrorPass("Password yang dimasukkan salah")
@@ -92,21 +106,7 @@ function Login({ users }) {
         stop()
       }
 
-      if (email === "") {
-        setErrorEmail('isi terlebih dahulu email')
-        setErrorPass('')
 
-      }
-
-      if (pass === "") {
-        setErrorPass('isi password terlebih dahulu')
-        setErrorEmail('')
-      }
-
-      if (email === "" && pass == "") {
-        setErrorPass('isi password terlebih dahulu')
-        setErrorEmail('isi terlebih dahulu email')
-      }
     })
   }
 
