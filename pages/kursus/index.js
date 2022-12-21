@@ -2,7 +2,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
-import Filter from "../../components/Filter/Filter";
 import Layouts from "../../components/Layouts/Layouts";
 import ListCourse from "../../components/ListCourse/ListCourse";
 import Sort from "../../components/Sort/Sort";
@@ -75,7 +74,7 @@ export default function index({course}){
       <div className={styles.container}>
         <div className={styles.filter}>
           {/* <Section> */}
-            <Filter onCategory={handleChecked} />
+            {/* <Filter onCategory={handleChecked} /> */}
           {/* </Section> */}
         </div>
         <div className={styles.content}>
