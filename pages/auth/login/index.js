@@ -89,6 +89,7 @@ function Login({ users }) {
         console.log("Berhasil");
         setErrorPass("")
         setErrorEmail("")
+        stop()
       }
     })
   }
