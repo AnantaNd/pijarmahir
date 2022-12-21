@@ -2,7 +2,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
-import Filter from "../../components/Filter/Filter";
 import Layouts from "../../components/Layouts/Layouts";
 import ListCourse from "../../components/ListCourse/ListCourse";
 import Sort from "../../components/Sort/Sort";
@@ -12,35 +11,50 @@ import styles from "./Kursus.module.css";
 export default function index({course}){
 
   const [itemData, setItemData] = useState(course.data)
-  const [isChecked, setIsChecked] = useState('')
+  // const [isChecked, setIsChecked] = useState('')
   const [select, setSelect] = useState('')
+  const [dataFound, setDataFound] = useState('')
 
   console.log([...itemData])
-  const handleChecked =(e)=>{
-    setIsChecked(e.target.value)
-    console.log(e.target.value)
-  }
+  // const handleChecked =(e)=>{
+  //   setIsChecked(e.target.value)
+  //   console.log(e.target.value)
+  // }
   const hanldeSelect=(e)=>{
     setSelect(e.target.value)
-    // console.log(e.target.value);
-    
+    // console.log(e.target.value); 
   }
-  useEffect(()=>{
+  const handleSearch=(e)=>{
+    setDataFound(e.target.value)
+    console.log(dataFound)
+  }
+  // useEffect(()=>{
     
-    if(isChecked === 'Kartu Prakerja'){
-      const filter = [...itemData].filter((data)=> data.category_name == 'Kartu Prakerja')
-      // console.log(filter)
-      setItemData(filter)
-    }else if(isChecked === 'Mahir Digital'){
-      const filter = [...itemData].filter((data)=> data.category_name == 'Mahir Digital')
-      // console.log(filter)
-      setItemData(filter)
-    }else if(isChecked === 'Mahir Teknologi'){
-      const filter = [...itemData].filter((data)=> data.category_name == 'Mahir Teknologi')
-      // console.log(filter)
-      setItemData(filter)
+  //   if(isChecked === 'Kartu Prakerja'){
+  //     const filter = [...itemData].filter((data)=> data.category_name == 'Kartu Prakerja')
+  //     // console.log(filter)
+  //     setItemData(filter)
+  //   }else if(isChecked === 'Mahir Digital'){
+  //     const filter = [...itemData].filter((data)=> data.category_name == 'Mahir Digital')
+  //     // console.log(filter)
+  //     setItemData(filter)
+  //   }else if(isChecked === 'Mahir Teknologi'){
+  //     const filter = [...itemData].filter((data)=> data.category_name == 'Mahir Teknologi')
+  //     // console.log(filter)
+  //     setItemData(filter)
+  //   }
+  // }, [isChecked])
+
+  useEffect(()=>{
+    if(dataFound){
+      const searchLowerCasse = dataFound.toLowerCase()
+      const found = itemData
+        .filter((data)=> data.fullname.toLowerCase().includes(searchLowerCasse))
+      setItemData(found)
+    }else{
+      setItemData(course.data)
     }
-  }, [isChecked])
+  }, [dataFound])
 
   useEffect(()=>{
     if(select === 'maxPrice'){
@@ -71,11 +85,11 @@ export default function index({course}){
     </Head>
     <div className={styles.pattern}></div>
     <Layouts>
-      <Sort onSorting={hanldeSelect}/>
+      <Sort onSorting={hanldeSelect} onSearch={handleSearch}/>
       <div className={styles.container}>
         <div className={styles.filter}>
           {/* <Section> */}
-            <Filter onCategory={handleChecked} />
+            {/* <Filter onCategory={handleChecked} /> */}
           {/* </Section> */}
         </div>
         <div className={styles.content}>
