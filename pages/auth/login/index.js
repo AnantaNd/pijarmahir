@@ -71,21 +71,24 @@ function Login({ users }) {
     // mapping email 
     users.data?.map((user, id) => {
       if (user.email !== email && user.password !== pass) {
-        setErrorEmail("Email yang dimasukkan tidak terdaftar")
-        setErrorPass("")
-        if (email === "") {
+        if (email === '') {
           setErrorEmail('isi terlebih dahulu email')
+        } else if (!email.includes('@')) {
+          setErrorEmail('email harus memilik karakter @')
+        } else if (!email.includes('@gmail.com')) {
+          setErrorEmail('email tidak valid')
+        } else {
+          setErrorEmail("Email yang dimasukkan tidak terdaftar")
+        }
+
+        if (pass === '') {
+          setErrorPass('isi password terlebih dahulu')
+          console.log('pass empty')
+        } else if (pass.length < 4) {
+          console.log('pass length')
+          setErrorPass('password harus memiliki 4 karakter')
+        } else {
           setErrorPass('')
-        }
-
-        if (pass === "") {
-          setErrorPass('isi password terlebih dahulu')
-          setErrorEmail('')
-        }
-
-        if (email === "" && pass == "") {
-          setErrorPass('isi password terlebih dahulu')
-          setErrorEmail('isi terlebih dahulu email')
         }
         // router.push('/')
       } else if (user.email === email && user.password !== pass) {
