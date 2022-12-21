@@ -86,10 +86,26 @@ function Login({ users }) {
           username: user.username,
           email: email,
         }))
-        console.log("Berhasil");
+        console.log("Berhasil")
         setErrorPass("")
         setErrorEmail("")
         stop()
+      }
+
+      if (email === "") {
+        setErrorEmail('isi terlebih dahulu email')
+        setErrorPass('')
+
+      }
+
+      if (pass === "") {
+        setErrorPass('isi password terlebih dahulu')
+        setErrorEmail('')
+      }
+
+      if (email === "" && pass == "") {
+        setErrorPass('isi password terlebih dahulu')
+        setErrorEmail('isi terlebih dahulu email')
       }
     })
   }
