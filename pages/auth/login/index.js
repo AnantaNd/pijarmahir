@@ -6,13 +6,10 @@ import { useRouter } from "next/router";
 import React, { useState } from 'react';
 import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import * as yup from "yup";
-import YupPassword from "yup-password";
 import Button from "../../../components/Button/Button";
 import FooterSecond from '../../../components/Footer/FooterSecond/FooterSecond';
 import Input from "../../../components/Input/Input";
 import Styles from './Login.module.css';
-YupPassword(yup)
 
 // const schema = yup.object().shape({
 //   email: yup
@@ -63,7 +60,7 @@ function Login({ users }) {
       console.log('pass empty')
     } else if (pass.length < 4) {
       console.log('pass length')
-      setErrorPass('password harus memiliki 4 karakter')
+      setErrorPass('password harus memiliki minimal 4 karakter')
     } else {
       setErrorPass('')
     }
@@ -90,7 +87,7 @@ function Login({ users }) {
         } else {
           setErrorPass('')
         }
-        // router.push('/')
+        router.push('/')
       } else if (user.email === email && user.password !== pass) {
         setErrorPass("Password yang dimasukkan salah")
         setErrorEmail("")
@@ -113,44 +110,6 @@ function Login({ users }) {
     })
   }
 
-  const btnLogin = () => {
-    // users.data?.map((user, id)=>{
-    //   if(user.email === email && user.password === pass){
-    //     localStorage.setItem('login', JSON.stringify({
-    //       id,
-    //       username: user.username,
-    //       email: email,
-    //     }))
-    //     // router.push('/')
-    //   }else if(user.email === email && user.password !== pass){
-    //     setErrorPass("Password yang dimasukkan salah")
-    //     setErrorEmail("")
-    //   }else if(user.email !== email && user.password === pass){
-    //     setErrorEmail("Email yang dimasukkan tidak terdaftar")
-    //     setErrorPass("")
-    //   }
-    // })
-  }
-  // const onSubmit = (data) => {
-  //   console.log(data)
-  // users.data.map((user, id) => {
-  //   if (user.email === data.email && user.password === data.password) {
-  // console.log(`${user.email + "===" + data.email} ${user.password + "===" + data.password}`);
-  //     localStorage.setItem('login', JSON.stringify({
-  //       id,
-  //       username: user.username,
-  //       email: user.email,
-  //     }))
-  //     router.push('/')
-  //   } else if (user.email === data.email && user.password !== data.password) {
-  //     setErrorPass("Password yang dimasukkan salah")
-  //     setErrorEmail("")
-  //   } else if (user.email !== data.email && user.password === data.password) {
-  //     setErrorEmail("Email yang dimasukkan tidak terdaftar")
-  //     setErrorPass("")
-  //   }
-  // })
-  // }
 
   const handleLoginFacebook = (e) => {
     e.preventDefault();
