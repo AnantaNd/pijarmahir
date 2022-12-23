@@ -12,26 +12,6 @@ import FooterSecond from '../../../components/Footer/FooterSecond/FooterSecond';
 import Input from "../../../components/Input/Input";
 import styles from "./Register.module.css";
 
-// const schema = yup.object({
-//   email: yup
-//     .string()
-//     .required("Masukan data terlebih dahulu")
-//     .matches("@", "Format email yang dimasukkan tidak memiliki “@”")
-//     .email("Format email tidak valid"),
-//   password: yup
-//     .string()
-//     .required("Masukan password terlebih dahulu")
-//     .min(4, 'Password minimal 4 karakter'),
-//   confirm_password: yup
-//     .string()
-//     .required('Masukan kembali password')
-//     .oneOf([yup.ref('password')], 'Password harus sama'),
-//   username: yup
-//     .string()
-//     .required('Masukan username')
-// })
-
-
 
 export default function index({users}) {
   const [email, setEmail] = useState('')
@@ -44,13 +24,6 @@ export default function index({users}) {
   const [errorConfmPass, setErrorConfmPass] = useState('')
   const router = useRouter()
 
-  // const { register, handleSubmit, formState: { errors } }
-  //   = useForm({
-  //     resolver: yupResolver(schema)
-  //   })
-
-
-  // console.log(users)
   function handleInputEmail(e) {
     setEmail(e.target.value);
   }
