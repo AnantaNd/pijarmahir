@@ -11,17 +11,6 @@ import FooterSecond from '../../../components/Footer/FooterSecond/FooterSecond';
 import Input from "../../../components/Input/Input";
 import Styles from './Login.module.css';
 
-// const schema = yup.object().shape({
-//   email: yup
-//     .string()
-//     .required("Masukan data terlebih dahulu")
-//     .matches("@", "Format email yang dimasukkan tidak memiliki “@”")
-//     .email("Format email tidak valid"),
-//   password: yup
-//     .string()
-//     .required("Masukkan data terlebih dahulu")
-//     .min(4, 'Password minimal 4 karakter'),
-// })
 
 function Login({ users }) {
   const [email, setEmail] = useState('')
@@ -30,10 +19,6 @@ function Login({ users }) {
   const [errorEmail, setErrorEmail] = useState("")
   const router = useRouter()
 
-  // const { register, handleSubmit, formState: { errors } }
-  //   = useForm({
-  //     resolver: yupResolver(schema)
-  //   });
 
   const handleInputEmail = (e) => {
     setEmail(e.target.value)
