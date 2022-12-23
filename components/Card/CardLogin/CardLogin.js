@@ -1,30 +1,59 @@
 import { signIn } from 'next-auth/react';
-import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import Button from '../../Button/Button';
+import Input from '../../Input/Input';
 import Styles from "./CardLogin.module.css";
 
-function CardLogin({ inputEmail, inputPassword, helpersE, helpersP, btnLogin, handleLogin, registerE, registerP }) {
+function CardLogin() {
   // const { data: session } = useSession();
+  const [email, setEmail] = useState('')
+  const [pass, setPass] = useState('')
+  const [errorPass, setErrorPass] = useState("")
+  const [errorEmail, setErrorEmail] = useState("")
 
-
+  const handleInputEmail = (e) => {
+    setEmail(e.target.value)
+    console.log(email)
+  }
+  const handleInputPass = (e) => {
+    setPass(e.target.value)
+    console.log(pass)
+  }
   const handleLoginFacebook = (e) => {
     e.preventDefault();
     signIn('facebook', {
       callbackUrl: '/'
     });
   }
-
   const handleLoginGoogle = (e) => {
     e.preventDefault();
     signIn('google', {
       callbackUrl: '/'
     });
   }
-  const formSubmit = (data) => {
-    console.log(data)
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (email === '') {
+      setErrorEmail('isi terlebih dahulu email')
+    } else if (!email.includes('@')) {
+      setErrorEmail('email harus memilik karakter @')
+    } else if (!email.includes('@gmail.com')) {
+      setErrorEmail('email tidak valid')
+    } else {
+      setErrorEmail('')
+    }
+
+    if (pass === '') {
+      setErrorPass('isi password terlebih dahulu')
+      console.log('pass empty')
+    } else if (pass.length < 4) {
+      console.log('pass length')
+      setErrorPass('password harus memiliki minimal 4 karakter')
+    } else {
+      setErrorPass('')
+    }
   }
 
 
@@ -32,26 +61,27 @@ function CardLogin({ inputEmail, inputPassword, helpersE, helpersP, btnLogin, ha
     <div className={Styles.container_card}>
       <h2 className={Styles.text_login}>Masuk</h2>
       <p className={Styles.suggestion}>Lanjutkan pembelajaranmu dengan Pijar Mahir</p>
-      <div className={Styles.container_input}>
-        <label className={Styles.label_input} htmlFor='email'>Email</label>
-        <input className={Styles.input} name='email' type='email' placeholder='example@mail.com' onChange={inputEmail} {...registerE} />
-        <small className={Styles.helper_account}>{helpersE}</small>
-        <label className={Styles.label_input} htmlFor='pass'>Password</label>
-        <input className={Styles.input} name='pass' type='password' placeholder='password' onChange={inputPassword} {...registerP} />
-        <small className={Styles.helper_account}>{helpersP}</small>
-      </div>
-      {/* <Input label="Password" name="password" type="password" placeholder="" onChangeInput={handleInputPass}/> */}
-
-      {/* <div className={Styles.helper}>
-        <div className={Styles.container_checkbox}>
-          <input className={Styles.checkbox} name="checkbox" type="checkbox" />
-          <label className={Styles.label_checkbox} htmlFor="checkbox">Ingat akun Saya</label>
-        </div>
-        <Link href="/auth/reset-password" style={{ textDecoration: "none" }} ><p className={Styles.orange_text}>Lupa Password?</p></Link>
-      </div> */}
+      <form className={Styles.container_input}>
+        <Input 
+          label={'email'}
+          name={'email'}
+          type={'text'}
+          placeholder={'example@gmail.com'}
+          helper={errorEmail}
+          onChangeInput={handleInputEmail}
+        />
+        <Input 
+          label={'password'}
+          name={'password'}
+          type={'password'}
+          placeholder={'password'}
+          helper={errorPass}
+          onChangeInput={handleInputPass}
+        />
+      </form>
       <div className={Styles.sparator}>
-        <Button btnOnClick={handleLogin} buttonType="primary" buttonNav={btnLogin}>
-          Masuk asdasd
+        <Button btnOnClick={handleLogin} buttonType="primary" buttonNav={"btnLogin"}>
+          Masuk
         </Button>
       </div>
       <div className={Styles.sparator}>

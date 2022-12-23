@@ -4,11 +4,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from "next/router";
 import React, { useState } from 'react';
-import { FaFacebook } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
-import Button from "../../../components/Button/Button";
+import CardLogin from '../../../components/Card/CardLogin/CardLogin';
 import FooterSecond from '../../../components/Footer/FooterSecond/FooterSecond';
-import Input from "../../../components/Input/Input";
 import Styles from './Login.module.css';
 
 
@@ -122,60 +119,7 @@ function Login({ users }) {
         </Link>
         <div className={Styles.login_content}>
           <Image alt="ilustration" className={Styles.login_ilustration} src="/new-profile.svg" priority={true} width={480} height={480} />
-          <form onSubmit={handleLogin}>
-            <div className={Styles.container_card}>
-              <h2 className={Styles.text_login}>Masuk</h2>
-              <p className={Styles.suggestion}>Lanjutkan pembelajaranmu dengan Pijar Mahir</p>
-              {/* input */}
-              <Input
-                label={'Email'}
-                name={'email'}
-                type={"text"}
-                placeholder={'example@gmail.com'}
-                onChangeInput={handleInputEmail}
-                helper={errorEmail}
-              />
-              <Input
-                label={'Password'}
-                name={'password'}
-                type={"password"}
-                placeholder={'password'}
-                onChangeInput={handleInputPass}
-                helper={errorPass}
-              />
-              {/* input */}
-              <div className={Styles.helper}>
-                <div className={Styles.container_checkbox}>
-                  {/* <input className={Styles.checkbox} name="checkbox" type="checkbox" /> */}
-                  {/* <label className={Styles.label_checkbox} htmlFor="checkbox">Ingat akun Saya</label> */}
-                </div>
-                <Link href="/auth/reset-password" style={{ textDecoration: "none" }} >
-                  <p className={Styles.orange_text}>Lupa Password?</p>
-                </Link>
-              </div>
-              <div className={Styles.sparator}>
-                <Button buttonType="primary" type={"submit"} >
-                  Masuk
-                </Button>
-              </div>
-              <div className={Styles.sparator}>
-                <div className={Styles.hl}></div>
-                atau
-                <div className={Styles.hl}></div>
-              </div>
-              <div className={Styles.third_party}>
-                <Button btnOnClick={handleLoginGoogle}>
-                  <FcGoogle size={24} style={{ marginRight: "8px" }} />Masuk dengan Google
-                </Button>
-                <Button btnOnClick={handleLoginFacebook}>
-                  <FaFacebook color="DodgerBlue" size={24} style={{ marginRight: "8px" }} />Masuk dengan Facebook
-                </Button>
-              </div>
-              <div className={Styles.register_link}>
-                Belum punya akun? <Link href="/auth/register" style={{ textDecoration: "none" }}><span className={Styles.orange_text}>Daftar</span></Link>
-              </div>
-            </div>
-          </form>
+          <CardLogin/>
         </div>
       </main>
       <FooterSecond />
