@@ -10,7 +10,7 @@ import ModalCart from '../Modal/ModalCart/ModalCart';
 import ModalNotification from '../Modal/ModalNotification/ModalNotification';
 import Styles from './Navbar.module.css';
 
-function Navbar({onSearch}) {
+function Navbar({ onSearch }) {
   const [isCollapse, setIsCollapse] = useState(false);
   const [isUserCollapse, setIsUserCollapse] = useState(false);
   const [isNotifCollapse, setIsNotifCollapse] = useState(false);
@@ -53,15 +53,13 @@ function Navbar({onSearch}) {
         <Image className={Styles.logo_dekstop} src="/pijar_logo.svg" height={80} width={80} alt='img' />
       </Link>
       <div className={Styles.dropdown_container}>
-        <select className={Styles.dropdown}>
-          <option value="">Kategori</option>
-        </select>
+        <div className={Styles.dropdown}>Kategori</div>
       </div>
       <div className={Styles.toggler}>
         <BiMenu size={20} onClick={collapseHandler} />
       </div>
       <div className={Styles.container_input}>
-        <input className={Styles.input} placeholder="Cari kursus yang kamu inginkan" onChange={onSearch}/>
+        <input className={Styles.input} placeholder="Cari kursus yang kamu inginkan" onChange={onSearch} />
         <button className={Styles.input_button}>
           <BiSearch size={16} />
         </button>
@@ -77,7 +75,7 @@ function Navbar({onSearch}) {
             <Image className={Styles.menu_icon} src="/prakerja_logo.svg" width={24} height={24} alt='img' /><Link className={Styles.link} style={{ textDecoration: 'none' }} href="https://pijarmahir.id/kartuprakerja"><span>Prakerja</span></Link><FiChevronRight className={Styles.menu_arrow} />
           </li>
           <li className={Styles.nav_link}>
-            <Image className={Styles.menu_icon} src="/pijar_logo.svg" width={24} height={24} alt='img' /><span>Pijar Camp</span> <FiChevronRight className={Styles.menu_arrow} />
+            <Image className={Styles.menu_icon} src="/pijar_logo.svg" width={24} height={24} alt='img' /><Link href="https://camp.pijarmahir.id/"><span>Pijar Camp</span></Link> <FiChevronRight className={Styles.menu_arrow} />
           </li>
           <li className={Styles.nav_link}>
             <div className={Styles.vl}></div>

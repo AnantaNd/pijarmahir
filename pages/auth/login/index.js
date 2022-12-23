@@ -119,7 +119,7 @@ function Login({ users }) {
         </Link>
         <div className={Styles.login_content}>
           <Image alt="ilustration" className={Styles.login_ilustration} src="/new-profile.svg" priority={true} width={480} height={480} />
-          <CardLogin/>
+          <CardLogin />
         </div>
       </main>
       <FooterSecond />
