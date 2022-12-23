@@ -1,55 +1,123 @@
 import { signIn } from 'next-auth/react'
 import Link from 'next/link'
+import { useState } from 'react'
 import { FaFacebook } from 'react-icons/fa'
 import { FcGoogle } from 'react-icons/fc'
 import Button from '../../Button/Button'
+import Input from '../../Input/Input'
 import styles from './CardSignUp.module.css'
 
 
-export default function CardSignUp({inputEmail, inputPass, inputConfirm, helperE, helperP, helperC, handleSignUp, registerE, registerP, registerC}) {
+export default function CardSignUp() {
+  const [email, setEmail] = useState('')
+  const [username, setUsername] = useState('')
+  const [pass, setPass] = useState('')
+  const [confirmPass, setConfirmPass] = useState('')
+  const [errorPass, setErrorPass] = useState('')
+  const [errorEmail, setErrorEmail] = useState('')
+  const [errorUserName, setErrorUserName] = useState('')
+  const [errorConfmPass, setErrorConfmPass] = useState('')
 
-  // const validate = (e) => {
-  //   var email = e.target.value
-  //   console.log(email)
-  //   if (validator.isEmail(email)) {
-  //     setEmailError(`Kami akan mengirim kode verifikasi ke ${email}`)
-  //   } else {
-  //     setEmailError('Format email yang dimasukkan tidak memiliki “@”')
-  //   }
-  // }
-
+  function handleInputEmail(e) {
+    setEmail(e.target.value);
+    console.log(e.target.value)
+  }
+  function handleInputUsername(e) {
+    setUsername(e.target.value);
+  }
+  const handleInputPass = (e) => {
+    setPass(e.target.value)
+  }
+  const handleInputConfirm = (e) => {
+    setConfirmPass(e.target.value)
+  }
   const handleLoginFacebook = (e) => {
     e.preventDefault();
     signIn('facebook', {
       callbackUrl: '/newprofile'
     });
   }
-
   const handleLoginGoogle = (e) => {
     e.preventDefault();
     signIn('google', {
       callbackUrl: '/newprofile'
     });
   }
+  const handleSignup =(e)=>{
+    e.preventDefault();
+    if(username === ''){
+      setErrorUserName('isi terlebih dahulu username')
+    }else{
+      setErrorUserName('')
+    }
+
+    if(email === ''){
+      setErrorEmail('isi terlebih dahulu email')
+    }else if(!email.includes('@')){
+      setErrorEmail('eamil harus memiliki karakter @')
+    }else if(!email.includes('gmail.com')){
+      setErrorEmail('email tidak valid')
+    }else{
+      setErrorEmail('')
+    }
+
+    if(pass === ''){
+      setErrorPass('isi password terlebih dahulu')
+    }else if(pass.length < 4){
+      setErrorPass('password harus memiliki minimal 4 karakter')
+    }else{
+      setErrorPass('')
+    }
+
+    if(confirmPass === ''){
+      setErrorConfmPass('masukkan kembali password')
+    }else if(confirmPass != pass){
+      setErrorConfmPass('password harus sama')
+    }else{
+      setErrorConfmPass('')
+    }
+  }
 
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>daftar</h1>
       <p className={styles.subtitle}>bangun karirmu bersama pijar mahir</p>
-        <div className={styles.container_input}>
-          <label className={styles.label_input} htmlFor='email'>Email</label>
-          <input className={styles.input} name='email' type='email' placeholder='example@mail.com' onChange={inputEmail} {...registerE}/>
-          <small className={styles.helper_account}>{helperE}</small>
-          <label className={styles.label_input} htmlFor='pass'>Password</label>
-          <input className={styles.input} name='pass' type='password' placeholder='password' onChange={inputPass} {...registerP}/>
-          <small className={styles.helper_account}>{helperP}</small>
-          <label className={styles.label_input} htmlFor='pass'>Confirm Password</label>
-          <input className={styles.input} name='pass' type='password' placeholder='password' onChange={inputConfirm} {...registerC}/>
-          <small className={styles.helper_account}>{helperC}</small>
-        </div>
-      {/* <Input onChangeInput={(e) => validate(e)} label="Email" name="email" type="email" placeholder="example@gmail.com" /> */}
+        <form className={styles.container_input}>
+          {/* <Input
+            label={'username'}
+            name={'username'}
+            type={'text'}
+            placeholder={'username'}
+            // helper={errorEmail}
+            // onChangeInput={handleInputEmail}
+          /> */}
+          <Input
+            label={'email'}
+            name={'email'}
+            type={'text'}
+            placeholder={'example@gmail.com'}
+            helper={errorEmail}
+            onChangeInput={handleInputEmail}
+          />
+          <Input
+            label={'password'}
+            name={'password'}
+            type={'password'}
+            placeholder={'password'}
+            helper={errorPass}
+            onChangeInput={handleInputPass}
+          />
+          <Input
+            label={'confirm password'}
+            name={'confirm password'}
+            type={'password'}
+            placeholder={'password'}
+            helper={errorConfmPass}
+            onChangeInput={handleInputConfirm}
+          />
+        </form>
       {/* <p className={styles.desc}>{emailError}</p> */}
-      <Button buttonType="primary">Lanjutkan</Button>
+      <Button buttonType="primary" btnOnClick={handleSignup}>Lanjutkan</Button>
       <div className={styles.sparator}>
         <div className={styles.hl}></div>
         atau

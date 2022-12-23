@@ -5,11 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { FaFacebook } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
-import Button from "../../../components/Button/Button";
+import CardSignUp from '../../../components/Card/CardSignUp/CardSignUp';
 import FooterSecond from '../../../components/Footer/FooterSecond/FooterSecond';
-import Input from "../../../components/Input/Input";
 import styles from "./Register.module.css";
 
 
@@ -153,67 +150,7 @@ export default function index({users}) {
         </Link>
         <div className={styles.content}>
           <Image className={styles.ilustration} src="/new-profile.svg" height={480} width={480} style={{ marginRight: "90px" }} alt='ilustration' />
-          <form method="post" className={styles.content} onSubmit={handleSignup}>
-            <div className={styles.container_card}>
-              <h2 className={styles.text_login}>Daftar</h2>
-              <p className={styles.suggestion}>Lanjutkan pembelajaranmu dengan Pijar Mahir</p>
-              {/* input */}
-              <Input
-                label={'Username'}
-                name={'username'}
-                type={"text"}
-                placeholder={'username'}
-                onChangeInput={handleInputUsername}
-                helper={errorUserName}
-                />
-              <Input
-                label={'Email'}
-                name={'email'}
-                type={"text"}
-                placeholder={'example@gmail.com'}
-                onChangeInput={handleInputEmail}
-                helper={errorEmail}
-                />
-              <Input
-                label={'Password'}
-                name={'password'}
-                type={"password"}
-                placeholder={'password'}
-                onChangeInput={handleInputPass}
-                helper={errorPass}
-                />
-              <Input
-                label={'Konfirmasi Password'}
-                name={'password'}
-                type={"password"}
-                placeholder={'password'}
-                onChangeInput={handleInputConfirm}
-                helper={errorConfmPass}
-                />
-              {/* input */}
-              <div className={styles.sparator}>
-                <Button buttonType="primary" >
-                  Daftar
-                </Button>
-              </div>
-              <div className={styles.sparator}>
-                <div className={styles.hl}></div>
-                atau
-                <div className={styles.hl}></div>
-              </div>
-              <div className={styles.third_party}>
-                <Button btnOnClick={handleLoginGoogle}>
-                  <FcGoogle size={24} style={{ marginRight: "8px" }} />Masuk dengan Google
-                </Button>
-                <Button btnOnClick={handleLoginFacebook}>
-                  <FaFacebook color="DodgerBlue" size={24} style={{ marginRight: "8px" }} />Masuk dengan Facebook
-                </Button>
-              </div>
-              <div className={styles.register_link}>
-                sudah memiliki akun? <Link href="/auth/login" style={{ textDecoration: "none" }}><span className={styles.orange_text}>Masuk</span></Link>
-              </div>
-            </div>
-          </form>
+          <CardSignUp/>
         </div>
       </main>
       <FooterSecond />

@@ -1,11 +1,9 @@
 .container {
-  border: 1px solid var(--borderColor);
-  border-radius: 10px;
-  margin: 0px;
-  padding: 2rem;
-  max-width: 100%;
+  width: 480px;
+  padding: 40px;
   box-shadow: var(--boxShadowColor);
-  color: var(--textColor);
+  border: 1px solid var(--borderColor);
+  border-radius: 8px;
 }
 .sparator {
   display: flex;

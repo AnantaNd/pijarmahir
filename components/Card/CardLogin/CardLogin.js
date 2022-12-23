@@ -80,7 +80,7 @@ function CardLogin() {
         />
       </form>
       <div className={Styles.sparator}>
-        <Button btnOnClick={handleLogin} buttonType="primary" buttonNav={"btnLogin"}>
+        <Button btnOnClick={handleLogin} buttonType="primary" >
           Masuk
         </Button>
       </div>
