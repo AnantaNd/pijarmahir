@@ -10,7 +10,7 @@ import FooterSecond from '../../../components/Footer/FooterSecond/FooterSecond';
 import styles from "./Register.module.css";
 
 
-export default function index({users}) {
+export default function index({ users }) {
   const [email, setEmail] = useState('')
   const [username, setUsername] = useState('')
   const [pass, setPass] = useState('')
@@ -39,43 +39,46 @@ export default function index({users}) {
       callbackUrl: '/'
     });
   }
+
+
   const handleLoginGoogle = (e) => {
     e.preventDefault();
     signIn('google', {
       callbackUrl: '/'
     });
   }
-  const handleSignup =(e)=>{
+
+  const handleSignup = (e) => {
     e.preventDefault();
-    if(username === ''){
+    if (username === '') {
       setErrorUserName('isi terlebih dahulu username')
-    }else{
+    } else {
       setErrorUserName('')
     }
 
-    if(email === ''){
+    if (email === '') {
       setErrorEmail('isi terlebih dahulu email')
-    }else if(!email.includes('@')){
+    } else if (!email.includes('@')) {
       setErrorEmail('eamil harus memiliki karakter @')
-    }else if(!email.includes('gmail.com')){
+    } else if (!email.includes('gmail.com')) {
       setErrorEmail('email tidak valid')
-    }else{
+    } else {
       setErrorEmail('')
     }
 
-    if(pass === ''){
+    if (pass === '') {
       setErrorPass('isi password terlebih dahulu')
-    }else if(pass.length < 4){
+    } else if (pass.length < 4) {
       setErrorPass('password harus memiliki minimal 4 karakter')
-    }else{
+    } else {
       setErrorPass('')
     }
 
-    if(confirmPass === ''){
+    if (confirmPass === '') {
       setErrorConfmPass('masukkan kembali password')
-    }else if(confirmPass != pass){
+    } else if (confirmPass != pass) {
       setErrorConfmPass('password harus sama')
-    }else{
+    } else {
       setErrorConfmPass('')
     }
   }
@@ -150,7 +153,7 @@ export default function index({users}) {
         </Link>
         <div className={styles.content}>
           <Image className={styles.ilustration} src="/new-profile.svg" height={480} width={480} style={{ marginRight: "90px" }} alt='ilustration' />
-          <CardSignUp/>
+          <CardSignUp />
         </div>
       </main>
       <FooterSecond />
