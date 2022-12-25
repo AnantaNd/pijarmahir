@@ -53,7 +53,7 @@ function Navbar({ onSearch }) {
         <Image className={Styles.logo_dekstop} src="/pijar_logo.svg" height={80} width={80} alt='img' />
       </Link>
       <div className={Styles.dropdown_container}>
-        <div className={Styles.dropdown}>Kategori</div>
+        <Link href={'/kursus'} style={{ textDecoration: 'none', color: 'inherit' }}><div className={Styles.dropdown}>Kategori</div></Link>
       </div>
       <div className={Styles.toggler}>
         <BiMenu size={20} onClick={collapseHandler} />
@@ -72,10 +72,14 @@ function Navbar({ onSearch }) {
         </div>
         <ul className={Styles.menus}>
           <li className={Styles.nav_link}>
-            <Image className={Styles.menu_icon} src="/prakerja_logo.svg" width={24} height={24} alt='img' /><Link className={Styles.link} style={{ textDecoration: 'none' }} href="https://pijarmahir.id/kartuprakerja"><span>Prakerja</span></Link><FiChevronRight className={Styles.menu_arrow} />
+            <Image className={Styles.menu_icon} src="/prakerja_logo.svg" width={24} height={24} alt='img' />
+            <Link className={Styles.link} style={{ textDecoration: 'none', color: 'inherit' }} href="https://pijarmahir.id/kartuprakerja"><span>Prakerja</span></Link>
+            <FiChevronRight className={Styles.menu_arrow} />
           </li>
           <li className={Styles.nav_link}>
-            <Image className={Styles.menu_icon} src="/pijar_logo.svg" width={24} height={24} alt='img' /><Link href="https://camp.pijarmahir.id/"><span>Pijar Camp</span></Link> <FiChevronRight className={Styles.menu_arrow} />
+            <Image className={Styles.menu_icon} src="/pijar_logo.svg" width={24} height={24} alt='img' />
+            <Link href="https://camp.pijarmahir.id/" style={{ textDecoration: 'none', color: 'inherit' }}><span>Pijar Camp</span></Link> 
+            <FiChevronRight className={Styles.menu_arrow} />
           </li>
           <li className={Styles.nav_link}>
             <div className={Styles.vl}></div>
