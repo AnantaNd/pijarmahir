@@ -1,7 +1,20 @@
 .container {
   padding: 0 2rem;
 }
-
+.container_session{
+  margin: 2rem 0;
+}
+.greeting{
+  text-transform: capitalize;
+  padding: 8px 0;
+  font-weight: 500;
+  color: var(--orangeColor);
+}
+.sub_greeting{
+  color: var(--greyColor2);
+  font-size: 14px;
+  text-transform: lowercase;
+}
 .containerCourse {
   display: flex;
   gap: 1rem;

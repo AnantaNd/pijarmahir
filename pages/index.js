@@ -12,7 +12,7 @@ import { dataSets } from '../data';
 import styles from '../styles/Home.module.css';
 
 
-export default function Home({kartu_prakerja, flash_sale, mahir_prakerja, best_seller, talent_digital, pilihan_terbaik, testimoni, kategori}) {
+export default function Home({kartu_prakerja, flash_sale, mahir_prakerja, best_seller, talent_digital, pilihan_terbaik, testimoni}) {
   const { data: session } = useSession();
 
   console.log(testimoni.data)
@@ -27,6 +27,13 @@ export default function Home({kartu_prakerja, flash_sale, mahir_prakerja, best_s
       </Head>
 
       <Layouts>
+        {session?
+          <div className={styles.container_session}>
+            <h2 className={styles.greeting}>Selamat datang {session.user.name}</h2>
+            <p className={styles.sub_greeting}>Ayo bangun karir mu bersama pijar mahir dan dapatkan manfaatnya</p>
+          </div>
+          :''
+        }
         {/* Banner */}
         <Section>
           <SwiperSlide />
