@@ -7,7 +7,6 @@ import KartuPrakerja from "../components/KartuPrakerja/KartuPrakerja";
 import Layouts from "../components/Layouts/Layouts";
 import Section from "../components/Section/Section";
 import SwiperSlide from "../components/SwiperSlides/SwiperSlides";
-import Testimoni from "../components/Testimoni/Testimoni";
 import { dataSets } from '../data';
 import styles from '../styles/Home.module.css';
 
@@ -90,7 +89,7 @@ export default function Home({kartu_prakerja, flash_sale, mahir_prakerja, best_s
 
         {/* Testimoni */}
         <Section>
-          <Testimoni dataCard={testimoni.data}/>
+          {/* <Testimoni dataCard={testimoni.data}/> */}
         </Section>
         {/* End Testimoni */}
 

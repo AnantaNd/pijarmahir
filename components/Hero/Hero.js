@@ -12,9 +12,6 @@ export default function Hero({title, tag, mitra, ulasan, people}){
           <p className={styles.rating}>{ulasan} ulasan</p>
           <p className={styles.people}>{people} peserta</p>
         </div>
-        {/* <div className={styles.container_btn}>
-          <Button buttonType='primary'>beli sekarang</Button>
-        </div> */}
       </div>
     </>
   )

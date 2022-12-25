@@ -53,7 +53,7 @@ function Testimoni({dataCard}) {
             swiperRef.current = swiper;
           }}
         >
-          {dataCard.map((data, idx)=>{
+          {dataCard?.map((data, idx)=>{
             return(
               <SwiperSlide key={idx}>
               <CardTestimoni

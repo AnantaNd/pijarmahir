@@ -101,7 +101,7 @@ export default function index({course}){
           <p>Menampilkan {itemData.length} dari seluruh kursus</p>
           {itemData.map((data, idx)=>{
             return(
-              <Link href={`kursus/${data.id}`} key={idx}>
+              <Link href={`kursus/${data.id}`} key={idx} style={{ textDecoration: 'none', color: 'inherit' }}>
                 <ListCourse 
                   img={'/mahirprakerja.jpg'}
                   title={data.fullname}

@@ -1,4 +1,5 @@
 import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
@@ -6,12 +7,14 @@ import Button from '../../Button/Button';
 import Input from '../../Input/Input';
 import Styles from "./CardLogin.module.css";
 
-function CardLogin() {
+function CardLogin({users}) {
   // const { data: session } = useSession();
   const [email, setEmail] = useState('')
   const [pass, setPass] = useState('')
   const [errorPass, setErrorPass] = useState("")
   const [errorEmail, setErrorEmail] = useState("")
+  // console.log(users)
+  const router = useRouter()
 
   const handleInputEmail = (e) => {
     setEmail(e.target.value)
@@ -36,70 +39,115 @@ function CardLogin() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    // try {
+    //   const res = await fetch(
+    //     'http://localhost:9000/api/v1/user/login', {
+    //     method: "POST",
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({
+    //       "username": "user1",
+    //       "password": "123123"
+    //     })
+    //   })
+    //   const jwt = await res.json()
+    //   console.log(jwt.data);
+    //   if (res.status === 200) {
+    //     const user = await fetch(
+    //       'http://localhost:9000/api/v1/user/users', {
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //         'Autorization': `Barer ${jwt.data}`
+    //       },
+    //     })
 
-    try {
-      const res = await fetch(
-        'http://localhost:9000/api/v1/user/login', {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          "username": "user1",
-          "password": "123123"
-        })
-      })
-      const jwt = await res.json()
-      console.log(jwt.data);
-      if (res.status === 200) {
-        const user = await fetch(
-          'http://localhost:9000/api/v1/user/users', {
-          headers: {
-            'Content-Type': 'application/json',
-            'Autorization': `Barer ${jwt.data}`
-          },
-        })
+    //     console.log(user);
+    //   }
 
-        console.log(user);
-      }
+    // } catch (error) {
+    //   console.log(error);
+    // }
 
-    } catch (error) {
-      console.log(error);
+    if (email === '') {
+      setErrorEmail('isi terlebih dahulu email')
+    } else if (!email.includes('@')) {
+      setErrorEmail('email harus memilik karakter @')
+    } else if (!email.includes('@gmail.com')) {
+      setErrorEmail('email tidak valid')
+    } else {
+      setErrorEmail('')
     }
 
-    // await fetch('http://localhost:9000/api/v1/user/', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'Autorization': `Barer ${JWT}`
-    //   },
-    //   body: JSON.stringify({
-    //     "username": email,
-    //     "password": pass,
-    //     "email": email,
-    //     "no_tlp": "081244326633",
-    //     "birthdate": "1976-06-16",
-    //     "gender": "pria"
-    //   }),
-    // if (email === '') {
-    //   setErrorEmail('isi terlebih dahulu email')
-    // } else if (!email.includes('@')) {
-    //   setErrorEmail('email harus memilik karakter @')
-    // } else if (!email.includes('@gmail.com')) {
-    //   setErrorEmail('email tidak valid')
-    // } else {
-    //   setErrorEmail('')
-    // }
+    if (pass === '') {
+      setErrorPass('isi password terlebih dahulu')
+      console.log('pass empty')
+    } else if (pass.length < 4) {
+      console.log('pass length')
+      setErrorPass('password harus memiliki 4 karakter')
+    } else {
+      setErrorPass('')
+    }
 
-    // if (pass === '') {
-    //   setErrorPass('isi password terlebih dahulu')
-    //   console.log('pass empty')
-    // } else if (pass.length < 4) {
-    //   console.log('pass length')
-    //   setErrorPass('password harus memiliki minimal 4 karakter')
-    // } else {
-    //   setErrorPass('')
-    // }
+    // fecthing data
+    try{
+      const res = await fetch('http://localhost:9000/api/v1/user/');
+      const users = res.json()
+      console.log(users)
+      return users
+    }catch(e){
+      console.log(e)
+    }
+    // mapping email 
+    
+    users.data?.map((user, id) => {
+      if (user.email !== email && user.password !== pass) {
+        if (email === '') {
+          setErrorEmail('isi terlebih dahulu email')
+        } else if (!email.includes('@')) {
+          setErrorEmail('email harus memilik karakter @')
+        } else if (!email.includes('@gmail.com')) {
+          setErrorEmail('email tidak valid')
+        } else {
+          setErrorEmail("Email yang dimasukkan tidak terdaftar")
+        }
+
+        if (pass === '') {
+          setErrorPass('isi password terlebih dahulu')
+          console.log('pass empty')
+          console.log('router push');
+        } else if (pass.length < 4) {
+          console.log('pass length')
+          setErrorPass('password harus memiliki 4 karakter')
+          console.log('router push');
+        } else {
+          setErrorPass('')
+          console.log('router push');
+        }
+        console.log('router push');
+        router.push('/')
+      } else if (user.email === email && user.password !== pass) {
+        setErrorPass("Password yang dimasukkan salah")
+        setErrorEmail("")
+      } else if (user.email !== email && user.password === pass) {
+        setErrorEmail("Email yang dimasukkan tidak terdaftar")
+        setErrorPass("")
+      } else {
+        localStorage.setItem('login', JSON.stringify({
+          id,
+          username: user.username,
+          email: email,
+        }))
+        console.log("Berhasil")
+        setErrorPass("")
+        setErrorEmail("")
+        stop()
+      }
+
+
+    })
+    console.log(users)
+
   }
 
 
