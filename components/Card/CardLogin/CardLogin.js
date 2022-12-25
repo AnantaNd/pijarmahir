@@ -33,27 +33,73 @@ function CardLogin() {
       callbackUrl: '/'
     });
   }
-  const handleLogin = (e) => {
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (email === '') {
-      setErrorEmail('isi terlebih dahulu email')
-    } else if (!email.includes('@')) {
-      setErrorEmail('email harus memilik karakter @')
-    } else if (!email.includes('@gmail.com')) {
-      setErrorEmail('email tidak valid')
-    } else {
-      setErrorEmail('')
+
+    try {
+      const res = await fetch(
+        'http://localhost:9000/api/v1/user/login', {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          "username": "user1",
+          "password": "123123"
+        })
+      })
+      const jwt = await res.json()
+      console.log(jwt.data);
+      if (res.status === 200) {
+        const user = await fetch(
+          'http://localhost:9000/api/v1/user/users', {
+          headers: {
+            'Content-Type': 'application/json',
+            'Autorization': `Barer ${jwt.data}`
+          },
+        })
+
+        console.log(user);
+      }
+
+    } catch (error) {
+      console.log(error);
     }
 
-    if (pass === '') {
-      setErrorPass('isi password terlebih dahulu')
-      console.log('pass empty')
-    } else if (pass.length < 4) {
-      console.log('pass length')
-      setErrorPass('password harus memiliki minimal 4 karakter')
-    } else {
-      setErrorPass('')
-    }
+    // await fetch('http://localhost:9000/api/v1/user/', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     'Autorization': `Barer ${JWT}`
+    //   },
+    //   body: JSON.stringify({
+    //     "username": email,
+    //     "password": pass,
+    //     "email": email,
+    //     "no_tlp": "081244326633",
+    //     "birthdate": "1976-06-16",
+    //     "gender": "pria"
+    //   }),
+    // if (email === '') {
+    //   setErrorEmail('isi terlebih dahulu email')
+    // } else if (!email.includes('@')) {
+    //   setErrorEmail('email harus memilik karakter @')
+    // } else if (!email.includes('@gmail.com')) {
+    //   setErrorEmail('email tidak valid')
+    // } else {
+    //   setErrorEmail('')
+    // }
+
+    // if (pass === '') {
+    //   setErrorPass('isi password terlebih dahulu')
+    //   console.log('pass empty')
+    // } else if (pass.length < 4) {
+    //   console.log('pass length')
+    //   setErrorPass('password harus memiliki minimal 4 karakter')
+    // } else {
+    //   setErrorPass('')
+    // }
   }
 
 
@@ -62,7 +108,7 @@ function CardLogin() {
       <h2 className={Styles.text_login}>Masuk</h2>
       <p className={Styles.suggestion}>Lanjutkan pembelajaranmu dengan Pijar Mahir</p>
       <form className={Styles.container_input}>
-        <Input 
+        <Input
           label={'email'}
           name={'email'}
           type={'text'}
@@ -70,7 +116,7 @@ function CardLogin() {
           helper={errorEmail}
           onChangeInput={handleInputEmail}
         />
-        <Input 
+        <Input
           label={'password'}
           name={'password'}
           type={'password'}
@@ -105,3 +151,5 @@ function CardLogin() {
 }
 
 export default CardLogin
+
+
