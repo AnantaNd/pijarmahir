@@ -1,6 +1,6 @@
 import styles from './Hero.module.css'
 
-export default function Hero({title, tag, mitra, ulasan}){
+export default function Hero({title, tag, mitra, ulasan, people}){
   return (
     <>
       <div className={styles.container}>
@@ -10,7 +10,7 @@ export default function Hero({title, tag, mitra, ulasan}){
         <div className={styles.container_rating}>
           <p className={styles.location}>pelatihan di: <span>{mitra}</span></p>
           <p className={styles.rating}>{ulasan} ulasan</p>
-          {/* <p className={styles.people}>129 peserta</p> */}
+          <p className={styles.people}>{people} peserta</p>
         </div>
         {/* <div className={styles.container_btn}>
           <Button buttonType='primary'>beli sekarang</Button>

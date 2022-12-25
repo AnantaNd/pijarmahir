@@ -1,12 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
 import Head from "next/head";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Layouts from "../../components/Layouts/Layouts";
 import ListCourse from "../../components/ListCourse/ListCourse";
 import Sort from "../../components/Sort/Sort";
 import SwiperSlides from "../../components/SwiperSlides/SwiperSlides";
 import styles from "./Kursus.module.css";
+
 
 
 export default function index({course}){
@@ -99,14 +101,16 @@ export default function index({course}){
           <p>Menampilkan {itemData.length} dari seluruh kursus</p>
           {itemData.map((data, idx)=>{
             return(
-              <ListCourse key={idx}
-                img={'/mahirprakerja.jpg'}
-                title={data.fullname}
-                price={data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
-                rating={data.rating}
-                ulasan={data.totalrater}
-                mitra={data.teacher}
-                />
+              <Link href={`kursus/${data.id}`} key={idx}>
+                <ListCourse 
+                  img={'/mahirprakerja.jpg'}
+                  title={data.fullname}
+                  price={data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
+                  rating={data.rating}
+                  ulasan={data.totalrater}
+                  mitra={data.teacher}
+                  />
+              </Link>
             )
           })}
             {/* <ListCourse img={'/mahirprakerja.jpg'} title={'Belajar Mengelola Usaha Budi Daya Jamur untuk Calon Pengusaha Jamur'} price={10} mitra={'cariilmu'} rating={3.3} ulasan={12}/> */}
