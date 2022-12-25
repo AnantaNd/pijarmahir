@@ -1,6 +1,6 @@
 import { signIn } from 'next-auth/react'
 import Link from 'next/link'
-import Router, { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { FaFacebook } from 'react-icons/fa'
 import { FcGoogle } from 'react-icons/fc'
@@ -32,7 +32,7 @@ export default function CardSignUp() {
         "birthdate": "1976-06-16",
         "gender": "pria"
       }),
-    })
+      })
       .then((res) => res.json())
       .then((data) => {
         router.push('/')

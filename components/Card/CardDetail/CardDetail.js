@@ -8,12 +8,12 @@ import Button from '../../Button/Button';
 import styles from './CardDetail.module.css';
 
 
-export default function CardDetail(){
+export default function CardDetail({price, img}){
   return (
     <>
       <div className={styles.container}>
         <Image className={styles.img} src={'/mahirprakerja1.jpg'} alt='img' width={300} height={150}/>
-        <h1 className={styles.price}>Rp. 100.000</h1>
+        <h1 className={styles.price}>Rp. {price}</h1>
         <Button buttonType="primary">Beli Sekarang</Button>
         <div className={styles.container_content}>
           <p className={styles.title}>benefit yang didapatkan</p>

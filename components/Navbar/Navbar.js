@@ -53,7 +53,7 @@ function Navbar({ onSearch }) {
         <Image className={Styles.logo_dekstop} src="/pijar_logo.svg" height={80} width={80} alt='img' />
       </Link>
       <div className={Styles.dropdown_container}>
-        <Link href={'/kursus'} style={{ textDecoration: 'none', color: 'inherit' }}><div className={Styles.dropdown}>Kategori</div></Link>
+        <Link href={'/kursus'} style={{ textDecoration: 'none', color: 'inherit' }}><div className={Styles.dropdown}>kursus</div></Link>
       </div>
       <div className={Styles.toggler}>
         <BiMenu size={20} onClick={collapseHandler} />
