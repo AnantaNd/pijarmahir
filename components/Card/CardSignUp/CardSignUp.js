@@ -21,50 +21,75 @@ export default function CardSignUp() {
   const router = useRouter();
 
   const onSubmit = async () => {
-    await fetch('http://localhost:9000/api/v1/user/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        "username": email,
-        "password": pass,
-        "email": email,
-        "no_tlp": "081244326633",
-        "birthdate": "1976-06-16",
-        "gender": "pria"
-      }),
+    if (email === '') {
+      setErrorEmail('Masukkan data terlebih dahulu')
+    } else if (!email.includes('@')) {
+      setErrorEmail('Email harus memilik karakter @')
+    } else if (!email.includes('@gmail.com')) {
+      setErrorEmail('Email tidak valid')
+    } else {
+      setErrorEmail('')
+    }
+
+    if (pass === '') {
+      setErrorPass('Masukkan data terlebih dahulu')
+    } else if (pass.length < 4) {
+      setErrorPass('Password harus memiliki 4 karakter')
+    } else {
+      setErrorPass('')
+    }
+
+    if (pass !== "" && email !== "" && confirmPass !== "") {
+      await fetch('http://localhost:9000/api/v1/user/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          "username": email,
+          "password": pass,
+          "email": email,
+          "no_tlp": "081244326633",
+          "birthdate": "1976-06-16",
+          "gender": "pria"
+        }),
       })
-      .then((res) => res.json())
-      .then((data) => {
-        router.push('/')
-      });
+        .then((res) => res.json())
+        .then((data) => {
+          router.push('/auth/login')
+        });
+    }
   };
 
 
   function handleInputEmail(e) {
     setEmail(e.target.value);
-    console.log(e.target.value)
   }
+
   function handleInputUsername(e) {
     setUsername(e.target.value);
   }
+
   const handleInputPass = (e) => {
     setPass(e.target.value)
   }
+
   const handleInputConfirm = (e) => {
     setConfirmPass(e.target.value)
   }
+
   const handleLoginFacebook = (e) => {
     e.preventDefault();
     signIn('facebook', {
       callbackUrl: '/newprofile'
     });
   }
+
   const handleLoginGoogle = (e) => {
     e.preventDefault();
     signIn('google', {
       callbackUrl: '/newprofile'
     });
   }
+
   const handleSignup = (e) => {
     e.preventDefault();
     if (username === '') {
@@ -74,19 +99,19 @@ export default function CardSignUp() {
     }
 
     if (email === '') {
-      setErrorEmail('isi terlebih dahulu email')
+      setErrorEmail('Masukkan data terlebih dahulu')
     } else if (!email.includes('@')) {
-      setErrorEmail('eamil harus memiliki karakter @')
+      setErrorEmail('Format email yang dimasukkan tidak memiliki “@”')
     } else if (!email.includes('gmail.com')) {
-      setErrorEmail('email tidak valid')
+      setErrorEmail('Format email tidak valid')
     } else {
       setErrorEmail('')
     }
 
     if (pass === '') {
-      setErrorPass('isi password terlebih dahulu')
+      setErrorPass('Masukkan data terlebih dahulu')
     } else if (pass.length < 4) {
-      setErrorPass('password harus memiliki minimal 4 karakter')
+      setErrorPass('Minimum 4 karakter')
     } else {
       setErrorPass('')
     }

@@ -1,4 +1,5 @@
 import { signIn } from 'next-auth/react';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { FaFacebook } from "react-icons/fa";
@@ -40,100 +41,31 @@ function CardLogin() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    // try {
-    //   const res = await fetch(
-    //     'http://localhost:9000/api/v1/user/login', {
-    //     method: "POST",
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({
-    //       "username": "user1",
-    //       "password": "123123"
-    //     })
-    //   })
-    //   const jwt = await res.json()
-    //   console.log(jwt.data);
-    //   if (res.status === 200) {
-    //     const user = await fetch(
-    //       'http://localhost:9000/api/v1/user/users', {
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //         'Autorization': `Barer ${jwt.data}`
-    //       },
-    //     })
-
-    //     console.log(user);
-    //   }
-
-    // } catch (error) {
-    //   console.log(error);
-    // }
-    
-    if (email === '') {
-      setErrorEmail('isi terlebih dahulu email')
-    } else if (!email.includes('@')) {
-      setErrorEmail('email harus memilik karakter @')
-    } else if (!email.includes('@gmail.com')) {
-      setErrorEmail('email tidak valid')
-    } else {
-      setErrorEmail('')
-    }
-
-    if (pass === '') {
-      setErrorPass('isi password terlebih dahulu')
-      console.log('pass empty')
-    } else if (pass.length < 4) {
-      console.log('pass length')
-      setErrorPass('password harus memiliki 4 karakter')
-    } else {
-      setErrorPass('')
-    }
-
-    // fecthing data
-    // try{
-    //   const res = await fetch('http://localhost:9000/api/v1/user/');
-    //   const users = res.json()
-    //   console.log(users)
-    //   return users
-    // }catch(e){
-    //   console.log(e)
-    // }
-    // mapping email 
-    try{
-      const res = await fetch('http://localhost:9000/api/v1/user/');
-      const users = await res.json()
-      console.log(users)
-      setData(users)
-    }catch(e){
-      console.log(e)
-    }
-    data.data?.map((user, id) => {
+    const res = await fetch('http://localhost:9000/api/v1/user/');
+    const users = await res.json()
+    users.data?.map((user, id) => {
       if (user.email !== email && user.password !== pass) {
         if (email === '') {
-          setErrorEmail('isi terlebih dahulu email')
+          setErrorEmail('Masukkan data terlebih dahulu')
         } else if (!email.includes('@')) {
-          setErrorEmail('email harus memilik karakter @')
+          setErrorEmail('Format email yang dimasukkan tidak memiliki “@”')
         } else if (!email.includes('@gmail.com')) {
-          setErrorEmail('email tidak valid')
-        } else {
+          setErrorEmail('Format email tidak valid')
+        } else if (user.email !== email && email !== '') {
           setErrorEmail("Email yang dimasukkan tidak terdaftar")
+        } else {
+          setErrorEmail('')
         }
 
         if (pass === '') {
-          setErrorPass('isi password terlebih dahulu')
+          setErrorPass('Masukkan data terlebih dahulu')
           console.log('pass empty')
-          console.log('router push');
         } else if (pass.length < 4) {
           console.log('pass length')
-          setErrorPass('password harus memiliki 4 karakter')
-          console.log('router push');
+          setErrorPass('Minimum 4 karakter')
         } else {
           setErrorPass('')
-          console.log('router push');
         }
-        console.log('router push');
-        router.push('/')
       } else if (user.email === email && user.password !== pass) {
         setErrorPass("Password yang dimasukkan salah")
         setErrorEmail("")
@@ -150,6 +82,7 @@ function CardLogin() {
         setErrorPass("")
         setErrorEmail("")
         stop()
+        router.push("/")
       }
 
 
@@ -200,7 +133,7 @@ function CardLogin() {
         </Button>
       </div>
       <div className={Styles.register_link}>
-        Belum punya akun? <span className={Styles.orange_text}>Daftar</span>
+        Belum punya akun? <Link href="/auth/register" ><span className={Styles.orange_text}>Daftar</span></Link>
       </div>
     </div>
   )
