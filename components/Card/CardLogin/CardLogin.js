@@ -7,8 +7,9 @@ import Button from '../../Button/Button';
 import Input from '../../Input/Input';
 import Styles from "./CardLogin.module.css";
 
-function CardLogin({users}) {
+function CardLogin() {
   // const { data: session } = useSession();
+  const [data, setData] = useState('')
   const [email, setEmail] = useState('')
   const [pass, setPass] = useState('')
   const [errorPass, setErrorPass] = useState("")
@@ -68,7 +69,7 @@ function CardLogin({users}) {
     // } catch (error) {
     //   console.log(error);
     // }
-
+    
     if (email === '') {
       setErrorEmail('isi terlebih dahulu email')
     } else if (!email.includes('@')) {
@@ -90,17 +91,24 @@ function CardLogin({users}) {
     }
 
     // fecthing data
+    // try{
+    //   const res = await fetch('http://localhost:9000/api/v1/user/');
+    //   const users = res.json()
+    //   console.log(users)
+    //   return users
+    // }catch(e){
+    //   console.log(e)
+    // }
+    // mapping email 
     try{
       const res = await fetch('http://localhost:9000/api/v1/user/');
-      const users = res.json()
+      const users = await res.json()
       console.log(users)
-      return users
+      setData(users)
     }catch(e){
       console.log(e)
     }
-    // mapping email 
-    
-    users.data?.map((user, id) => {
+    data.data?.map((user, id) => {
       if (user.email !== email && user.password !== pass) {
         if (email === '') {
           setErrorEmail('isi terlebih dahulu email')
@@ -146,7 +154,7 @@ function CardLogin({users}) {
 
 
     })
-    console.log(users)
+    // console.log(users)
 
   }
 
