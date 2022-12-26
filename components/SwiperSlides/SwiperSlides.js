@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useCallback, useRef } from "react";
-import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md';
+import React, { useRef } from 'react';
+import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md';
 import Styles from './SwiperSlides.module.css';
 
 // Swiper
